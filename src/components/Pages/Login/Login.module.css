@@ -1,0 +1,16 @@
+.login_grid {
+    height: 100%;
+    display: grid;   
+    grid-template-columns: 1fr 1fr; 
+    align-items: stretch;
+  }
+.grid_item{
+    align-items: stretch;
+    background-color: rgb(177, 177, 177);
+}
+
+ .login_container{
+    /* background-color: beige; */
+    height: 100vh;
+
+ } 
