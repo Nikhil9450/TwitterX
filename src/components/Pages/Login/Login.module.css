@@ -4,9 +4,39 @@
     grid-template-columns: 1fr 1fr; 
     align-items: stretch;
   }
-.grid_item{
-    align-items: stretch;
-    background-color: rgb(177, 177, 177);
+.grid_item1{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: black;
+}
+.grid_item2{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background: black;
+  color: white;
+}
+.signup_card{
+}
+.create_acc_btn{
+
+}
+h2{
+  font-size: 2rem;
+}
+h1{
+font-size: 4rem;
+}
+.signin_btn{
+  border-radius: 20px;
+  text-transform: none;
+}
+.term_condition_para{
+  font-size: 10px;
+}
+.icon{
+  height: 15rem;
 }
 
  .login_container{
