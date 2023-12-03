@@ -1,6 +1,6 @@
 import React from 'react'
 import classes from './Login.module.css';
-import Button from '@mui/material/Button';
+// import Button from '@mui/material/Button';
 const Login = () => {
   return (
     <div className={classes.login_container}>
@@ -11,17 +11,25 @@ const Login = () => {
             <div>
               <h1>Happening now</h1>
             </div>
-            <div>
-              <h2>Join today.</h2>
-              <div></div>
-              <p>-------------------or--------------------</p>
-              <button className={classes.create_acc_btn}>Create account</button>
-              <p className={classes.term_condition_para}>By signing up,you agree to the Terms of Service and Privacy Policy, including Cookie Use.</p>
-            </div>
+            <div className={classes.form}>
+              <div>
+                <h2>Join today.</h2>
+                <div>
+                  <button className={classes.g_signup}><img className={classes.google_icon} src="Icons/google.png" alt="google icon" /><span>Sign up with Google</span></button>
+                </div>
+                <div className={classes.line}>
+                  <hr width="100%" size="2" color="grey" noshade/>
+                  <p className={classes.or}>or</p>
+                  <hr width="100%" size="2" color="grey" noshade></hr>
+                </div>
+                <button className={classes.create_acc_btn}>Create account</button>
+                <p className={classes.term_condition_para}>By signing up,you agree to the Terms of Service and Privacy Policy, including Cookie Use.</p>
+              </div>
 
-            <div>
-              <h5>Already have an account?</h5>
-              <button className={classes.signin_btn} >Sign in</button>
+              <div>
+                <h5>Already have an account?</h5>
+                <button className={classes.signin_btn} >Sign in</button>
+              </div>
             </div>
           </div>  
         </div>
