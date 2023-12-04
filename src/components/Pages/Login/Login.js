@@ -1,7 +1,18 @@
 import React from 'react'
 import classes from './Login.module.css';
+import SignupModal from './SignupModal';
+import { useState } from 'react';
 // import Button from '@mui/material/Button';
 const Login = () => {
+  const [isSignupModalOpen, setSignupModalOpen] = useState(false);
+
+  const openSignupModal = () => {
+    setSignupModalOpen(true);
+  };
+
+  const closeSignupModal = () => {
+    setSignupModalOpen(false);
+  };
   return (
     <div className={classes.login_container}>
       <div className={classes.login_grid}>
@@ -22,7 +33,7 @@ const Login = () => {
                   <p className={classes.or}>or</p>
                   <hr width="100%" size="2" color="grey" noshade></hr>
                 </div>
-                <button className={classes.create_acc_btn}>Create account</button>
+                <button className={classes.create_acc_btn} onClick={openSignupModal}>Create account</button>
                 <p className={classes.term_condition_para}>By signing up,you agree to the Terms of Service and Privacy Policy, including Cookie Use.</p>
               </div>
 
@@ -34,6 +45,7 @@ const Login = () => {
           </div>  
         </div>
       </div>
+      <SignupModal open={isSignupModalOpen} onClose={closeSignupModal} />
     </div>
   )
 }

@@ -1,0 +1,25 @@
+.signup_form{
+    display: flex;
+    flex-direction: column;
+    margin: 1rem 0rem;
+    row-gap: 1rem;
+}
+.date_section{
+    display: flex;
+    justify-content: space-between;
+    margin-top: .6rem;
+}
+.input{
+    width: 100%;
+    border: 1px solid white;
+    border-radius: 5px;
+    color: white;
+    background: none;
+    padding: 1rem;
+}
+.submit_container{
+    margin-top: 2rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: end;
+}
