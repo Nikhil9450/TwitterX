@@ -11,12 +11,15 @@ import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { useState } from 'react';
+import Grid from '@mui/material/Grid'; // Grid version 1
+import IconButton from '@mui/material/IconButton';
+import CloseIcon from '@mui/material/IconButton/';
 const style = {
   position: 'absolute',
   top: '50%',
   left: '50%',
   transform: 'translate(-50%, -50%)',
-  width: 700,
+  width: 600,
   bgcolor: 'white',
 //   border: '2px solid #000',
   boxShadow: 24,
@@ -61,7 +64,9 @@ export default function SignupModal(props) {
             }}
         >
             <Fade in={props.open}>
+
             <Box sx={style}>
+
                 <Typography id="transition-modal-title" variant="h5" component="h2">
                 Create your account
                 </Typography>
@@ -69,15 +74,27 @@ export default function SignupModal(props) {
                 {/* <input className={classes.input} type="text" placeholder='Name' />
                 <input className={classes.input} type="text" placeholder='Email' />
                 <input className={classes.input} type='number' placeholder='Phone no.'  /> */}
+                <Grid container spacing={2}>
+                  <Grid item xs={6}>
                     <TextField id="outlined-basic" label="Name" variant="outlined"   size="small"/>
+                  </Grid>
+                  <Grid item xs={6}>
                     <TextField id="outlined-basic" label="Phone no." type="number" variant="outlined"   size="small" />
-                    <TextField id="outlined-basic" label="Email" type="email" variant="outlined"   size="small"/>
+                  </Grid>
+                  <Grid item xs={12}>
+                    <TextField id="outlined-basic" label="Email" type="email" variant="outlined" size="small" />
+                  </Grid>
+                  <Grid item xs={6}>
                     <TextField id="outlined-basic" label="Password" type="password" variant="outlined"   size="small"/>
+                  </Grid>
+                  <Grid item xs={6}>
                     <TextField id="outlined-basic" label="Confirm Password" type="Password" variant="outlined"   size="small"/>
+                  </Grid> 
+                </Grid>
 
                 </div>
                 <div>
-                <Typography  variant="h7" component="h7">
+                <Typography  variant="h6" component="h6">
                 Date of birth
                 </Typography>
                     <div className={classes.date_section}>
