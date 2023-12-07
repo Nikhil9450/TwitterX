@@ -31,3 +31,8 @@
     background-color: black;
 
 }
+.icon_container{
+    display: flex;
+    justify-content: end;
+    
+}
