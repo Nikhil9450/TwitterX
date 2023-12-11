@@ -13,6 +13,11 @@ import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { useState } from 'react';
 import Grid from '@mui/material/Grid'; // Grid version 1
 import CloseIcon from '@mui/icons-material/Close';
+import Radio from '@mui/material/Radio';
+import RadioGroup from '@mui/material/RadioGroup';
+import FormControlLabel from '@mui/material/FormControlLabel';
+// import FormControl from '@mui/material/FormControl';
+import FormLabel from '@mui/material/FormLabel';
 // import IconButton from '@mui/material/IconButton';
 // import CloseIcon from '@mui/material/IconButton/';
 const style = {
@@ -39,13 +44,22 @@ const backdropStyle = {
 
 export default function SignupModal(props) {
   console.log("props----------->",props)
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    phone: '',
+    password: '',
+    confirmPassword: '',
+    gender: '',
+    dateOfBirth: null,
+  });
 
-  const [selectedDate, setSelectedDate] = useState(null);
-  const formattedDate = selectedDate ? new Date(selectedDate).toLocaleDateString() : '';
-  const handleDateChange = (newDate) => {
-    setSelectedDate(newDate);
-    console.log("selected day--------->",formattedDate)
-  };
+  // const [selectedDate, setSelectedDate] = useState(null);
+  // const formattedDate = selectedDate ? new Date(selectedDate).toLocaleDateString() : '';
+  // const handleDateChange = (newDate) => {
+  //   setSelectedDate(newDate);
+  //   console.log("selected day--------->",formattedDate)
+  // };
 
   const handleCloseModal = () => {
     // Call the modal close function when clicking the cross icon
@@ -57,9 +71,32 @@ export default function SignupModal(props) {
     event.stopPropagation();
     // You can add other logic here if needed
   };
+ 
+  const handleInputChange = (event) => {
+    console.log("id--------------->",event.target.id);
+    console.log("value--------------->",event.target.value);
+    const { id, value } = event.target;
+    setFormData((prevData) => ({
+      ...prevData,
+      [id]: value,
+    }));
+  };
+
+  const handleDateChange = (newDate) => {
+    const formattedDate = newDate ? new Date(newDate).toLocaleDateString() : '';
+    setFormData((prevData) => ({
+      ...prevData,
+      dateOfBirth: formattedDate,
+    }));
+  };
+  const onSubmit =()=>{
+    console.log("formdata---------->",formData);
+  }
+  
   return (
     <div>
- <LocalizationProvider dateAdapter={AdapterDayjs}>      {/* <button className={classes.signup_btn}>Create Account</button> */}
+ <LocalizationProvider dateAdapter={AdapterDayjs}>     
+  {/* <button className={classes.signup_btn}>Create Account</button> */}
       {/* <Button onClick={handleOpen}>Open modal</Button> */}
         <Modal
             aria-labelledby="transition-modal-title"
@@ -82,43 +119,53 @@ export default function SignupModal(props) {
                 Create your account
                 </Typography>
                 <div className={classes.signup_form}>
-                {/* <input className={classes.input} type="text" placeholder='Name' />
-                <input className={classes.input} type="text" placeholder='Email' />
-                <input className={classes.input} type='number' placeholder='Phone no.'  /> */}
-                <Grid container spacing={2}>
-                  <Grid item xs={6}>
-                    <TextField id="outlined-basic" label="Name" variant="outlined"   size="small" fullWidth />
+                  {/* <input className={classes.input} type="text" placeholder='Name' />
+                  <input className={classes.input} type="text" placeholder='Email' />
+                  <input className={classes.input} type='number' placeholder='Phone no.'  /> */}
+                  <Grid container spacing={2}>
+                    <Grid item xs={12}>
+                      <TextField id="name" label="Name" variant="outlined" onChange={handleInputChange}   size="small" fullWidth />
+                    </Grid>
+                    <Grid item xs={12}>
+                      <TextField id="phone" label="Phone no." type="number" variant="outlined" onChange={handleInputChange}  size="small" fullWidth />
+                    </Grid>
+                    <Grid item xs={12}>
+                      <TextField id="email" label="Email" type="email" variant="outlined" onChange={handleInputChange} size="small" fullWidth />
+                    </Grid>
+                    <Grid item xs={6}>
+                      <TextField id="password" label="Password" type="password" variant="outlined" onChange={handleInputChange}   size="small" fullWidth />
+                    </Grid>
+                    <Grid item xs={6}>
+                      <TextField id="confirmPassword" label="Confirm Password" type="Password" variant="outlined" onChange={handleInputChange}   size="small" fullWidth />
+                    </Grid> 
+                    <Grid item xs={12}>
+                      <FormLabel id="demo-row-radio-buttons-group-label">Gender</FormLabel>
+                      <RadioGroup
+                        row
+                        aria-labelledby="demo-row-radio-buttons-group-label"
+                        name="row-radio-buttons-group"
+                        onChange={handleInputChange} 
+                      >
+                        <FormControlLabel value="female" control={<Radio id="gender" />} label="Female" />
+                        <FormControlLabel value="male" control={<Radio  id="gender"/>} label="Male" />
+                        <FormControlLabel value="other" control={<Radio id="gender"/>} label="Other" />
+                      </RadioGroup>
+                    </Grid>
+                    <Grid item xs={12}>
+                        <div >
+                          <Typography  variant="h6" component="h6">
+                            Date of birth
+                          </Typography>
+                          <div className={classes.date_section} >
+                            <DatePicker   onChange={handleDateChange}  sx={{ height: '40px',margin:'1rem 0rem' /* Other styles */ }}  />
+                          </div>
+                      </div>
+                    </Grid>
                   </Grid>
-                  <Grid item xs={6}>
-                    <TextField id="outlined-basic" label="Phone no." type="number" variant="outlined"   size="small" fullWidth />
-                  </Grid>
-                  <Grid item xs={12}>
-                    <TextField id="outlined-basic" label="Email" type="email" variant="outlined" size="small" fullWidth />
-                  </Grid>
-                  <Grid item xs={6}>
-                    <TextField id="outlined-basic" label="Password" type="password" variant="outlined"   size="small" fullWidth />
-                  </Grid>
-                  <Grid item xs={6}>
-                    <TextField id="outlined-basic" label="Confirm Password" type="Password" variant="outlined"   size="small" fullWidth />
-                  </Grid> 
-                </Grid>
-
                 </div>
-                <div>
-                <Typography  variant="h6" component="h6">
-                Date of birth
-                </Typography>
-                    <div className={classes.date_section}>
-                    {/* <DatePicker label={'"day"'}   value={selectedDay} onChange={handleDayChange} views={['day']} sx={{ width: '200px', height: '40px', fontSize: '16px' }} size="small"/>
-                    <DatePicker label={'"month"'} views={['month']} sx={{ width: '200px',height:'50px', fontSize: '16px' }} size="small"/>
-                    <DatePicker label={'"year"'} views={['year']} sx={{ width: '200px', height:'50px', fontSize: '16px' }} size="small" /> */}
-                    <DatePicker  value={selectedDate}  onChange={handleDateChange}  sx={{ height: '40px',margin:'1rem 0rem' /* Other styles */ }}/>
-                    </div>
-                    <div className={classes.submit_container}>
-                        <Button variant="contained"  >Submit</Button>
-                    </div>
-                </div>
-
+                <div className={classes.submit_container}>
+                        <Button variant="contained" onClick={onSubmit}  >Submit</Button>
+                  </div>
             </Box>
             </Fade>
         </Modal>
