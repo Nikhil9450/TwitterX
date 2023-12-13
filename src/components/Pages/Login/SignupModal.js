@@ -18,6 +18,8 @@ import RadioGroup from '@mui/material/RadioGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
 // import FormControl from '@mui/material/FormControl';
 import FormLabel from '@mui/material/FormLabel';
+import { signup } from '../../../actions/authActions';
+
 // import IconButton from '@mui/material/IconButton';
 // import CloseIcon from '@mui/material/IconButton/';
 const style = {
@@ -89,8 +91,10 @@ export default function SignupModal(props) {
       dateOfBirth: formattedDate,
     }));
   };
-  const onSubmit =()=>{
+  const onSubmit =(e)=>{
     console.log("formdata---------->",formData);
+    e.preventDefault();
+    signup(formData);
   }
   
   return (
