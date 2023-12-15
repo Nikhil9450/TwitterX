@@ -10,7 +10,7 @@ import { TextField } from '@mui/material';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
-import { useState } from 'react';
+import { useRef  } from 'react';
 import Grid from '@mui/material/Grid'; // Grid version 1
 import CloseIcon from '@mui/icons-material/Close';
 import Radio from '@mui/material/Radio';
@@ -18,8 +18,10 @@ import RadioGroup from '@mui/material/RadioGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
 // import FormControl from '@mui/material/FormControl';
 import FormLabel from '@mui/material/FormLabel';
-import { signup } from '../../../actions/authActions';
-
+// import { signup } from '../../../actions/authActions';
+import { useSelector, useDispatch } from 'react-redux'
+import {registerUser} from '../../../slices/AuthenticatorSlice'
+// import { decrement, increment } from './counterSlice'
 // import IconButton from '@mui/material/IconButton';
 // import CloseIcon from '@mui/material/IconButton/';
 const style = {
@@ -45,16 +47,27 @@ const backdropStyle = {
 
 
 export default function SignupModal(props) {
+
+  const nameRef = useRef(null);
+  const phoneRef = useRef(null);
+  const emailRef = useRef(null);
+  const passwordRef = useRef(null);
+  const confirmPasswordRef = useRef(null);
+  // const genderRef = useRef(null);
+  const dobRef = useRef(null);
+
+  const user_data = useSelector((state) => state.auth);
+  const dispatch = useDispatch()
   console.log("props----------->",props)
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    phone: '',
-    password: '',
-    confirmPassword: '',
-    gender: '',
-    dateOfBirth: null,
-  });
+  // const [formData, setFormData] = useState({
+  //   name: '',
+  //   email: '',
+  //   phone: '',
+  //   password: '',
+  //   confirmPassword: '',
+  //   gender: '',
+  //   dateOfBirth: null,
+  // });
 
   // const [selectedDate, setSelectedDate] = useState(null);
   // const formattedDate = selectedDate ? new Date(selectedDate).toLocaleDateString() : '';
@@ -74,28 +87,44 @@ export default function SignupModal(props) {
     // You can add other logic here if needed
   };
  
-  const handleInputChange = (event) => {
-    console.log("id--------------->",event.target.id);
-    console.log("value--------------->",event.target.value);
-    const { id, value } = event.target;
-    setFormData((prevData) => ({
-      ...prevData,
-      [id]: value,
-    }));
-  };
+  // const handleInputChange = (event) => {
+    // console.log("id--------------->",event.target.id);
+    // console.log("value--------------->",event.target.value);
+    // const { id, value } = event.target;
+    // setFormData((prevData) => ({
+    //   ...prevData,
+    //   [id]: value,
+    // }));
+  // };
 
-  const handleDateChange = (newDate) => {
-    const formattedDate = newDate ? new Date(newDate).toLocaleDateString() : '';
-    setFormData((prevData) => ({
-      ...prevData,
-      dateOfBirth: formattedDate,
-    }));
-  };
-  const onSubmit =(e)=>{
-    console.log("formdata---------->",formData);
-    e.preventDefault();
-    signup(formData);
-  }
+  // const handleDateChange = (newDate) => {
+    // const formattedDate = newDate ? new Date(newDate).toLocaleDateString() : '';
+    // setFormData((prevData) => ({
+    //   ...prevData,
+    //   dateOfBirth: formattedDate,
+    // }));
+  // };
+// Function to handle form submission
+const onSubmit = (e) => {
+  console.log("initial values---------->",user_data)
+  e.preventDefault();
+  const formData = {
+      name: nameRef.current.value,
+      phone: phoneRef.current.value,
+      email: emailRef.current.value,
+      password: passwordRef.current.value,
+      confirmPassword: confirmPasswordRef.current.value,
+      // gender: genderRef.current.value,
+      dateOfBirth: dobRef.current.value // You may need to format this value based on your DatePicker component
+    };
+  // Gather form data, assuming you have it in your formData state
+  // const { name, email, phone, password, confirmPassword, gender, dateOfBirth } = formData;
+  console.log("this formdata is in onSubmit---->",formData)
+  // Dispatch the action with gathered form data
+  dispatch(
+    registerUser(formData)
+  );
+};
   
   return (
     <div>
@@ -128,27 +157,27 @@ export default function SignupModal(props) {
                   <input className={classes.input} type='number' placeholder='Phone no.'  /> */}
                   <Grid container spacing={2}>
                     <Grid item xs={12}>
-                      <TextField id="name" label="Name" variant="outlined" onChange={handleInputChange}   size="small" fullWidth />
+                      <TextField id="name" label="Name" variant="outlined"   inputRef={nameRef} size="small" fullWidth />
                     </Grid>
                     <Grid item xs={12}>
-                      <TextField id="phone" label="Phone no." type="number" variant="outlined" onChange={handleInputChange}  size="small" fullWidth />
+                      <TextField id="phone" label="Phone no." type="number" variant="outlined"  inputRef={phoneRef} size="small" fullWidth />
                     </Grid>
                     <Grid item xs={12}>
-                      <TextField id="email" label="Email" type="email" variant="outlined" onChange={handleInputChange} size="small" fullWidth />
+                      <TextField id="email" label="Email" type="email" variant="outlined"  inputRef={emailRef} size="small" fullWidth />
                     </Grid>
                     <Grid item xs={6}>
-                      <TextField id="password" label="Password" type="password" variant="outlined" onChange={handleInputChange}   size="small" fullWidth />
+                      <TextField id="password" label="Password" type="password" variant="outlined"  inputRef={passwordRef}  size="small" fullWidth />
                     </Grid>
                     <Grid item xs={6}>
-                      <TextField id="confirmPassword" label="Confirm Password" type="Password" variant="outlined" onChange={handleInputChange}   size="small" fullWidth />
+                      <TextField id="confirmPassword" label="Confirm Password" type="Password" variant="outlined"  inputRef={confirmPasswordRef}   size="small" fullWidth />
                     </Grid> 
                     <Grid item xs={12}>
                       <FormLabel id="demo-row-radio-buttons-group-label">Gender</FormLabel>
                       <RadioGroup
                         row
                         aria-labelledby="demo-row-radio-buttons-group-label"
-                        name="row-radio-buttons-group"
-                        onChange={handleInputChange} 
+                        name="row-radio-buttons-group"                   
+                        
                       >
                         <FormControlLabel value="female" control={<Radio id="gender" />} label="Female" />
                         <FormControlLabel value="male" control={<Radio  id="gender"/>} label="Male" />
@@ -161,14 +190,14 @@ export default function SignupModal(props) {
                             Date of birth
                           </Typography>
                           <div className={classes.date_section} >
-                            <DatePicker   onChange={handleDateChange}  sx={{ height: '40px',margin:'1rem 0rem' /* Other styles */ }}  />
+                            <DatePicker  inputRef={dobRef}  sx={{ height: '40px',margin:'1rem 0rem' /* Other styles */ }}  />
                           </div>
                       </div>
                     </Grid>
                   </Grid>
                 </div>
                 <div className={classes.submit_container}>
-                        <Button variant="contained" onClick={onSubmit}  >Submit</Button>
+                        <Button variant="contained"  onClick={onSubmit} >Submit</Button>
                   </div>
             </Box>
             </Fade>
