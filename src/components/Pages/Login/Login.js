@@ -2,10 +2,11 @@ import React from 'react'
 import classes from './Login.module.css';
 import SignupModal from './SignupModal';
 import { useState } from 'react';
+import SigninModal from './SigninModal';
 // import Button from '@mui/material/Button';
 const Login = () => {
   const [isSignupModalOpen, setSignupModalOpen] = useState(false);
-
+  const [isSigninModalOpen, setSigninModalOpen] = useState(false);
   const openSignupModal = () => {
     setSignupModalOpen(true);
   };
@@ -13,14 +14,24 @@ const Login = () => {
   const closeSignupModal = () => {
     setSignupModalOpen(false);
   };
+  const openSigninModal = () => {
+    setSigninModalOpen(true);
+  };
+
+  const closeSigninModal = () => {
+    setSigninModalOpen(false);
+  };
   return (
     <div className={classes.login_container}>
       <div className={classes.login_grid}>
-        <div className={classes.grid_item1}><img className={classes.icon} src = 'Icons/twitter.png' alt='twitter icon'></img></div>
+        <div className={classes.grid_item1}>
+          <img className={classes.icon} src = 'Icons/LOGO.png' alt='twitter icon'></img>
+          <h4 className={classes.logo_name}>Meal Mastermind</h4>
+          </div>
         <div className={classes.grid_item2}>
           <div className={classes.signup_card}>
             <div>
-              <h1>Happening now</h1>
+              <h1>Recipes for Life</h1>
             </div>
             <div className={classes.form}>
               <div>
@@ -39,13 +50,14 @@ const Login = () => {
 
               <div>
                 <h5>Already have an account?</h5>
-                <button className={classes.signin_btn} >Sign in</button>
+                <button className={classes.signin_btn} onClick={openSigninModal}>Sign in</button>
               </div>
             </div>
           </div>  
         </div>
       </div>
       <SignupModal open={isSignupModalOpen} onClose={closeSignupModal} />
+      <SigninModal open={isSigninModalOpen} onClose={closeSigninModal} />
     </div>
   )
 }

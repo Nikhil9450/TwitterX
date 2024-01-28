@@ -1,6 +1,7 @@
+
 .login_container{
   /* height: 100%; */
-  background-color: black;
+  background-color: rgb(4, 32, 9);
 }
 .login_grid {
     height: 100%;
@@ -12,6 +13,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-direction: column;
   /* background-color: black; */
 }
 .grid_item2{
@@ -78,7 +80,13 @@ h1{
 font-size: 4rem;
 margin-bottom: 5rem;
 }
-
+.logo_name{
+  color: white;
+  font-family: "Sacramento", cursive;
+  font-weight: 400;
+  font-style: normal;
+  font-size: xx-large;
+}
 .term_condition_para{
   font-size: 10px;
   color: grey;

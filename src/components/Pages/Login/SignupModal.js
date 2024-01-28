@@ -24,6 +24,8 @@ import {registerUser} from '../../../slices/AuthenticatorSlice'
 // import { decrement, increment } from './counterSlice'
 // import IconButton from '@mui/material/IconButton';
 // import CloseIcon from '@mui/material/IconButton/';
+import {createUserWithEmailAndPassword} from "firebase/auth";
+import {auth} from "../../../firebase"
 const style = {
   position: 'absolute',
   top: '50%',
@@ -56,25 +58,9 @@ export default function SignupModal(props) {
   // const genderRef = useRef(null);
   const dobRef = useRef(null);
 
-  const user_data = useSelector((state) => state.auth);
+  const user_data = useSelector((state) => state.signup);
   const dispatch = useDispatch()
   console.log("props----------->",props)
-  // const [formData, setFormData] = useState({
-  //   name: '',
-  //   email: '',
-  //   phone: '',
-  //   password: '',
-  //   confirmPassword: '',
-  //   gender: '',
-  //   dateOfBirth: null,
-  // });
-
-  // const [selectedDate, setSelectedDate] = useState(null);
-  // const formattedDate = selectedDate ? new Date(selectedDate).toLocaleDateString() : '';
-  // const handleDateChange = (newDate) => {
-  //   setSelectedDate(newDate);
-  //   console.log("selected day--------->",formattedDate)
-  // };
 
   const handleCloseModal = () => {
     // Call the modal close function when clicking the cross icon
@@ -87,23 +73,6 @@ export default function SignupModal(props) {
     // You can add other logic here if needed
   };
  
-  // const handleInputChange = (event) => {
-    // console.log("id--------------->",event.target.id);
-    // console.log("value--------------->",event.target.value);
-    // const { id, value } = event.target;
-    // setFormData((prevData) => ({
-    //   ...prevData,
-    //   [id]: value,
-    // }));
-  // };
-
-  // const handleDateChange = (newDate) => {
-    // const formattedDate = newDate ? new Date(newDate).toLocaleDateString() : '';
-    // setFormData((prevData) => ({
-    //   ...prevData,
-    //   dateOfBirth: formattedDate,
-    // }));
-  // };
 // Function to handle form submission
 const onSubmit = (e) => {
   console.log("initial values---------->",user_data)
@@ -124,6 +93,13 @@ const onSubmit = (e) => {
   dispatch(
     registerUser(formData)
   );
+  createUserWithEmailAndPassword(auth,formData.email,formData.password)
+  .then((userCred)=>{
+    console.log("usercred------------->",userCred);
+  })
+  .catch((error)=>{
+    console.log(error);
+  }) 
 };
   
   return (
@@ -146,7 +122,7 @@ const onSubmit = (e) => {
 
             <Box sx={style}>
                  <div className={classes.icon_container}>
-                 <CloseIcon onClick={handleCloseModal} style={{ color: 'grey' }}/>
+                 <CloseIcon onClick={handleCloseModal} style={{ color: 'grey', cursor:'pointer' }}/>
                  </div> 
                 <Typography id="transition-modal-title" variant="h5" component="h2">
                 Create your account

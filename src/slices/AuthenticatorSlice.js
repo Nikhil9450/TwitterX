@@ -1,5 +1,4 @@
 import { createSlice } from '@reduxjs/toolkit'
-
 export const AuthenticatorSlice = createSlice({
   name: 'Registeruser',
   initialState: {
@@ -8,7 +7,6 @@ export const AuthenticatorSlice = createSlice({
       phone: '',
       password: '',
       confirmPassword: '',
-      // gender: '',
       dateOfBirth: null,
   },
   reducers: {
@@ -19,10 +17,9 @@ export const AuthenticatorSlice = createSlice({
       state.phone = phone;
       state.password = password;
       state.confirmPassword = confirmPassword;
-      // state.gender = gender;
       state.dateOfBirth = dateOfBirth;
      console.log("payload--------->",action.payload);
-     console.log("state--------->",action.state);
+     console.log("state--------->",state);
     //  (prevData) => ({
     //   ...prevData,
     //   [id]: value,
@@ -31,7 +28,25 @@ export const AuthenticatorSlice = createSlice({
   },
 })
 
+export const loginSlice = createSlice({
+  name: 'Login',
+  initialState: {
+    email: '',
+    password: '',
+  },
+  reducers: {
+    loginUser: (state, action) => {
+      const { email, password } = action.payload;
+      state.email = email;
+      state.password = password;
+      console.log('payload--------->', action.payload);
+      console.log('state--------->', action.state);
+    },
+  },
+});
 // Action creators are generated for each case reducer function
 export const { registerUser } = AuthenticatorSlice.actions
+export const { loginUser } = loginSlice.actions
 
-export default AuthenticatorSlice.reducer
+export const registerReducer = AuthenticatorSlice.reducer
+export const loginReducer = loginSlice.reducer;

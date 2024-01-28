@@ -1,9 +1,10 @@
 import { configureStore } from '@reduxjs/toolkit';
-import AuthenticatorReducer from '../slices/AuthenticatorSlice';
+import {registerReducer,loginReducer} from '../slices/AuthenticatorSlice';
 
 export default configureStore({
   reducer: {
-    auth: AuthenticatorReducer,
+    signup: registerReducer,
+    signin: loginReducer,
     // Add more reducers here if needed
   },
 });
