@@ -1,7 +1,8 @@
 
 .login_container{
   /* height: 100%; */
-  background-color: rgb(4, 32, 9);
+  background: url("../../../../public/Images/background2.jpg");
+  background-size: cover;
 }
 .login_grid {
     height: 100%;
@@ -14,14 +15,21 @@
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  /* background-color: black; */
+  /* background: url("../../../../public/Images/background.jpg"); */
+  /* background-size: cover; */
+  background-color: rgba(0, 0, 0, 0.5);
 }
+
+
 .grid_item2{
   display: flex;
   flex-direction: column;
   justify-content: center;
   /* background: black; */
   color: white;
+  backdrop-filter: blur(10px);
+  padding-left: 1rem;
+  background-color: rgba(0, 0, 0, 0.7);;
 }
 h5{
   font-size: 1rem;

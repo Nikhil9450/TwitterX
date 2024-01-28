@@ -86,6 +86,12 @@ const onSubmit = (e) => {
       // gender: genderRef.current.value,
       dateOfBirth: dobRef.current.value // You may need to format this value based on your DatePicker component
     };
+  
+    if (!formData.dateOfBirth) {
+      // Handle date of birth validation error
+      alert('Date of birth is required');
+      return;
+    }  
   // Gather form data, assuming you have it in your formData state
   // const { name, email, phone, password, confirmPassword, gender, dateOfBirth } = formData;
   console.log("this formdata is in onSubmit---->",formData)
@@ -104,80 +110,82 @@ const onSubmit = (e) => {
   
   return (
     <div>
- <LocalizationProvider dateAdapter={AdapterDayjs}>     
-  {/* <button className={classes.signup_btn}>Create Account</button> */}
-      {/* <Button onClick={handleOpen}>Open modal</Button> */}
-        <Modal
-            aria-labelledby="transition-modal-title"
-            aria-describedby="transition-modal-description"
-            open={props.open}
-            onClose={props.onClose}
-            closeAfterTransition
-            BackdropProps={{
-            onClick: handleBackdropClick, // Handle backdrop click
-            sx: backdropStyle,
-          }}
-        >
-            <Fade in={props.open}>
+      <LocalizationProvider dateAdapter={AdapterDayjs}>     
+      {/* <button className={classes.signup_btn}>Create Account</button> */}
+          {/* <Button onClick={handleOpen}>Open modal</Button> */}
+            <Modal
+                aria-labelledby="transition-modal-title"
+                aria-describedby="transition-modal-description"
+                open={props.open}
+                onClose={props.onClose}
+                closeAfterTransition
+                BackdropProps={{
+                onClick: handleBackdropClick, // Handle backdrop click
+                sx: backdropStyle,
+              }}
+            >
+                <Fade in={props.open}>
 
-            <Box sx={style}>
-                 <div className={classes.icon_container}>
-                 <CloseIcon onClick={handleCloseModal} style={{ color: 'grey', cursor:'pointer' }}/>
-                 </div> 
-                <Typography id="transition-modal-title" variant="h5" component="h2">
-                Create your account
-                </Typography>
-                <div className={classes.signup_form}>
-                  {/* <input className={classes.input} type="text" placeholder='Name' />
-                  <input className={classes.input} type="text" placeholder='Email' />
-                  <input className={classes.input} type='number' placeholder='Phone no.'  /> */}
-                  <Grid container spacing={2}>
-                    <Grid item xs={12}>
-                      <TextField id="name" label="Name" variant="outlined"   inputRef={nameRef} size="small" fullWidth />
-                    </Grid>
-                    <Grid item xs={12}>
-                      <TextField id="phone" label="Phone no." type="number" variant="outlined"  inputRef={phoneRef} size="small" fullWidth />
-                    </Grid>
-                    <Grid item xs={12}>
-                      <TextField id="email" label="Email" type="email" variant="outlined"  inputRef={emailRef} size="small" fullWidth />
-                    </Grid>
-                    <Grid item xs={6}>
-                      <TextField id="password" label="Password" type="password" variant="outlined"  inputRef={passwordRef}  size="small" fullWidth />
-                    </Grid>
-                    <Grid item xs={6}>
-                      <TextField id="confirmPassword" label="Confirm Password" type="Password" variant="outlined"  inputRef={confirmPasswordRef}   size="small" fullWidth />
-                    </Grid> 
-                    <Grid item xs={12}>
-                      <FormLabel id="demo-row-radio-buttons-group-label">Gender</FormLabel>
-                      <RadioGroup
-                        row
-                        aria-labelledby="demo-row-radio-buttons-group-label"
-                        name="row-radio-buttons-group"                   
-                        
-                      >
-                        <FormControlLabel value="female" control={<Radio id="gender" />} label="Female" />
-                        <FormControlLabel value="male" control={<Radio  id="gender"/>} label="Male" />
-                        <FormControlLabel value="other" control={<Radio id="gender"/>} label="Other" />
-                      </RadioGroup>
-                    </Grid>
-                    <Grid item xs={12}>
-                        <div >
-                          <Typography  variant="h6" component="h6">
-                            Date of birth
-                          </Typography>
-                          <div className={classes.date_section} >
-                            <DatePicker  inputRef={dobRef}  sx={{ height: '40px',margin:'1rem 0rem' /* Other styles */ }}  />
-                          </div>
+                <Box sx={style}>
+                  <form onSubmit={onSubmit}>
+                      <div className={classes.icon_container}>
+                      <CloseIcon onClick={handleCloseModal} style={{ color: 'grey', cursor:'pointer' }}/>
+                      </div> 
+                      <Typography id="transition-modal-title" variant="h5" component="h2">
+                      Create your account
+                      </Typography>
+                      <div className={classes.signup_form}>
+                        {/* <input className={classes.input} type="text" placeholder='Name' />
+                        <input className={classes.input} type="text" placeholder='Email' />
+                        <input className={classes.input} type='number' placeholder='Phone no.'  /> */}
+                        <Grid container spacing={2}>
+                          <Grid item xs={12}>
+                            <TextField id="name" label="Name" variant="outlined"   inputRef={nameRef} size="small" fullWidth  required/>
+                          </Grid>
+                          <Grid item xs={12}>
+                            <TextField id="phone" label="Phone no." type="number" variant="outlined"  inputRef={phoneRef} size="small" fullWidth required/>
+                          </Grid>
+                          <Grid item xs={12}>
+                            <TextField id="email" label="Email" type="email" variant="outlined"  inputRef={emailRef} size="small" fullWidth required/>
+                          </Grid>
+                          <Grid item xs={6}>
+                            <TextField id="password" label="Password" type="password" variant="outlined"  inputRef={passwordRef}  size="small" fullWidth required/>
+                          </Grid>
+                          <Grid item xs={6}>
+                            <TextField id="confirmPassword" label="Confirm Password" type="Password" variant="outlined"  inputRef={confirmPasswordRef}   size="small" fullWidth required/>
+                          </Grid> 
+                          <Grid item xs={12}>
+                            <FormLabel id="demo-row-radio-buttons-group-label">Gender</FormLabel>
+                            <RadioGroup
+                              row
+                              aria-labelledby="demo-row-radio-buttons-group-label"
+                              name="row-radio-buttons-group"                   
+                              required
+                            >
+                              <FormControlLabel value="female" control={<Radio id="gender" />} label="Female" />
+                              <FormControlLabel value="male" control={<Radio  id="gender"/>} label="Male" />
+                              <FormControlLabel value="other" control={<Radio id="gender"/>} label="Other" />
+                            </RadioGroup>
+                          </Grid>
+                          <Grid item xs={12}>
+                              <div >
+                                <Typography  variant="h6" component="h6">
+                                  Date of birth
+                                </Typography>
+                                <div className={classes.date_section} >
+                                  <DatePicker  inputRef={dobRef}  sx={{ height: '40px',margin:'1rem 0rem' /* Other styles */ }} required />
+                                </div>
+                            </div>
+                          </Grid>
+                        </Grid>
                       </div>
-                    </Grid>
-                  </Grid>
-                </div>
-                <div className={classes.submit_container}>
-                        <Button variant="contained"  onClick={onSubmit} >Submit</Button>
-                  </div>
-            </Box>
-            </Fade>
-        </Modal>
+                      <div className={classes.submit_container}>
+                          <Button variant="contained" type='submit'>Submit</Button>
+                      </div>
+                  </form>      
+                </Box>
+                </Fade>
+            </Modal>
       </LocalizationProvider>
     </div>
   );
