@@ -10,7 +10,7 @@ import { TextField } from '@mui/material';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
-import { useRef  } from 'react';
+import { useRef,useState } from 'react';
 import Grid from '@mui/material/Grid'; // Grid version 1
 import CloseIcon from '@mui/icons-material/Close';
 import Radio from '@mui/material/Radio';
@@ -25,7 +25,9 @@ import {registerUser} from '../../../slices/AuthenticatorSlice'
 // import IconButton from '@mui/material/IconButton';
 // import CloseIcon from '@mui/material/IconButton/';
 import {createUserWithEmailAndPassword} from "firebase/auth";
-import {auth} from "../../../firebase"
+import {auth} from "../../../firebase";
+import MUIalert from '../../Alert';
+import Loader from '../../Loader';
 const style = {
   position: 'absolute',
   top: '50%',
@@ -49,6 +51,9 @@ const backdropStyle = {
 
 
 export default function SignupModal(props) {
+  const [loader,setLoader]=useState(false);
+  const [open, setOpen] = useState(false);
+  const [error,setError]=useState("");
 
   const nameRef = useRef(null);
   const phoneRef = useRef(null);
@@ -62,6 +67,15 @@ export default function SignupModal(props) {
   const dispatch = useDispatch()
   console.log("props----------->",props)
 
+  function openAlert(){
+    setOpen(true);
+    setTimeout(()=>{
+      closeAlert()
+    },[2000])
+  };
+  function closeAlert(){
+    setOpen(false);
+  }
   const handleCloseModal = () => {
     // Call the modal close function when clicking the cross icon
     props.onClose();
@@ -89,9 +103,16 @@ const onSubmit = (e) => {
   
     if (!formData.dateOfBirth) {
       // Handle date of birth validation error
-      alert('Date of birth is required');
+      setError("Date of birth is required.");
+      openAlert();
       return;
     }  
+    if (formData.password !== formData.confirmPassword) {
+      // Handle date of birth validation error
+      setError("Password is not matching.");
+      openAlert();
+      return;
+    } 
   // Gather form data, assuming you have it in your formData state
   // const { name, email, phone, password, confirmPassword, gender, dateOfBirth } = formData;
   console.log("this formdata is in onSubmit---->",formData)
@@ -99,12 +120,16 @@ const onSubmit = (e) => {
   dispatch(
     registerUser(formData)
   );
+  setLoader(true);
   createUserWithEmailAndPassword(auth,formData.email,formData.password)
   .then((userCred)=>{
+    setLoader(false);
     console.log("usercred------------->",userCred);
   })
   .catch((error)=>{
     console.log(error);
+    setLoader(false);
+    setError(error.message);
   }) 
 };
   
@@ -127,6 +152,8 @@ const onSubmit = (e) => {
                 <Fade in={props.open}>
 
                 <Box sx={style}>
+                <MUIalert message={error} severity={"warning"} open={open} openalert={openAlert} closealert={closeAlert} />
+
                   <form onSubmit={onSubmit}>
                       <div className={classes.icon_container}>
                       <CloseIcon onClick={handleCloseModal} style={{ color: 'grey', cursor:'pointer' }}/>
@@ -159,11 +186,12 @@ const onSubmit = (e) => {
                             <RadioGroup
                               row
                               aria-labelledby="demo-row-radio-buttons-group-label"
-                              name="row-radio-buttons-group"                   
+                              name="row-radio-buttons-group" 
+                              defaultValue="male"                  
                               required
                             >
                               <FormControlLabel value="female" control={<Radio id="gender" />} label="Female" />
-                              <FormControlLabel value="male" control={<Radio  id="gender"/>} label="Male" />
+                              <FormControlLabel value="male" control={<Radio  id="gender" />} label="Male" />
                               <FormControlLabel value="other" control={<Radio id="gender"/>} label="Other" />
                             </RadioGroup>
                           </Grid>
@@ -180,7 +208,7 @@ const onSubmit = (e) => {
                         </Grid>
                       </div>
                       <div className={classes.submit_container}>
-                          <Button variant="contained" type='submit'>Submit</Button>
+                          <Button variant="contained" type='submit'>{((loader)?<Loader size={30}/>:"Submit")}</Button>
                       </div>
                   </form>      
                 </Box>

@@ -28,8 +28,8 @@
   /* background: black; */
   color: white;
   backdrop-filter: blur(10px);
-  padding-left: 1rem;
-  background-color: rgba(0, 0, 0, 0.7);;
+  padding-left: 2rem;
+  background-color: rgba(0, 0, 0, 0.7);
 }
 h5{
   font-size: 1rem;

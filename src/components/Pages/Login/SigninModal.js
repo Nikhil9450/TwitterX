@@ -7,13 +7,15 @@ import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import classes from './SignupModal.module.css';
 import { TextField } from '@mui/material';
-import { useRef  } from 'react';
+import { useRef,useState  } from 'react';
 import Grid from '@mui/material/Grid'; // Grid version 1
 import CloseIcon from '@mui/icons-material/Close';
 import { useSelector, useDispatch } from 'react-redux'
 import {loginUser} from '../../../slices/AuthenticatorSlice'
 import {signInWithEmailAndPassword} from "firebase/auth";
-import {auth} from "../../../firebase"
+import {auth} from "../../../firebase";
+import MUIalert from '../../Alert';
+import Loader from '../../Loader';
 const style = {
   position: 'absolute',
   top: '50%',
@@ -34,10 +36,21 @@ const backdropStyle = {
 
 
 export default function SigninModal(props) {
-
+  const [loader,setLoader]=useState(false);
+  const [open, setOpen] = useState(false);
+  const [error,setError]=useState("");
   const emailRef = useRef(null);
   const passwordRef = useRef(null);
   // const genderRef = useRef(null);
+  function openAlert(){
+    setOpen(true);
+    setTimeout(()=>{
+      closeAlert()
+    },[2000])
+  };
+  function closeAlert(){
+    setOpen(false);
+  }
 
   const user_data = useSelector((state) => state.signin);
   const dispatch = useDispatch()
@@ -68,17 +81,21 @@ const onSubmit = (e) => {
   dispatch(
     loginUser(formData)
   );
-
+  setLoader(true);
   signInWithEmailAndPassword(auth,formData.email,formData.password)
   .then((userCred)=>{
+    setLoader(false);
     console.log("usercred------------->",userCred);
   })
   .catch((error)=>{
     console.log(error);
+    setLoader(false);
+    setError(error)
+    openAlert();
   })
 
 };
-  
+
   return (
     <div>
         <Modal
@@ -95,28 +112,31 @@ const onSubmit = (e) => {
             <Fade in={props.open}>
 
             <Box sx={style}>
+                <MUIalert message={error.message} severity={"warning"} open={open} openalert={openAlert} closealert={closeAlert} />
                  <div className={classes.icon_container}>
                  <CloseIcon onClick={handleCloseModal} style={{ color: 'grey', cursor:'pointer' }}/>
                  </div> 
                 <Typography id="transition-modal-title" variant="h5" component="h2">
                 Login into your account.
                 </Typography>
-                <div className={classes.signup_form}>
-                  {/* <input className={classes.input} type="text" placeholder='Name' />
-                  <input className={classes.input} type="text" placeholder='Email' />
-                  <input className={classes.input} type='number' placeholder='Phone no.'  /> */}
-                  <Grid container spacing={2}>
-                    <Grid item xs={12}>
-                      <TextField id="email" label="Email" type="email" variant="outlined"  inputRef={emailRef} size="small" fullWidth />
+                <form onSubmit={onSubmit}>
+                  <div className={classes.signup_form}>
+                    {/* <input className={classes.input} type="text" placeholder='Name' />
+                    <input className={classes.input} type="text" placeholder='Email' />
+                    <input className={classes.input} type='number' placeholder='Phone no.'  /> */}
+                    <Grid container spacing={2}>
+                      <Grid item xs={12}>
+                        <TextField id="email" label="Email" type="email" variant="outlined"  inputRef={emailRef} size="small" fullWidth  required/>
+                      </Grid>
+                      <Grid item xs={12}>
+                        <TextField id="password" label="Password" type="password" variant="outlined"  inputRef={passwordRef}  size="small" fullWidth required/>
+                      </Grid>
                     </Grid>
-                    <Grid item xs={12}>
-                      <TextField id="password" label="Password" type="password" variant="outlined"  inputRef={passwordRef}  size="small" fullWidth />
-                    </Grid>
-                  </Grid>
-                </div>
-                <div className={classes.submit_container}>
-                        <Button variant="contained"  onClick={onSubmit} >Login</Button>
                   </div>
+                  <div className={classes.submit_container}>
+                          <Button variant="contained" type='submit' >{((loader)?<Loader size={30}/>:"Login")}</Button>
+                  </div>
+                </form>  
             </Box>
             </Fade>
         </Modal>
