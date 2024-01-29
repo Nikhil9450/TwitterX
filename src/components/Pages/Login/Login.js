@@ -45,7 +45,7 @@ const Login = () => {
             </div>
             <div className={classes.form}>
               <div>
-                <h2>Join today.</h2>
+                <h2>Let's cook together.</h2>
                 <div>
                   <button className={classes.g_signup} onClick={signInWithGoogle} ><img className={classes.google_icon} src="Icons/google.png" alt="google icon" /><span>Sign up with Google</span></button>
                 </div>
