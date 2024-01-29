@@ -3,7 +3,8 @@ import classes from './Login.module.css';
 import SignupModal from './SignupModal';
 import { useState } from 'react';
 import SigninModal from './SigninModal';
-// import Button from '@mui/material/Button';
+import { auth,GoogleAuthProvider } from "../../../firebase";
+import { signInWithPopup } from 'firebase/auth';
 const Login = () => {
   const [isSignupModalOpen, setSignupModalOpen] = useState(false);
   const [isSigninModalOpen, setSigninModalOpen] = useState(false);
@@ -21,6 +22,15 @@ const Login = () => {
   const closeSigninModal = () => {
     setSigninModalOpen(false);
   };
+
+  const signInWithGoogle = async () => {
+    try {
+      const result = await signInWithPopup(auth, new GoogleAuthProvider());
+      console.log("result--------->", result);
+    } catch (error) {
+      console.error("Google authentication failed:", error);
+    }
+  };
   return (
     <div className={classes.login_container}>
       <div className={classes.login_grid}>
@@ -37,7 +47,7 @@ const Login = () => {
               <div>
                 <h2>Join today.</h2>
                 <div>
-                  <button className={classes.g_signup}><img className={classes.google_icon} src="Icons/google.png" alt="google icon" /><span>Sign up with Google</span></button>
+                  <button className={classes.g_signup} onClick={signInWithGoogle} ><img className={classes.google_icon} src="Icons/google.png" alt="google icon" /><span>Sign up with Google</span></button>
                 </div>
                 <div className={classes.line}>
                   <hr width="100%" size="2" color="grey" noshade/>
