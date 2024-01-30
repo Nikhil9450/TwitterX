@@ -24,15 +24,14 @@ header ul {
     color: #959292 ;
     font-weight: bold;
   }
-  .signout_btn {
+  .signout_btn,.bookmark_btn,.addRecipe_btn {
     font: inherit;
     background-color: transparent;
-    border: 2px solid orange;
-    color: orange;
-    font-weight: bold;
-    padding: 0.5rem 1.5rem;
-    border-radius: 6px;
+    border: none;
+    color: rgb(169, 111, 1);
     cursor: pointer;
+    font-size: .9rem;
+    font-weight: 600;
   }
 
   .icon{
@@ -56,20 +55,50 @@ header ul {
     width: 100%;
   }
   .search_btn{
+    font: inherit;
     width: 10rem;
     background: linear-gradient(to right, #ff7e5f, #feb47b);
+    color: white;
   }
 
   .search_container input:focus {
     outline: none;
     border: none;
 }
-.bookmark_btn{
-  background: none;
-}
+/* .bookmark_btn{
+  font: inherit;
+  background-color: transparent;
+  border: none;
+  color: rgb(216, 142, 3);
+  cursor: pointer;
+  font-size: .9rem;
+} */
+/* .addRecipe_btn{
+  font: inherit;
+  background-color: transparent;
+  border: none;
+  color: rgb(216, 142, 3);
+  cursor: pointer;
+  font-size: .9rem;
+
+} */
 .bookmark_container{
   display: flex;
   justify-content: space-between;
   align-items: center;
-  width: 15rem;
+  width: 25rem;
+}
+
+.logo p{
+  color: orange;
+  font-family: "Sacramento", cursive;
+  font-style: normal;
+  padding-top: 5px;
+  padding-left: 5px;
+  font-size: 1.2rem;
+}
+.logo{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
 }

@@ -7,6 +7,7 @@ import InputBase from '@mui/material/InputBase';
 import SearchIcon from '@mui/icons-material/Search';
 import { styled, alpha } from '@mui/material/styles';
 import BookmarkBorderIcon from '@mui/icons-material/BookmarkBorder';
+import PostAddOutlinedIcon from '@mui/icons-material/PostAddOutlined';
 
 const Navbar = () => {
   const userSignOut=()=>{
@@ -58,16 +59,17 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 }));
   return (
     <header>
-        <Link to="/"> <div className={classes.logo}><img className={classes.icon} src = 'Icons/Colored_LOGO.png' alt='twitter icon'></img></div> </Link>
+        <Link to="/"> <div className={classes.logo}><img className={classes.icon} src = 'Icons/Colored_LOGO.png' alt='twitter icon'></img><p>Meal Mastermind</p></div> </Link>
 
         <div className={classes.search_container}>
               <input type="text" />
-              <button className={classes.search_btn}><SearchIcon/></button>
-            </div> 
+              <button className={classes.search_btn}><SearchIcon style={{ marginRight:'8px' }}/> SEARCH</button>
+        </div> 
         <nav>
           <div className={classes.bookmark_container}>
-            <button className={classes.bookmark_btn}><BookmarkBorderIcon style={{ color: 'orange',fontSize: '2rem' }}/></button>
-            <button className={classes.signout_btn} onClick={userSignOut}>Signout</button>
+            <button className={classes.addRecipe_btn}><PostAddOutlinedIcon style={{ color: 'orange',fontSize: '1.6rem',marginRight:'8px' }}/> ADD RECIPE</button>
+            <button className={classes.bookmark_btn}><BookmarkBorderIcon style={{ color: 'orange',fontSize: '1.5rem',marginRight:'8px' }}/> BOOKMARKS</button>
+            <button className={classes.signout_btn} onClick={userSignOut}>LOGOUT</button>
           </div>
          {/* <ul>
             <li>    */}
