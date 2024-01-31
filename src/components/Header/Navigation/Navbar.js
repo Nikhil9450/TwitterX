@@ -8,67 +8,43 @@ import SearchIcon from '@mui/icons-material/Search';
 import { styled, alpha } from '@mui/material/styles';
 import BookmarkBorderIcon from '@mui/icons-material/BookmarkBorder';
 import PostAddOutlinedIcon from '@mui/icons-material/PostAddOutlined';
-
+import { useSelector, useDispatch } from 'react-redux'
+import { bookmarkEventHandler } from '../../../slices/ButtonEventSlice';
 const Navbar = () => {
+  const dispatch = useDispatch()
+  const bookmark = useSelector((state) => state.signin);
   const userSignOut=()=>{
     signOut(auth).then(()=>{
        console.log('sign out successful.'); 
     }).catch(error=>console.log(error))
-}
+  }
+  function bookmarkeventHandlerOpen(){
+    dispatch(
+      bookmarkEventHandler(true)
+    );
+    console.log("bookmark---------------->",bookmark)
+  }
+  function bookmarkeventHandlerClose(){
+    dispatch(
+      bookmarkEventHandler(false)
+    );
+    console.log("bookmark---------------->",bookmark)
 
-const Search = styled('div')(({ theme }) => ({
-  position: 'relative',
-  borderRadius: theme.shape.borderRadius,
-  backgroundColor: alpha(theme.palette.common.white, 0.15),
-  '&:hover': {
-    backgroundColor: alpha(theme.palette.common.white, 0.25),
-  },
-  marginLeft: 0,
-  width: '100%',
-  [theme.breakpoints.up('sm')]: {
-    marginLeft: theme.spacing(1),
-    width: 'auto',
-  },
-}));
-
-const SearchIconWrapper = styled('div')(({ theme }) => ({
-  padding: theme.spacing(0, 2),
-  height: '100%',
-  position: 'absolute',
-  pointerEvents: 'none',
-  display: 'flex',
-  alignItems: 'center',
-  justifyContent: 'center',
-}));
-
-const StyledInputBase = styled(InputBase)(({ theme }) => ({
-  color: 'inherit',
-  width: '100%',
-  '& .MuiInputBase-input': {
-    padding: theme.spacing(1, 1, 1, 0),
-    // vertical padding + font size from searchIcon
-    paddingLeft: `calc(1em + ${theme.spacing(4)})`,
-    transition: theme.transitions.create('width'),
-    [theme.breakpoints.up('sm')]: {
-      width: '12ch',
-      '&:focus': {
-        width: '20ch',
-      },
-    },
-  },
-}));
+  }
   return (
     <header>
         <Link to="/"> <div className={classes.logo}><img className={classes.icon} src = 'Icons/Colored_LOGO.png' alt='twitter icon'></img><p>Meal Mastermind</p></div> </Link>
 
         <div className={classes.search_container}>
               <input type="text" />
-              <button className={classes.search_btn}><SearchIcon style={{ marginRight:'8px' }}/> SEARCH</button>
+              <button className={classes.search_btn} onClick={bookmarkeventHandlerClose()}><SearchIcon style={{ marginRight:'8px' }}/> SEARCH</button>
         </div> 
         <nav>
           <div className={classes.bookmark_container}>
-            <button className={classes.addRecipe_btn}><PostAddOutlinedIcon style={{ color: 'orange',fontSize: '1.6rem',marginRight:'8px' }}/> ADD RECIPE</button>
-            <button className={classes.bookmark_btn}><BookmarkBorderIcon style={{ color: 'orange',fontSize: '1.5rem',marginRight:'8px' }}/> BOOKMARKS</button>
+            <Link to="/add_recipe"><button className={classes.addRecipe_btn}><PostAddOutlinedIcon style={{ color: 'orange',fontSize: '1.6rem',marginRight:'8px' }}/> ADD RECIPE</button></Link>
+            <button className={classes.bookmark_btn} onClick={bookmarkeventHandlerOpen()}><BookmarkBorderIcon style={{ color: 'orange',fontSize: '1.5rem',marginRight:'8px' }}/> BOOKMARKS</button>
+            {/* <button className={classes.addRecipe_btn}><PostAddOutlinedIcon style={{ color: 'orange',fontSize: '1.6rem',marginRight:'8px' }}/> ADD RECIPE</button> */}
+            {/* <button className={classes.bookmark_btn}><BookmarkBorderIcon style={{ color: 'orange',fontSize: '1.5rem',marginRight:'8px' }}/> BOOKMARKS</button> */}
             <button className={classes.signout_btn} onClick={userSignOut}>LOGOUT</button>
           </div>
          {/* <ul>

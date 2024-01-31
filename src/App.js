@@ -6,8 +6,8 @@ import Login from './components/Pages/Login/Login';
 import { onAuthStateChanged } from "firebase/auth";
 import { useEffect,useState } from "react";
 import {auth} from "./firebase";
-// import Layout from './components/Header/Navigation/Layout';
-
+import ViewRecipe from './components/ViewRecipe';
+import AddRecipe from './components/Pages/AddRecipe';
 
 function App() {
   const[authUser,setAuthUser]=useState(null);
@@ -22,12 +22,24 @@ function App() {
   },[]);
 
   return (
-    // <Layout>
-      <Routes>
-        {authUser?<Route path='/' element={<Dashboard/>} />:<Route path='/' element={<Login/>} />}        
+    <>
+    {authUser?
+      <Dashboard>
+        <Routes>
+          {/* {authUser?<Route path='/' element={<Dashboard/>} />:<Route path='/' element={<Login/>} />}  */}
+              {/* <Route path='/' element={<Login/>} /> */}
+              <Route path="*" element={<Navigate to="/" />} />
+              <Route path="/add_recipe" element={<AddRecipe/>} />
+              <Route path="/view_recipe" element={<ViewRecipe/>} />
+        </Routes>
+      </Dashboard>
+    :
+    <Routes>
+        <Route path='/' element={<Login/>} />
         <Route path="*" element={<Navigate to="/" />} />
-      </Routes>
-    // </Layout>
+    </Routes>
+    }
+    </>
   );
 }
 

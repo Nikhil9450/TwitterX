@@ -32,6 +32,7 @@ header ul {
     cursor: pointer;
     font-size: .9rem;
     font-weight: 600;
+    width: 9rem;
   }
 
   .icon{
@@ -44,7 +45,7 @@ header ul {
     border-radius: 6rem;
     justify-content: space-between;
     background-color: white;
-    width: 50%;
+    width: 40%;
   }
   .search_container input{
     border: none;

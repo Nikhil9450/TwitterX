@@ -2,7 +2,7 @@ import React from 'react'
 import Layout from "../../Header/Navigation/Layout";
 import RecipeListContainer from './RecipeListContainer';
 import MainContainer from './MainContainer';
-const Dashboard = () => {
+const Dashboard = (props) => {
   return (
     <Layout>
       <div style={{ display: 'flex', minHeight: '100vh' }}>
@@ -10,7 +10,9 @@ const Dashboard = () => {
           <RecipeListContainer />
         </div>
         <div style={{ flex: 2 }}>
-          <MainContainer />
+          <MainContainer>
+              {props.children}
+          </MainContainer>
         </div>
       </div>
     </Layout>

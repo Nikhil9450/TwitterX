@@ -1,10 +1,10 @@
 import React from 'react';
 import classes from './MainContainer.module.css'
-
-const MainContainer = () => {
+const MainContainer = (props) => {
   return (
-    <div className={classes.main}>
-    </div>
+      <div className={classes.main}>
+          {props.children}
+      </div>
   )
 }
 
