@@ -33,13 +33,23 @@ const Navbar = () => {
     console.log("bookmark---------------->",bookmark)
 
   }
+
+  const search_function=async()=>{
+    try {
+      const response = await fetch("https://api.spoonacular.com/recipes/complexSearch?apiKey=bcffb3f9bbd6414aaf1fa753f147235f&query=noodles");
+      const data = await response.json();
+      console.log("result--------->", data.results);
+    } catch (error) {
+      console.error("Failed to fetch the response:", error);
+    }
+  }
   return (
     <header>
         <Link to="/"> <div className={classes.logo}><img className={classes.icon} src = 'Icons/Colored_LOGO.png' alt='twitter icon'></img><p>Meal Mastermind</p></div> </Link>
 
         <div className={classes.search_container}>
               <input type="text" />
-              <button className={classes.search_btn} onClick={bookmarkeventHandlerClose}><SearchIcon style={{ marginRight:'8px' }}/> SEARCH</button>
+              <button className={classes.search_btn} onClick={search_function}><SearchIcon style={{ marginRight:'8px' }}/> SEARCH</button>
         </div> 
         <nav>
           <div className={classes.bookmark_container}>
