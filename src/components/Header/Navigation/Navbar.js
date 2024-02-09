@@ -12,6 +12,7 @@ import { useEffect } from 'react';
 const Navbar = () => {
   const dispatch = useDispatch()
   const bookmark = useSelector((state) => state.bookmark);
+  const recipeList = useSelector((state) => state.recipeList);
   // useEffect(()=>{
   //   console.log("bookmark before----->",bookmark);
   // })
@@ -34,6 +35,12 @@ const Navbar = () => {
 
   }
 
+  const handleFetchData = () => {
+    dispatch(fetchRecipe({ apiKey: "bcffb3f9bbd6414aaf1fa753f147235f", query: "noodles" }));
+    console.log("recipeList--------->",recipeList);
+  };
+
+
   const search_function=async()=>{
     try {
       const response = await fetch("https://api.spoonacular.com/recipes/complexSearch?apiKey=bcffb3f9bbd6414aaf1fa753f147235f&query=noodles");
@@ -49,7 +56,7 @@ const Navbar = () => {
 
         <div className={classes.search_container}>
               <input type="text" />
-              <button className={classes.search_btn} onClick={search_function}><SearchIcon style={{ marginRight:'8px' }}/> SEARCH</button>
+              <button className={classes.search_btn} onClick={handleFetchData}><SearchIcon style={{ marginRight:'8px' }}/> SEARCH</button>
         </div> 
         <nav>
           <div className={classes.bookmark_container}>
