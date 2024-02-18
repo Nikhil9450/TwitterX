@@ -42,7 +42,6 @@ export const fetchRecipe = createAsyncThunk(
     },
   });
   
-  export { fetchRecipe };
   
 //   export default SearchRecipeSlice.reducer;
   export const SearchRecipeReducer = SearchRecipeSlice.reducer;

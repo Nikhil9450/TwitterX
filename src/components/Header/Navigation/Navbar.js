@@ -8,11 +8,14 @@ import BookmarkBorderIcon from '@mui/icons-material/BookmarkBorder';
 import PostAddOutlinedIcon from '@mui/icons-material/PostAddOutlined';
 import { useSelector, useDispatch } from 'react-redux'
 import { bookmarkEventHandler } from '../../../slices/ButtonEventSlice';
-import { useEffect } from 'react';
+import { fetchRecipe } from '../../../slices/SearchRecipeSlice';
+import { useRef } from 'react';
+// import { useEffect } from 'react';
 const Navbar = () => {
   const dispatch = useDispatch()
   const bookmark = useSelector((state) => state.bookmark);
-  const recipeList = useSelector((state) => state.recipeList);
+  // const recipeList = useSelector((state) => state.recipeList);
+  const searchItemRef = useRef(null)
   // useEffect(()=>{
   //   console.log("bookmark before----->",bookmark);
   // })
@@ -27,35 +30,37 @@ const Navbar = () => {
     );
     console.log("bookmark---------------->",bookmark)
   }
-  function bookmarkeventHandlerClose(){
-    dispatch(
-      bookmarkEventHandler({ value: false })
-    );
-    console.log("bookmark---------------->",bookmark)
+  // function bookmarkeventHandlerClose(){
+  //   dispatch(
+  //     bookmarkEventHandler({ value: false })
+  //   );
+  //   console.log("bookmark---------------->",bookmark)
 
-  }
+  // }
 
   const handleFetchData = () => {
-    dispatch(fetchRecipe({ apiKey: "bcffb3f9bbd6414aaf1fa753f147235f", query: "noodles" }));
-    console.log("recipeList--------->",recipeList);
+    const searchValue=searchItemRef.current.value;
+    console.log("search value-------------->",searchValue);
+    dispatch(fetchRecipe({ apiKey: "bcffb3f9bbd6414aaf1fa753f147235f", query: searchValue }));
+    // console.log("recipeList--------->",recipeList);
   };
 
 
-  const search_function=async()=>{
-    try {
-      const response = await fetch("https://api.spoonacular.com/recipes/complexSearch?apiKey=bcffb3f9bbd6414aaf1fa753f147235f&query=noodles");
-      const data = await response.json();
-      console.log("result--------->", data.results);
-    } catch (error) {
-      console.error("Failed to fetch the response:", error);
-    }
-  }
+  // const search_function=async()=>{
+  //   try {
+  //     const response = await fetch("https://api.spoonacular.com/recipes/complexSearch?apiKey=bcffb3f9bbd6414aaf1fa753f147235f&query=noodles");
+  //     const data = await response.json();
+  //     console.log("result--------->", data.results);
+  //   } catch (error) {
+  //     console.error("Failed to fetch the response:", error);
+  //   }
+  // }
   return (
     <header>
         <Link to="/"> <div className={classes.logo}><img className={classes.icon} src = 'Icons/Colored_LOGO.png' alt='twitter icon'></img><p>Meal Mastermind</p></div> </Link>
 
         <div className={classes.search_container}>
-              <input type="text" />
+              <input type="text" ref={searchItemRef} />
               <button className={classes.search_btn} onClick={handleFetchData}><SearchIcon style={{ marginRight:'8px' }}/> SEARCH</button>
         </div> 
         <nav>

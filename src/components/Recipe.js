@@ -6,9 +6,9 @@ const Recipe = (props) => {
  }
   return (
     <div className={classes.Recipe_card}>
-        <div className={classes.recipe_img}><img src={props.image} alt="" /></div>
+        <img className={classes.img} src={props.image} alt="recipe_image" />
         <div className={classes.description}>
-            <title>{props.title}</title>
+            <p className={classes.title}>{props.title}</p>
             <button onClick={recipe_detail(props.id)}>VIEW RECIPE</button>
         </div>
     </div>

@@ -1,0 +1,14 @@
+.Recipe_card{
+    background-color: rgb(254, 221, 130);
+    margin: 5px 0px;
+    border-radius: 10px;
+    display: flex;
+    height: 5rem;
+}
+.img{
+    height: -webkit-fill-available;
+    clip-path: inset(10px 10px 10px 10px);
+}
+.title{
+    color: rgb(229, 55, 6);
+}
