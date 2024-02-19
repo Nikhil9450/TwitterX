@@ -13,9 +13,9 @@ const RecipeListContainer = () => {
   return (
     <div className={classes.main}>
       {recipeList && recipeList.map((element, index) => (
-        <Recipe key={index} title={element.title} image={element.image} />
+        <Recipe key={index} title={element.title} image={element.image} id={element.id}  />
       ))}
-      <Recipe title={'Pasta'} />
+      {/* <Recipe title={'Pasta'} /> */}
     </div>
   )
 }

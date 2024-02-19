@@ -1,14 +1,40 @@
 .Recipe_card{
-    background-color: rgb(254, 221, 130);
+    background-color:rgb(255, 226, 206);
     margin: 5px 0px;
-    border-radius: 10px;
+    /* border-radius: 1rem; */
     display: flex;
-    height: 5rem;
+    height: 4rem;
+    margin: 5px;
+}
+.description{
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    align-items: center;
+}
+.img_container{
+    border-radius: 5rem;
+    overflow: hidden; /* Ensures the clipped content doesn't overflow */
+    height: -webkit-fill-available; /* or any desired height */
 }
 .img{
-    height: -webkit-fill-available;
+    width: 100%;
+    height: 100%;
     clip-path: inset(10px 10px 10px 10px);
 }
 .title{
     color: rgb(229, 55, 6);
+    margin:0px;
+}
+.view_btn{
+    width: 2rem;
+    height: 2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: none;
+    border-radius: 2rem;
+    cursor: pointer;
+    background: #ffffff;
 }

@@ -10,11 +10,13 @@ import { useSelector, useDispatch } from 'react-redux'
 import { bookmarkEventHandler } from '../../../slices/ButtonEventSlice';
 import { fetchRecipe } from '../../../slices/SearchRecipeSlice';
 import { useRef } from 'react';
+import Loader from '../../Loader';
 // import { useEffect } from 'react';
 const Navbar = () => {
+  // const [loader,setLoader]=useState(false);
   const dispatch = useDispatch()
   const bookmark = useSelector((state) => state.bookmark);
-  // const recipeList = useSelector((state) => state.recipeList);
+  const recipeList = useSelector((state) => state.recipeList);
   const searchItemRef = useRef(null)
   // useEffect(()=>{
   //   console.log("bookmark before----->",bookmark);
@@ -30,19 +32,19 @@ const Navbar = () => {
     );
     console.log("bookmark---------------->",bookmark)
   }
+
   // function bookmarkeventHandlerClose(){
   //   dispatch(
   //     bookmarkEventHandler({ value: false })
   //   );
   //   console.log("bookmark---------------->",bookmark)
-
   // }
 
   const handleFetchData = () => {
     const searchValue=searchItemRef.current.value;
     console.log("search value-------------->",searchValue);
-    dispatch(fetchRecipe({ apiKey: "bcffb3f9bbd6414aaf1fa753f147235f", query: searchValue }));
-    // console.log("recipeList--------->",recipeList);
+    dispatch(fetchRecipe({ apiKey: "bcffb3f9bbd6414aaf1fa753f147235f", query: searchValue,number:10 }));
+    console.log("recipeList--------->",recipeList);
   };
 
 
@@ -61,7 +63,7 @@ const Navbar = () => {
 
         <div className={classes.search_container}>
               <input type="text" ref={searchItemRef} />
-              <button className={classes.search_btn} onClick={handleFetchData}><SearchIcon style={{ marginRight:'8px' }}/> SEARCH</button>
+              <button className={classes.search_btn} onClick={handleFetchData}>{((recipeList.loading)?<Loader size={30}/>:<SearchIcon style={{ marginRight:'8px' }}/>)}</button>
         </div> 
         <nav>
           <div className={classes.bookmark_container}>
