@@ -5,7 +5,7 @@ import Box from '@mui/material/Box';
 export default function Loader(props) {
   return (
     <Box sx={{ display: 'flex' }}>
-      <CircularProgress color="inherit"  size={props.size} />
+      <CircularProgress color="inherit"  size={props.size}  />
     </Box>
   );
 }
