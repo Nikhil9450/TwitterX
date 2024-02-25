@@ -1,0 +1,27 @@
+.recipeinfo{
+    display: grid;
+    border: 1px solid grey;
+    height: inherit;
+    grid-template-columns: 1fr 3fr;
+    grid-template-rows: 1fr 3fr;
+}
+
+.item{
+    border: 1px solid grey;
+    height: 100%;
+}
+.rec_img{
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+}
+.recipe_title{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: #ff5300;
+}
+.recipe_title h1{
+    margin: 0px;
+}
