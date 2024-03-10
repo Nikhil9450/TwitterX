@@ -24,7 +24,7 @@ import {registerUser} from '../../../slices/AuthenticatorSlice'
 // import { decrement, increment } from './counterSlice'
 // import IconButton from '@mui/material/IconButton';
 // import CloseIcon from '@mui/material/IconButton/';
-import {createUserWithEmailAndPassword} from "firebase/auth";
+import {createUserWithEmailAndPassword,updateProfile,getAuth} from "firebase/auth";
 import {auth} from "../../../firebase";
 import MUIalert from '../../Alert';
 import Loader from '../../Loader';
@@ -125,6 +125,12 @@ const onSubmit = (e) => {
   .then((userCred)=>{
     setLoader(false);
     console.log("usercred------------->",userCred);
+    return updateProfile(userCred.user, {
+      displayName: formData.name
+    });
+  })
+  .then(() => {
+    console.log("Profile updated successfully");
   })
   .catch((error)=>{
     console.log(error);
@@ -132,7 +138,49 @@ const onSubmit = (e) => {
     setError(error.message);
   }) 
 };
-  
+// const onSubmit = async (e) => {
+//   e.preventDefault();
+//   const formData = {
+//     name: nameRef.current.value,
+//     phone: phoneRef.current.value,
+//     email: emailRef.current.value,
+//     password: passwordRef.current.value,
+//     confirmPassword: confirmPasswordRef.current.value,
+//     dateOfBirth: dobRef.current.value
+//   };
+
+//   if (!formData.dateOfBirth) {
+//     setError("Date of birth is required.");
+//     openAlert();
+//     return;
+//   }  
+//   if (formData.password !== formData.confirmPassword) {
+//     setError("Password is not matching.");
+//     openAlert();
+//     return;
+//   } 
+
+//   try {
+//     setLoader(true);
+//     // Create user with email and password
+//     const userCredential = await createUserWithEmailAndPassword(getAuth(auth), formData.email, formData.password);
+    
+//     // Update user profile with name
+//     await updateProfile(userCredential.user, {
+//       displayName: formData.name
+//     });
+
+//     setLoader(false);
+//     console.log("User created successfully:", userCredential.user);
+//     // Optionally, you can dispatch an action to handle user registration in Redux
+//     // dispatch(registerUser(userCredential.user));
+//   } catch (error) {
+//     setLoader(false);
+//     console.error("Error creating user:", error.message);
+//     setError(error.message);
+//     openAlert();
+//   }
+// };
   return (
     <div>
       <LocalizationProvider dateAdapter={AdapterDayjs}>     

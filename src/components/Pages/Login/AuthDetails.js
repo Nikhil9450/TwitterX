@@ -13,6 +13,7 @@ const AuthDetails = () => {
                 setAuthUser(null);
             }
         })
+        
     },[]);
     const userSignOut=()=>{
         signOut(auth).then(()=>{

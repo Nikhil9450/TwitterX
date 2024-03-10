@@ -3,24 +3,40 @@ import { Link } from 'react-router-dom';
 import classes from './Navbar.module.css';
 import { signOut } from "firebase/auth";
 import {auth} from "../../../firebase"
-import SearchIcon from '@mui/icons-material/Search';
 import BookmarkBorderIcon from '@mui/icons-material/BookmarkBorder';
 import PostAddOutlinedIcon from '@mui/icons-material/PostAddOutlined';
 import { useSelector, useDispatch } from 'react-redux'
 import { bookmarkEventHandler } from '../../../slices/ButtonEventSlice';
-import { fetchRecipe } from '../../../slices/SearchRecipeSlice';
-import { useRef } from 'react';
-import Loader from '../../Loader';
+import { useState, useEffect } from 'react';
+import { getAuth, onAuthStateChanged } from 'firebase/auth';
 // import { useEffect } from 'react';
 const Navbar = () => {
   // const [loader,setLoader]=useState(false);
   const dispatch = useDispatch()
   const bookmark = useSelector((state) => state.bookmark);
-  const recipeList = useSelector((state) => state.recipeList);
-  const searchItemRef = useRef(null)
+  const [userName, setUserName] = useState(null);
   // useEffect(()=>{
   //   console.log("bookmark before----->",bookmark);
   // })
+
+  useEffect(() => {
+    const auth = getAuth(); // Get the Firebase Auth instance
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
+      // Check if a user is signed in
+      if (user) {
+        // User is signed in
+        const displayName = user.displayName; // Get the user's display name
+        setUserName(displayName); // Set the user's name in the state
+      } else {
+        // No user is signed in
+        setUserName(null); // Clear the user's name from the state
+      }
+    });
+
+    // Cleanup function to unsubscribe from the auth state listener
+    return () => unsubscribe();
+  }, []); 
+  console.log("userName-------------------->",userName)
   const userSignOut=()=>{
     signOut(auth).then(()=>{
        console.log('sign out successful.'); 
@@ -40,13 +56,6 @@ const Navbar = () => {
   //   console.log("bookmark---------------->",bookmark)
   // }
 
-  const handleFetchData = () => {
-    const searchValue=searchItemRef.current.value;
-    console.log("search value-------------->",searchValue);
-    dispatch(fetchRecipe({ apiKey: "bcffb3f9bbd6414aaf1fa753f147235f", query: searchValue,number:10 }));
-    console.log("recipeList--------->",recipeList);
-  };
-
 
   // const search_function=async()=>{
   //   try {
@@ -60,11 +69,6 @@ const Navbar = () => {
   return (
     <header>
         <Link to="/"> <div className={classes.logo}><img className={classes.icon} src = 'Icons/Colored_LOGO.png' alt='twitter icon'></img><p>Meal Mastermind</p></div> </Link>
-
-        <div className={classes.search_container}>
-              <input type="text" ref={searchItemRef} />
-              <button className={classes.search_btn} onClick={handleFetchData}>{((recipeList.loading)?<Loader size={30}/>:<SearchIcon style={{ marginRight:'8px' }}/>)}</button>
-        </div> 
         <nav>
           <div className={classes.bookmark_container}>
             <Link to="/add_recipe"><button className={classes.addRecipe_btn}><PostAddOutlinedIcon style={{ color: 'orange',fontSize: '1.6rem',marginRight:'8px' }}/> ADD RECIPE</button></Link>

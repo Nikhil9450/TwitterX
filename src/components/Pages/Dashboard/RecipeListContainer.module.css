@@ -1,4 +1,36 @@
 .main{
     height: inherit;
     overflow: auto;
+    background: #fff5ef;
+}
+
+.search_container{
+    display: flex;
+    height: 3rem;
+    border-radius: 6rem;
+    justify-content: space-between;
+    background-color: white;
+    width: 100%;
+  }
+  .search_container input{
+    border: none;
+    border-radius: 6rem 0rem 0rem 6rem;
+    padding: 0px 20px;
+    font-size: 18px;
+    color: #ff7e5f;
+    width: 100%;
+  }
+  .search_btn{
+    font: inherit;
+    width: 10rem;
+    background: linear-gradient(to right, #ff7e5f, #feb47b);
+    color: white;
+  }
+
+  .search_container input:focus {
+    outline: none;
+    border: none;
+}
+.search_cont{
+    padding: 1rem;
 }
