@@ -6,6 +6,7 @@ import Login from './components/Pages/Login/Login';
 import { onAuthStateChanged } from "firebase/auth";
 import { useEffect,useState } from "react";
 import {auth} from "./firebase";
+import RecipeInfo from './components/RecipeInfo';
 // import ViewRecipe from './components/ViewRecipe';
 import AddRecipe from './components/Pages/AddRecipe';
 
@@ -26,9 +27,10 @@ function App() {
     {authUser?
       <Dashboard>
         <Routes>
-          {/* {authUser?<Route path='/' element={<Dashboard/>} />:<Route path='/' element={<Login/>} />}  */}
+              {/* {authUser?<Route path='/' element={<Dashboard/>} />:<Route path='/' element={<Login/>} />}  */}
               {/* <Route path='/' element={<Login/>} /> */}
               <Route path="*" element={<Navigate to="/" />} />
+              <Route path="/" element={<RecipeInfo/>} />
               <Route path="/add_recipe" element={<AddRecipe/>} />
               {/* <Route path="/view_recipe" element={<ViewRecipe/>} /> */}
         </Routes>

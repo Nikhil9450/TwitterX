@@ -1,10 +1,12 @@
 import React from 'react';
 import classes from './RecipeInfo.module.css';
+import {useSelector } from 'react-redux';
 
-const RecipeInfo = (props) => {
-    console.log("props---------->",props)
-    if (!props.ingredients || !Array.isArray(props.ingredients)) {
-        return <div>No ingredients available</div>;
+const RecipeInfo = () => {
+    const recipe_info = useSelector((state) => state.recipeInformation);
+
+    if (!recipe_info.data.extendedIngredients || !Array.isArray(recipe_info.data.extendedIngredients)) {
+        return <div className={classes.not_available}>Search for recipies.</div>;
     }
     const createMarkup = (html) => {
         return { __html: html };
@@ -12,16 +14,16 @@ const RecipeInfo = (props) => {
   return (
     <div className={classes.recipeinfo}>
         <div className={classes.recipe_img + ' ' + classes.item}>
-            <img className={classes.rec_img} src={props.img} alt="recipe_image" />
+            <img className={classes.rec_img} src={recipe_info.data.image} alt="recipe_image" />
         </div>
         <div className={classes.recipe_title + ' ' + classes.item}>
-           <h4>{props.title}</h4>
-           <p dangerouslySetInnerHTML={createMarkup(props.summary)} />
+           <h4>{recipe_info.data.title}</h4>
+           <p dangerouslySetInnerHTML={createMarkup(recipe_info.data.summary)} />
         </div>
         <div className={classes.recipe_ingridient + ' ' + classes.item}>
-
-           <table>
-            {props.ingredients.map((ingredient, index) => (
+        <h3 className={classes.ing_title}>Ingrediends</h3>
+           <table className={classes.ing_table}>
+            {recipe_info.data.extendedIngredients.map((ingredient, index) => (
                 <tr key={index}>
                     <td>{ingredient.name}</td>
                     <td>{ingredient.measures.metric.amount} {ingredient.measures.metric.unitLong}</td>
@@ -30,7 +32,7 @@ const RecipeInfo = (props) => {
            </table>
         </div>
         <div className={classes.recipe_inf + ' ' + classes.item}>
-        <p dangerouslySetInnerHTML={createMarkup(props.instructions)} />
+        <p dangerouslySetInnerHTML={createMarkup(recipe_info.data.instructions)} />
         </div>
 
     </div>
