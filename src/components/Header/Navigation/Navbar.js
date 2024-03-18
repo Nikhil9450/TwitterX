@@ -9,12 +9,14 @@ import { useSelector, useDispatch } from 'react-redux'
 import { bookmarkEventHandler } from '../../../slices/ButtonEventSlice';
 import { useState, useEffect } from 'react';
 import { getAuth, onAuthStateChanged } from 'firebase/auth';
+import SplitButton from '../../Dropdown';
 // import { useEffect } from 'react';
 const Navbar = () => {
   // const [loader,setLoader]=useState(false);
   const dispatch = useDispatch()
   const bookmark = useSelector((state) => state.bookmark);
   const [userName, setUserName] = useState(null);
+  const [userEmail, setUserEmail] = useState(null);
   // useEffect(()=>{
   //   console.log("bookmark before----->",bookmark);
   // })
@@ -26,10 +28,13 @@ const Navbar = () => {
       if (user) {
         // User is signed in
         const displayName = user.displayName; // Get the user's display name
-        setUserName(displayName); // Set the user's name in the state
+        console.log("user------------>",user);
+        setUserName(displayName);// Set the user's name in the state
+        setUserEmail(user.email); 
       } else {
         // No user is signed in
         setUserName(null); // Clear the user's name from the state
+        setUserEmail(null);
       }
     });
 
@@ -48,7 +53,7 @@ const Navbar = () => {
     );
     console.log("bookmark---------------->",bookmark)
   }
-
+  let options=['Logout','option2','option3'];
   // function bookmarkeventHandlerClose(){
   //   dispatch(
   //     bookmarkEventHandler({ value: false })
@@ -69,13 +74,14 @@ const Navbar = () => {
   return (
     <header>
         <Link to="/"> <div className={classes.logo}><img className={classes.icon} src = 'Icons/Colored_LOGO.png' alt='twitter icon'></img><p>Meal Mastermind</p></div> </Link>
-        <nav>
+        <nav className={classes.nav}>
           <div className={classes.bookmark_container}>
             <Link to="/add_recipe"><button className={classes.addRecipe_btn}><PostAddOutlinedIcon style={{ color: 'orange',fontSize: '1.6rem',marginRight:'8px' }}/> ADD RECIPE</button></Link>
             <button className={classes.bookmark_btn} onClick={bookmarkeventHandlerOpen}><BookmarkBorderIcon style={{ color: 'orange',fontSize: '1.5rem',marginRight:'8px' }}/> BOOKMARKS</button>
             {/* <button className={classes.addRecipe_btn}><PostAddOutlinedIcon style={{ color: 'orange',fontSize: '1.6rem',marginRight:'8px' }}/> ADD RECIPE</button> */}
             {/* <button className={classes.bookmark_btn}><BookmarkBorderIcon style={{ color: 'orange',fontSize: '1.5rem',marginRight:'8px' }}/> BOOKMARKS</button> */}
-            <button className={classes.signout_btn} onClick={userSignOut}>LOGOUT</button>
+            <SplitButton username={userName} options={options} handleclick={userSignOut} email={userEmail}/>
+            {/* <button className={classes.signout_btn} onClick={userSignOut}>LOGOUT</button> */}
           </div>
         </nav>
     </header>

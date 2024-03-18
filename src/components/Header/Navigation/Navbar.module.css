@@ -66,6 +66,9 @@ header ul {
     outline: none;
     border: none;
 }
+.nav{
+  width: 40%;
+}
 /* .bookmark_btn{
   font: inherit;
   background-color: transparent;
@@ -87,7 +90,7 @@ header ul {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  width: 25rem;
+  width: 100%;
 }
 
 .logo p{
