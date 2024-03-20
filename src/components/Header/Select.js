@@ -1,4 +1,6 @@
-import * as React from 'react';
+// Dropdown.js
+
+import React from 'react';
 import OutlinedInput from '@mui/material/OutlinedInput';
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
@@ -18,37 +20,28 @@ const MenuProps = {
   },
 };
 
-
-export default function Dropdown(props) {
-  const [item, setitem] = React.useState([]);
-
-  const handleChange = (event) => {
-    const {
-      target: { value },
-    } = event;
-    setitem(
-      // On autofill we get a stringified value.
-      typeof value === 'string' ? value.split(',') : value,
-    );
-  };
+const Dropdown = (props) => {
+  const { value, onChange, options, title } = props;
 
   return (
     <div>
-      <FormControl sx={{ m: 1, width: 300 }}>
-        <InputLabel id="demo-multiple-checkbox-label">{props.title}</InputLabel>
+      <FormControl sx={{ m: 1, width:'100%' }}>
+        <InputLabel id="demo-multiple-checkbox-label" style={{ background: 'white' }}>
+          {title}
+        </InputLabel>
         <Select
           labelId="demo-multiple-checkbox-label"
           id="demo-multiple-checkbox"
           multiple
-          value={item}
-          onChange={handleChange}
+          value={value}
+          onChange={onChange}
           input={<OutlinedInput label="Tag" />}
           renderValue={(selected) => selected.join(', ')}
           MenuProps={MenuProps}
         >
-          {props.options.map((option) => (
+          {options.map((option) => (
             <MenuItem key={option} value={option}>
-              <Checkbox checked={item.indexOf(option) > -1} />
+              <Checkbox checked={value.indexOf(option) > -1} />
               <ListItemText primary={option.toUpperCase()} />
             </MenuItem>
           ))}
@@ -56,4 +49,6 @@ export default function Dropdown(props) {
       </FormControl>
     </div>
   );
-}
+};
+
+export default Dropdown;
