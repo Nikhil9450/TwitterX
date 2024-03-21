@@ -41,7 +41,7 @@ const Login = () => {
         <div className={classes.grid_item2}>
           <div className={classes.signup_card}>
             <div>
-              <h1>Recipes for Life</h1>
+              <h1>Unleash Your Inner Chef.</h1>
             </div>
             <div className={classes.form}>
               <div>
