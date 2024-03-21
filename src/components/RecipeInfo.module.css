@@ -4,7 +4,9 @@
     align-items: center;
     height: 100%;
     width: 100%;
-    background: rgb(255, 241, 214);
+    /* background: rgb(255, 241, 214); */
+    backdrop-filter: blur(8px);
+    color: white;
 }
 .recipeinfo{
     display: grid;
@@ -13,6 +15,7 @@
     grid-template-columns: 1fr 2fr;
     grid-template-rows: 1fr 3fr;
     overflow-y: auto;
+    backdrop-filter: blur(10px);
 }
 
 .item{
@@ -21,37 +24,41 @@
     padding: 1rem;
 }
 .rec_img{
-    height: 12rem;
-    width: 12rem;
+    height: 14rem;
+    width: 14rem;
     object-fit: cover;
     border-radius: 50%;
-    box-shadow: 1px 0px 46px 2px rgb(253 136 66);
+    /* box-shadow: 1px 0px 46px 2px rgb(253 136 66); */
 }
 .recipe_title{
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    color: #ff5300;
+    color: #dbdbdb;
 
     /* background: antiquewhite; */
 }
 .recipe_title a{
     text-decoration: none;
-    color: brown;
+    color: rgb(255, 135, 36);
 }
 .recipe_title h4{
     margin: 0px;
     font-size: 1.8rem;
     font-weight: 100;
-
+    color: #ffffff;
+    width: 100%;
+    background: rgb(255 255 255 / 28%);
+    padding: 10px;
 }
+
 .recipe_title p{
     font-size:smaller;
 }
 .recipe_ingridient{
-    background: rgb(255, 255, 255);
-    color: #ff5555;
+    background: rgba(78, 78, 78, 0.363);
+    color: #c0c0c0;
     font-size: 13px;
 }
 .ing_table{
@@ -66,18 +73,18 @@
 .ing_table  tr {
     padding: 0 1rem;
     width: 100%;
-    background-color: bisque;
+    background-color: rgba(75, 75, 75, 0.384);
     height: 2rem;
 }
 
 .ing_table  tr:last-of-type {
-    border-bottom: 2px solid rgb(255, 174, 74);;
+    border-bottom: 2px solid rgba(43, 43, 43, 0.274);;
 }
 .ing_table td:nth-of-type(even) {
-    background-color: rgb(255, 237, 216);;
+    background-color: rgba(90, 90, 90, 0.274);;
 }
 .ing_title{
-    background: bisque;
+    background: rgba(0, 0, 0, 0.418);
     padding: .5rem 1rem;
     margin: 0;
 }
@@ -86,11 +93,19 @@
     font-optical-sizing: auto;
     font-weight:200;
     font-style: normal;
-    color: chocolate;
-    background: rgb(255, 255, 255);
+    color: rgb(218, 218, 218);
+    background: rgba(78, 78, 78, 0.363);
 }
 .recipe_img{
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+.recipe_inf h5{
+    margin: 0px;
+    font-size: 1.2rem;
+    font-weight: 100;
+    color: #ffffff;
+    width: 100%;
 }

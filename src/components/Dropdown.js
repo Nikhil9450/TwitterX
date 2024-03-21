@@ -17,9 +17,9 @@ const options = props.options;
   const anchorRef = React.useRef(null);
   const [selectedIndex, setSelectedIndex] = React.useState(1);
 
-  const handleClick = () => {
-    console.info(`You clicked ${options[selectedIndex]}`);
-  };
+  // const handleClick = () => {
+  //   console.info(`You clicked ${options[selectedIndex]}`);
+  // };
 
   const handleMenuItemClick = (event, index) => {
     setSelectedIndex(index);
@@ -43,12 +43,12 @@ const options = props.options;
   return (
     <React.Fragment>
       <ButtonGroup
-        style={{minWidth:'15rem', display:'flex', justifyContent:'end', boxShadow:'none', background:'#993e00'}}
+        style={{minWidth:'15rem', display:'flex', justifyContent:'end', boxShadow:'none', background:'#071616'}}
         variant="contained"
         ref={anchorRef}
         aria-label="Button group with a nested menu"
       >
-            <div style={{padding:'.3rem 1rem',color:'white',width:'100%', display:'flex',flexDirection:'row'}}>
+            <div style={{padding:'.3rem 1rem',color:'#c2c0c0',width:'100%', display:'flex',flexDirection:'row'}}>
                 <AccountCircleIcon style={{fontSize:'2.3rem', margin:'auto 5px auto 0px'}}/>
                 <div>
                     <p style={{margin:'0px'}}>{props.username}</p>
@@ -56,7 +56,7 @@ const options = props.options;
                 </div>
              </div>
         <Button 
-        style={{maxWidth:'40px' , background:'#c26a23'}}
+        style={{maxWidth:'40px' , background:'rgb(28 55 64)'}}
           size="small"
         //   aria-controls={open ? 'split-button-menu' : undefined}
         //   aria-expanded={open ? 'true' : undefined}

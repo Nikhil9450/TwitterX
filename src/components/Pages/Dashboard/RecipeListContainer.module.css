@@ -1,7 +1,7 @@
 .main{
     height: inherit;
     overflow: auto;
-    background: #fff5ef;
+    /* background: #fff5ef; */
 }
 
 .search_container{
@@ -23,7 +23,7 @@
   .search_btn{
     font: inherit;
     width: 10rem;
-    background: linear-gradient(to right, #ff7e5f, #feb47b);
+    background: linear-gradient(to left, #d34c11, #edba1d);
     color: white;
   }
 

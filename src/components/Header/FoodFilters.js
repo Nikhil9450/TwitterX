@@ -35,14 +35,14 @@ const FoodFilters = () => {
     console.log('cuisines----------->',cuisines);
     console.log('foodType----------->',foodType);
     dispatch(DropdownEventHandler({ filters:{'diet':diet,'cuisines':cuisines,'type':foodType} }));
+    dispatch(fetchRecipe({ apiKey: "bcffb3f9bbd6414aaf1fa753f147235f",number:10 , diet:diet, cuisine:cuisines, type:foodType }));
+
   }
   
-  useEffect(() => {
-    console.log('selected_filters updated:', selected_filters);
-    // Dispatch fetchRecipe action here or in a separate function if needed
-    // Ensure fetchRecipe is defined and handles API calls correctly
-    dispatch(fetchRecipe({ apiKey: "bcffb3f9bbd6414aaf1fa753f147235f",number:10 , diet:selected_filters.filters.diet, cuisines:selected_filters.filters.cuisines, type:selected_filters.filters.type }));
-  }, [selected_filters]);
+  // useEffect(() => {
+  //   console.log('selected_filters updated:', selected_filters);
+  //   dispatch(fetchRecipe({ apiKey: "bcffb3f9bbd6414aaf1fa753f147235f",number:10 , diet:selected_filters.filters.diet, cuisines:selected_filters.filters.cuisines, type:selected_filters.filters.type }));
+  // }, [selected_filters]);
 
   return (
     <div className={classes.filters}>
@@ -57,7 +57,9 @@ const FoodFilters = () => {
           <Dropdown options={foodTypeOptions} value={foodType} onChange={handleFoodTypeChange} title="Select Food Type" />
         </Grid>
         <Grid item xs={12} sm={6} md={4} lg={3}>
-            <Button onClick={searchFilters} variant="contained">Search</Button>
+        <div className={classes.filter_search_container}>
+            <Button onClick={searchFilters} variant="contained" style={{height:"100%"}}>Search</Button>
+        </div>
         </Grid>
       </Grid>
     </div>

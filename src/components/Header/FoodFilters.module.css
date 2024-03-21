@@ -3,8 +3,12 @@
     flex-direction: row;
     justify-content: center;
     align-items: center;
-    background-color: white;
+    background-color: #fffbf1;
     height: 5rem;
     width: 100%;
 
   }
+.filter_search_container{
+  padding: 8px;
+  height: 100%;
+}  

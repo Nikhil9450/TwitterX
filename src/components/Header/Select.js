@@ -26,7 +26,7 @@ const Dropdown = (props) => {
   return (
     <div>
       <FormControl sx={{ m: 1, width:'100%' }}>
-        <InputLabel id="demo-multiple-checkbox-label" style={{ background: 'white' }}>
+        <InputLabel id="demo-multiple-checkbox-label" style={{ background: '#fffbf1' }}>
           {title}
         </InputLabel>
         <Select
@@ -38,6 +38,7 @@ const Dropdown = (props) => {
           input={<OutlinedInput label="Tag" />}
           renderValue={(selected) => selected.join(', ')}
           MenuProps={MenuProps}
+          style={{background:"#fffbf1"}}
         >
           {options.map((option) => (
             <MenuItem key={option} value={option}>

@@ -1,0 +1,8 @@
+.main_container{
+    background: url("../../../../public/Images/food_back.jpg");
+    background-size: cover;
+}
+
+.recipelist_container{
+    background-color: rgb(36, 34, 34);
+}

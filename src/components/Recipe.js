@@ -27,7 +27,7 @@ const Recipe = (props) => {
       </div>
         <div className={classes.description}>
             <p className={classes.title}>{props.title}</p>
-            <button className={classes.view_btn} onClick={() => recipe_detail(props.id)}>{(loading?<Loader size={20} />:<KeyboardArrowRightRoundedIcon style={{ color: 'orange'}}/>)}</button>
+            <button className={classes.view_btn} onClick={() => recipe_detail(props.id)}>{(loading?<Loader size={20} />:<KeyboardArrowRightRoundedIcon style={{ color: 'grey'}}/>)}</button>
         </div>
     </div>
   )

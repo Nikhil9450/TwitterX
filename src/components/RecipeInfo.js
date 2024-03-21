@@ -32,6 +32,7 @@ const RecipeInfo = () => {
            </table>
         </div>
         <div className={classes.recipe_inf + ' ' + classes.item}>
+        <h5>HOW TO MAKE</h5>
         <p dangerouslySetInnerHTML={createMarkup(recipe_info.data.instructions)} />
         </div>
 

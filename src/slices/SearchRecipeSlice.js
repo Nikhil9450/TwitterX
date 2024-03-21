@@ -24,6 +24,7 @@ export const fetchRecipe = createAsyncThunk(
       console.log("paramsObject--------------->" ,paramsObject)
       try {
         const queryString = buildQueryString(paramsObject); // Build the query string
+        console.log("queryString------------>",queryString);
         const response = await axios.get(`https://api.spoonacular.com/recipes/complexSearch?${queryString}`);
         return response.data;
 

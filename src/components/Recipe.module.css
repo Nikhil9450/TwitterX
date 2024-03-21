@@ -1,5 +1,5 @@
 .Recipe_card{
-    background-color:rgb(255, 226, 206);
+    background-color:rgb(73, 73, 73);
     margin: 5px 0px;
     /* border-radius: 1rem; */
     display: flex;
@@ -24,7 +24,7 @@
     clip-path: inset(10px 10px 10px 10px);
 }
 .title{
-    color: rgb(229, 55, 6);
+    color: rgb(184, 184, 184);
     margin:0px;
 }
 .view_btn{

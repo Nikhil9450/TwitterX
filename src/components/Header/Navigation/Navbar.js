@@ -7,9 +7,12 @@ import BookmarkBorderIcon from '@mui/icons-material/BookmarkBorder';
 import PostAddOutlinedIcon from '@mui/icons-material/PostAddOutlined';
 import { useSelector, useDispatch } from 'react-redux'
 import { bookmarkEventHandler } from '../../../slices/ButtonEventSlice';
-import { useState, useEffect } from 'react';
+import { useState, useEffect,useRef } from 'react';
 import { getAuth, onAuthStateChanged } from 'firebase/auth';
 import SplitButton from '../../Dropdown';
+import SearchIcon from '@mui/icons-material/Search';
+import Loader from '../../Loader';
+import { fetchRecipe } from '../../../slices/SearchRecipeSlice';
 // import { useEffect } from 'react';
 const Navbar = () => {
   // const [loader,setLoader]=useState(false);
@@ -17,10 +20,18 @@ const Navbar = () => {
   const bookmark = useSelector((state) => state.bookmark);
   const [userName, setUserName] = useState(null);
   const [userEmail, setUserEmail] = useState(null);
+  const searchItemRef = useRef(null);
+  const allrecipeList = useSelector((state) => state.recipeList);
+
   // useEffect(()=>{
   //   console.log("bookmark before----->",bookmark);
   // })
-
+  const handleFetchData = () => {
+    const searchValue=searchItemRef.current.value;
+    console.log("search value-------------->",searchValue);
+    dispatch(fetchRecipe({ apiKey: "bcffb3f9bbd6414aaf1fa753f147235f", query: searchValue,number:10 }));
+    // console.log("recipeList--------->",recipeList);
+  };
   useEffect(() => {
     const auth = getAuth(); // Get the Firebase Auth instance
     const unsubscribe = onAuthStateChanged(auth, (user) => {
@@ -74,10 +85,16 @@ const Navbar = () => {
   return (
     <header>
         <Link to="/"> <div className={classes.logo}><img className={classes.icon} src = 'Icons/Colored_LOGO.png' alt='twitter icon'></img><p>Meal Mastermind</p></div> </Link>
+        <div className={classes.search_cont}>
+        <div className={classes.search_container}>
+          <input type="text" ref={searchItemRef} />
+          <button className={classes.search_btn} onClick={handleFetchData}>{((allrecipeList.loading)?<Loader size={30}/>:<SearchIcon style={{ marginRight:'8px' }}/>)}</button>
+        </div> 
+      </div>
         <nav className={classes.nav}>
           <div className={classes.bookmark_container}>
-            <Link to="/add_recipe"><button className={classes.addRecipe_btn}><PostAddOutlinedIcon style={{ color: 'orange',fontSize: '1.6rem',marginRight:'8px' }}/> ADD RECIPE</button></Link>
-            <button className={classes.bookmark_btn} onClick={bookmarkeventHandlerOpen}><BookmarkBorderIcon style={{ color: 'orange',fontSize: '1.5rem',marginRight:'8px' }}/> BOOKMARKS</button>
+            <Link to="/add_recipe"><button className={classes.addRecipe_btn}><PostAddOutlinedIcon style={{ color: 'rgb(213 81 28)',fontSize: '1.6rem',marginRight:'8px' }}/> ADD RECIPE</button></Link>
+            <button className={classes.bookmark_btn} onClick={bookmarkeventHandlerOpen}><BookmarkBorderIcon style={{ color: 'rgb(213 81 28)',fontSize: '1.5rem',marginRight:'8px' }}/> BOOKMARKS</button>
             {/* <button className={classes.addRecipe_btn}><PostAddOutlinedIcon style={{ color: 'orange',fontSize: '1.6rem',marginRight:'8px' }}/> ADD RECIPE</button> */}
             {/* <button className={classes.bookmark_btn}><BookmarkBorderIcon style={{ color: 'orange',fontSize: '1.5rem',marginRight:'8px' }}/> BOOKMARKS</button> */}
             <SplitButton username={userName} options={options} handleclick={userSignOut} email={userEmail}/>
