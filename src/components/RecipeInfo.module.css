@@ -7,6 +7,10 @@
     /* background: rgb(255, 241, 214); */
     backdrop-filter: blur(8px);
     color: white;
+    font-family: "Smooch", cursive;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 4rem;
 }
 .recipeinfo{
     display: grid;

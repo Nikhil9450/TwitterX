@@ -9,7 +9,7 @@ import { useSelector, useDispatch } from 'react-redux'
 import { DropdownEventHandler } from '../../slices/DropdownFilteredListSlice';
 import { fetchRecipe } from '../../slices/SearchRecipeSlice';
 const FoodFilters = () => {
-    const dispatch = useDispatch()
+    const dispatch = useDispatch();
     const selected_filters = useSelector((state) => state.dropDownlist);
     let dietOptions=['Gluten Free','Ketogenic','Vegetarian','Lacto-Vegetarian','Ovo-Vegetarian','Vegan','Pescetarian','Paleo','Primal','Low FODMAP','Whole30'];
     let cuisineOptions=['African','Asian','American','British','Cajun','Caribbean','Chinese','Eastern European','European','French','German','Greek','Indian','Irish','Italian','Japanese','Jewish','Korean','Latin American','Mediterranean','Mexican','Middle Eastern','Nordic','Southern','Spanish','Thai','Vietnamese',]
