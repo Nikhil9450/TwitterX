@@ -13,15 +13,16 @@ import SplitButton from '../../Dropdown';
 import SearchIcon from '@mui/icons-material/Search';
 import Loader from '../../Loader';
 import { fetchRecipe } from '../../../slices/SearchRecipeSlice';
+import { setUserName } from '../../../slices/UserSlice';
 // import { useEffect } from 'react';
 const Navbar = () => {
   // const [loader,setLoader]=useState(false);
   const dispatch = useDispatch()
   const bookmark = useSelector((state) => state.bookmark);
-  const [userName, setUserName] = useState(null);
   const [userEmail, setUserEmail] = useState(null);
   const searchItemRef = useRef(null);
   const allrecipeList = useSelector((state) => state.recipeList);
+  const userName = useSelector((state) => state.userName.Name);
 
   // useEffect(()=>{
   //   console.log("bookmark before----->",bookmark);
@@ -40,11 +41,12 @@ const Navbar = () => {
         // User is signed in
         const displayName = user.displayName; // Get the user's display name
         console.log("user------------>",user);
-        setUserName(displayName);// Set the user's name in the state
+        dispatch(setUserName(displayName));
         setUserEmail(user.email); 
       } else {
         // No user is signed in
-        setUserName(null); // Clear the user's name from the state
+        // setUserName(null); // Clear the user's name from the state
+        dispatch(setUserName(null));
         setUserEmail(null);
       }
     });

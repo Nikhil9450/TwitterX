@@ -1,16 +1,31 @@
 .not_available{
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     height: 100%;
     width: 100%;
     /* background: rgb(255, 241, 214); */
     backdrop-filter: blur(8px);
+    background-color:rgb(0 0 0 / 57%); ;
     color: white;
+}
+.not_available p{
+    font-family: "Sacramento", cursive;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 2rem;
+    margin: 0;
+}
+.not_available h3{
     font-family: "Smooch", cursive;
     font-weight: 400;
     font-style: normal;
-    font-size: 4rem;
+    font-size: 3rem;
+    margin: 0;
+}
+.firstName{
+    color: orangered;
 }
 .recipeinfo{
     display: grid;

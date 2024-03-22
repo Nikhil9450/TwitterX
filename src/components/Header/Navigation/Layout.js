@@ -6,7 +6,7 @@ const Layout = (props) => {
   return (
     <Fragment>
         <Navbar/>
-        <FoodFilters/>
+        {/* <FoodFilters/> */}
         <main>{props.children}</main>
     </Fragment>
   )

@@ -4,9 +4,16 @@ import {useSelector } from 'react-redux';
 
 const RecipeInfo = () => {
     const recipe_info = useSelector((state) => state.recipeInformation);
-
+    const userName = useSelector((state) => state.userName.Name);
+    let firstName=null;
+    if(userName){
+        firstName = userName.split(" ")[0]; 
+    }
     if (!recipe_info.data.extendedIngredients || !Array.isArray(recipe_info.data.extendedIngredients)) {
-        return <div className={classes.not_available}>Search for recipies.</div>;
+        return <div className={classes.not_available}>
+            <h3>Welcome,<span className={classes.firstName}>{firstName}</span>!</h3>
+            <p>Discover endless culinary inspiration and delightful recipes here.</p> 
+       </div>;
     }
     const createMarkup = (html) => {
         return { __html: html };

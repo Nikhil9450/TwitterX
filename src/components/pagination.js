@@ -14,7 +14,7 @@ const BasicPagination = ({ currentPage, onPageChange, totalResults, perPage }) =
         display: 'flex',
         justifyContent: 'center', // Center pagination horizontally
         alignItems: 'center', // Center pagination vertically
-        borderRadius: '8px', // Optional: adds rounded corners
+        // borderRadius: '8px', // Optional: adds rounded corners
         boxShadow: '0px 3px 6px rgba(0, 0, 0, 0.16)', // Optional: adds a shadow
       }}
     >
