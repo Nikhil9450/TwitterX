@@ -10,7 +10,7 @@ const BasicPagination = ({ currentPage, onPageChange, totalResults, perPage }) =
       spacing={2}
       sx={{
         padding: '1rem 0rem',
-        background: '#f2f2f2', // Grey background
+        background: '#2e2d2d', // Grey background
         display: 'flex',
         justifyContent: 'center', // Center pagination horizontally
         alignItems: 'center', // Center pagination vertically
@@ -24,7 +24,7 @@ const BasicPagination = ({ currentPage, onPageChange, totalResults, perPage }) =
         onChange={onPageChange}
         sx={{
           '& .MuiPaginationItem-root': {
-            color: 'black', // Black text color
+            color: 'white', // Black text color
           },
           '& .MuiPaginationItem-page.Mui-selected': {
             backgroundColor: '#494949', // Black background color for selected page

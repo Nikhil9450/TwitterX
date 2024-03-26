@@ -5,7 +5,7 @@ import classes from './Dashboard.module.css';
 const Dashboard = (props) => {
   return (
     <Layout>
-      <div style={{ display: 'flex', height: '88vh' }}>
+      <div style={{ display: 'flex', height: '89vh' }}>
         <div className={classes.recipelist_container} style={{ flex: 1,height:'inherit' }}>
           <RecipeListContainer />
         </div>

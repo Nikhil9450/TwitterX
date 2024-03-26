@@ -24,7 +24,7 @@ header ul {
     color: #959292 ;
     font-weight: bold;
   }
-  .signout_btn,.bookmark_btn,.addRecipe_btn {
+  .signout_btn,.bookmark_btn,.addRecipe_btn,.addFilter_btn {
     font: inherit;
     background-color: transparent;
     border: none;
@@ -67,7 +67,7 @@ header ul {
     border: none;
 }
 .nav{
-  width: 40%;
+  width: 50%;
 }
 /* .bookmark_btn{
   font: inherit;

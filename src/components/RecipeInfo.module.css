@@ -1,3 +1,9 @@
+.not_available_container{
+    height: 100%;
+    width: 100%;
+    background: url("../../public/Images/food_back.jpg");
+    background-size: cover;
+}
 .not_available{
     display: flex;
     flex-direction: column;
@@ -7,8 +13,9 @@
     width: 100%;
     /* background: rgb(255, 241, 214); */
     backdrop-filter: blur(8px);
-    background-color:rgb(0 0 0 / 57%); ;
+    background-color:rgba(0, 0, 0, 0.434); ;
     color: white;
+ 
 }
 .not_available p{
     font-family: "Sacramento", cursive;
@@ -26,6 +33,11 @@
 }
 .firstName{
     color: orangered;
+}
+.recipeinfo_maincontainer{
+    background: url("../../public/Images/food_back.jpg");
+    background-size: cover;  
+    height: inherit;
 }
 .recipeinfo{
     display: grid;

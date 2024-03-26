@@ -8,37 +8,62 @@ const initialState = {
   };
 
   // Helper function to construct the query string from paramsObject
-  const buildQueryString = (paramsObject) => {
-    const queryString = Object.keys(paramsObject).map((key) => {
-      const value = Array.isArray(paramsObject[key]) ? paramsObject[key].join(',') : paramsObject[key];
-      return `${encodeURIComponent(key)}=${encodeURIComponent(value)}`;
-    }).join('&');
+  // const buildQueryString = (paramsObject) => {
+  //   const queryString = Object.keys(paramsObject).map((key) => {
+  //     const value = Array.isArray(paramsObject[key]) ? paramsObject[key].join(',') : paramsObject[key];
+  //     return `${encodeURIComponent(key)}=${encodeURIComponent(value)}`;
+  //   }).join('&');
   
-    // Manually replace %2C with commas in the queryString
-    return queryString.replace(/%2C/g, ',');
-  };
+  //   // Manually replace %2C with commas in the queryString
+  //   return queryString.replace(/%2C/g, ',');
+  // };
+// Define async thunk action creator with parameters
+// export const fetchRecipe = createAsyncThunk(
+//     'Recipe/fetchRecipe',
+//     async (paramsObject, { rejectWithValue }) => {
+//       console.log("paramsObject--------------->" ,paramsObject)
+//       try {
+//         const queryString = buildQueryString(paramsObject); // Build the query string
+//         console.log("queryString------------>",queryString);
+//         const response = await axios.get(`https://api.spoonacular.com/recipes/complexSearch?${queryString}`);
+//         console.log("response.data------------->",response.data)
+//         return response.data;
+//       } catch (error) {
+//         // Use rejectWithValue to provide additional context about the error
+//         return rejectWithValue(error.response.data);
+//       }
+//     }
+//   );
+
+
+// Helper function to construct the query string from paramsObject
+const buildQueryString = (paramsObject) => {
+  const filteredParams = Object.fromEntries(
+      Object.entries(paramsObject).filter(([_, value]) => value !== '' && value !== undefined && value.length !== 0)
+  );
+  
+  const queryString = new URLSearchParams(filteredParams).toString();
+  console.log("querystring------------->",queryString)
+  return queryString;
+};
+
 // Define async thunk action creator with parameters
 export const fetchRecipe = createAsyncThunk(
-    'Recipe/fetchRecipe',
-    async (paramsObject, { rejectWithValue }) => {
-      console.log("paramsObject--------------->" ,paramsObject)
+  'Recipe/fetchRecipe',
+  async (paramsObject, { rejectWithValue }) => {
+      console.log("paramsObject--------------->", paramsObject)
       try {
-        const queryString = buildQueryString(paramsObject); // Build the query string
-        console.log("queryString------------>",queryString);
-        const response = await axios.get(`https://api.spoonacular.com/recipes/complexSearch?${queryString}`);
-        console.log("response.data------------->",response.data)
-        return response.data;
-
-        // const response = await axios.get('https://api.spoonacular.com/recipes/complexSearch', {
-        //     params: paramsObject // Pass paramsObject as the request parameters
-        //   });
-        // return response.data;
+          const queryString = buildQueryString(paramsObject); // Build the query string
+          console.log("queryString------------>", queryString);
+          const response = await axios.get(`https://api.spoonacular.com/recipes/complexSearch?${queryString}`);
+          console.log("response.data------------->", response.data)
+          return response.data;
       } catch (error) {
-        // Use rejectWithValue to provide additional context about the error
-        return rejectWithValue(error.response.data);
+          // Use rejectWithValue to provide additional context about the error
+          return rejectWithValue(error.response.data);
       }
-    }
-  );
+  }
+);
   const SearchRecipeSlice = createSlice({
     name: 'Recipe',
     initialState,

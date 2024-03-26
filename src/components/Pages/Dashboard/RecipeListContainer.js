@@ -15,6 +15,8 @@ const RecipeListContainer = () => {
   const totalResults = useSelector((state) => state.recipeList.data.totalResults);
   const perPage = 10; 
   const [currentPage, setCurrentPage] = useState(1);
+  const searchedValue = useSelector((state) => state.SearchItem.Searched_item);
+
   useEffect(() => {
     fetchData(currentPage);
   }, [currentPage]);
@@ -26,6 +28,19 @@ const RecipeListContainer = () => {
       diet:selected_filters.filters.diet, 
       cuisine:selected_filters.filters.cuisines, 
       type:selected_filters.filters.type, 
+      query:searchedValue,
+      maxProtein:selected_filters.filters.maxProtein,
+      minProtein: selected_filters.filters.minProtein,
+      minCarbs: selected_filters.filters.minCarbs,
+      maxCarbs: selected_filters.filters.maxCarbs,
+      minFat: selected_filters.filters.minFat,
+      maxFat: selected_filters.filters.maxFat,
+      minFiber: selected_filters.filters.minFiber,
+      maxFiber:selected_filters.filters.maxFiber,
+      minIron: selected_filters.filters.minIron,
+      maxIron:selected_filters.filters.maxIron,
+      minSugar: selected_filters.filters.minSugar,
+      maxSugar: selected_filters.filters.maxSugar,
       offset: (page - 1) * 10 }));
   };
   const handlePageChange = (event, page) => {

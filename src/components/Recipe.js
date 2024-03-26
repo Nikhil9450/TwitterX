@@ -5,18 +5,22 @@ import { useDispatch,useSelector } from 'react-redux';
 import {viewRecipe} from '../slices/ViewRecipeSlice';
 import Loader from './Loader';
 import { useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 
 const Recipe = (props) => {
   const dispatch = useDispatch()
   const [loading, setLoading] = useState(false);
   const recipe_info = useSelector((state) => state.recipeInformation);
+  const navigate = useNavigate();
+
 
  function recipe_detail(id){
   setLoading(true);
    console.log("id------>",id,);
-   dispatch(viewRecipe({ apiKey: "bcffb3f9bbd6414aaf1fa753f147235f", id: id,includeNutrition:false }))
+   dispatch(viewRecipe({ apiKey: "bcffb3f9bbd6414aaf1fa753f147235f", id: id,includeNutrition:true  }))
    .then(()=>{
       setLoading(false);
+      navigate('/');
    })
    console.log("recipe_info--------->",recipe_info);
  }

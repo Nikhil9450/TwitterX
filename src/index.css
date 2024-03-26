@@ -17,3 +17,18 @@ h5,
 h6 {
   font-family: 'Lato', sans-serif;
 } */
+
+
+/* For WebKit browsers (Chrome, Safari, etc.) */
+::-webkit-scrollbar {
+  width: 10px; /* Set the width of the scrollbar */
+}
+
+::-webkit-scrollbar-track {
+  background: none; /* Set the background color of the track */
+}
+
+::-webkit-scrollbar-thumb {
+  background: #636363; /* Set the color of the scroll thumb */
+  border-radius: 5px; /* Add rounded corners to the thumb */
+}

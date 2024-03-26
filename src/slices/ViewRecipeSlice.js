@@ -14,6 +14,7 @@ const initialState = {
         const response = await axios.get(`https://api.spoonacular.com/recipes/${paramsObject.id}/information`, {
             params: paramsObject // Pass paramsObject as the request parameters
           });
+          console.log('single recipe data--------->', response.data)
         return response.data;
       } catch (error) {
         // Use rejectWithValue to provide additional context about the error

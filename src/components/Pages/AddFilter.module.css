@@ -1,0 +1,6 @@
+.foodFilter_container{
+    background: url("../../../public/Images/filter_back.jpg");
+    background-size: cover;
+    height: inherit;
+    /* overflow-y: auto; */
+}

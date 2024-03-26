@@ -5,7 +5,19 @@ export const DropdownFilterEventSlice = createSlice({
   initialState: { filters: {
                             'diet':[],
                             'cuisines':[],
-                            'type':[]
+                            'type':[],
+                            "maxProtein":"",
+                            "minProtein": "",
+                            "minCarbs": "",
+                            "maxCarbs": "",
+                            "minFat": "",
+                            "maxFat": "",
+                            "minFiber": "",
+                            "maxFiber":"",
+                            "minIron": "",
+                            "maxIron":"",
+                            "minSugar": "",
+                            "maxSugar": "",
                           } 
                 },  // Make sure to use an object for the initialState
   reducers: {
