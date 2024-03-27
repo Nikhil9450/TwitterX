@@ -5,7 +5,7 @@ const Layout = (props) => {
   return (
     <Fragment>
         <Navbar/>
-        <main>{props.children}</main>
+        <main style={{height:'90%',overflowY:'auto'}}>{props.children}</main>
     </Fragment>
   )
 }

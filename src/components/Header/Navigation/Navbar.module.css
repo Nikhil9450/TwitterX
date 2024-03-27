@@ -1,11 +1,14 @@
 header {
     width: 100%;
-    height: 5rem;
+    height: 10%;
     background-color:rgb(2 18 16);
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 0 2%;
+    /* position: sticky;
+    top: 0;
+    left: 0; */
   }
 header ul {
     list-style: none;

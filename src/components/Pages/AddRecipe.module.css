@@ -1,0 +1,36 @@
+.addRecipe_container{
+    display: flex;
+    flex-direction: column;
+    padding: 0rem 1rem;
+    overflow-y: auto;
+}
+.titleAndInf_cont{
+    display: flex;
+    flex-direction: column;
+}
+.titleAndInf{
+    display: flex;
+    flex-direction: column;
+}
+.ingreAndSteps_cont{
+    display: flex;
+    flex-direction: row;
+}
+.steps_cont{
+    display: flex;
+    flex-direction: column;
+}
+.ingredient_cont{
+    padding: 1rem;
+    background: #fafafa;
+}
+.addBtn_container{
+display: flex;
+justify-content: end;
+padding: .5rem .5rem;
+}
+.saveBtn_container{
+    display: flex;
+    justify-content: end;
+    margin-top: 1rem;
+}
