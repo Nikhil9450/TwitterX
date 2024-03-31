@@ -1,0 +1,143 @@
+.Recipe_card{
+    background-color:rgb(248, 248, 239);
+    margin: 5px 0px;
+    /* border-radius: 1rem; */
+    display: flex;
+    height: 4rem;
+    margin: 5px;
+}
+.description{
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    align-items: center;
+}
+
+
+.title{
+    color: rgb(139, 139, 139);
+    margin:0px;
+}
+.view_btn{
+    width: 2rem;
+    height: 2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: none;
+    border-radius: 2rem;
+    cursor: pointer;
+    background: #ffffff;
+}
+/* ----------------------------------- */
+
+.firstName{
+    color: orangered;
+}
+.recipeinfo_maincontainer{
+    /* background: url("../../public/Images/food_back.jpg");
+    background-size: cover;   */
+    height: 100%;
+    padding: 1rem;
+    overflow-y: auto;
+}
+.recipeinfo{
+    /* display: grid; */
+    /* border: 1px solid grey; */
+    /* height: inherit; */
+    /* grid-template-columns: 1fr 2fr; */
+    /* grid-template-rows: 1fr 3fr; */
+    overflow-y: auto;
+    /* backdrop-filter: blur(10px); */
+    background: rgb(235, 235, 235);
+    border-radius: 1rem;
+}
+
+.item{
+    /* border: 1px solid grey; */
+    /* height: 100%; */
+    padding: 1rem;
+}
+
+.recipe_title{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: #dbdbdb;
+
+    /* background: antiquewhite; */
+}
+.recipe_title a{
+    text-decoration: none;
+    color: rgb(255, 135, 36);
+}
+.recipeinfo_maincontainer h4{
+    margin: 0px;
+    font-size: 1.5rem;
+    font-weight: 100;
+    color: #525252;
+    width: 100%;
+    background: rgb(226, 226, 221);
+    padding: 15px;
+    border-radius: 1rem;
+}
+
+.recipe_title p{
+    font-size:smaller;
+    color: #3b3b3b;
+}
+.recipe_ingridient{
+    background: rgb(243, 238, 227);
+    color: #3b3b3b;
+    font-size: 13px;
+}
+.ing_table{
+    width: 100%;
+}
+.ing_table td{
+    padding: .2rem 1rem;
+    /* width: 100%; */
+}
+
+
+.ing_table  tr {
+    padding: 0 1rem;
+    width: 100%;
+    background-color: rgb(255, 255, 255);
+    height: 2rem;
+}
+
+.ing_table  tr:last-of-type {
+    border-bottom: 2px solid rgba(43, 43, 43, 0.274);;
+}
+.ing_table td:nth-of-type(even) {
+    background-color: rgb(253, 253, 253);;
+}
+.ing_title{
+    background: rgb(212, 212, 199);
+    padding: .5rem 1rem;
+    margin: 0;
+}
+.recipe_inf{
+    font-family: "Open Sans", sans-serif;
+    font-optical-sizing: auto;
+    font-weight:200;
+    font-style: normal;
+    color: rgb(55, 55, 55);
+    /* background: rgb(226, 226, 221); */
+}
+.recipe_img{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.recipe_inf h5{
+    margin: 0px;
+    font-size: 1.2rem;
+    font-weight: 100;
+    color: #3b3b3b;
+    width: 100%;
+}

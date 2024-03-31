@@ -4,14 +4,11 @@ import React, { useState, useEffect } from 'react';
 import classes from './FoodFilters.module.css';
 import Dropdown from './Header/Select';
 import Grid from '@mui/material/Grid';
-import Button from '@mui/material/Button';
 import { useSelector, useDispatch } from 'react-redux'
 import { DropdownEventHandler } from '../slices/DropdownFilteredListSlice';
 import { fetchRecipe } from '../slices/SearchRecipeSlice';
 import MySlider from './Slider';
 import Fab from '@mui/material/Fab';
-import { SelectMinimal } from './Card';
-import { withTheme } from '@emotion/react';
 import { setSearchItem } from '../slices/SearchedItemSlice';
 import Loader from './Loader';
 const FoodFilters = () => {
@@ -187,7 +184,7 @@ const handleFoodTypeChange = (event) => {
             <Dropdown options={foodTypeOptions} value={foodType} onChange={handleFoodTypeChange} title="Select Food Type" />
           </Grid>
       </Grid>
-      <Grid container className={classes.nutrition}>
+      <Grid container className={classes.nutrition} spacing={1}>
 
           <Grid  item xs={12} sm={4}>
             <MySlider label={'Protein'} min={10} max={100} onChange={handleProteinChange} minSelected={protein[0]} maxSelected={protein[1]} minDistance={10}/>

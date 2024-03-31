@@ -18,6 +18,8 @@ const RecipeListContainer = () => {
   const searchedValue = useSelector((state) => state.SearchItem.Searched_item);
 
   useEffect(() => {
+    console.log("totalResults---------------->",totalResults)
+    console.log("perPage---------------->",perPage)
     fetchData(currentPage);
   }, [currentPage]);
 

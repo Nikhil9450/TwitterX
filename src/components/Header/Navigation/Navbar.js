@@ -73,24 +73,8 @@ const Navbar = () => {
     );
     console.log("bookmark---------------->",bookmark)
   }
-  let options=['Logout'];
-  // function bookmarkeventHandlerClose(){
-  //   dispatch(
-  //     bookmarkEventHandler({ value: false })
-  //   );
-  //   console.log("bookmark---------------->",bookmark)
-  // }
+  let options=['My Recipes','Logout'];
 
-
-  // const search_function=async()=>{
-  //   try {
-  //     const response = await fetch("https://api.spoonacular.com/recipes/complexSearch?apiKey=bcffb3f9bbd6414aaf1fa753f147235f&query=noodles");
-  //     const data = await response.json();
-  //     console.log("result--------->", data.results);
-  //   } catch (error) {
-  //     console.error("Failed to fetch the response:", error);
-  //   }
-  // }
   return (
     <header>
         <Link to="/"> <div className={classes.logo}><img className={classes.icon} src = 'Icons/Colored_LOGO.png' alt='twitter icon'></img><p>Meal Mastermind</p></div> </Link>

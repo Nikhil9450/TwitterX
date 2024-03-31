@@ -5,7 +5,7 @@ import { useDispatch,useSelector } from 'react-redux';
 import {viewRecipe} from '../slices/ViewRecipeSlice';
 import Loader from './Loader';
 import { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 const Recipe = (props) => {
   const dispatch = useDispatch()

@@ -10,6 +10,7 @@ import RecipeInfo from './components/RecipeInfo';
 // import ViewRecipe from './components/ViewRecipe';
 import AddRecipe from './components/Pages/AddRecipe';
 import AddFilter from './components/Pages/AddFilter';
+import MyRecipes from './components/Pages/MyRecipes';
 
 function App() {
   const[authUser,setAuthUser]=useState(null);
@@ -34,6 +35,7 @@ function App() {
               <Route path="/" element={<RecipeInfo/>} />
               <Route path="/add_recipe" element={<AddRecipe/>} />
               <Route path="/add_filter" element={<AddFilter/>} />
+              <Route path="/my_recipes" element={<MyRecipes/>} />
               {/* <Route path="/view_recipe" element={<ViewRecipe/>} /> */}
         </Routes>
       </Dashboard>
