@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 import { getFirestore, collection, query, where, getDocs } from 'firebase/firestore';
 import {auth} from "../../../src/firebase";
 import MyRecipe from '../MyRecipe';
-
+import classes from './MyRecipes.module.css'
 
 const MyRecipes = () => {
   const [recipes, setRecipes] = useState([]);
@@ -35,7 +35,7 @@ const MyRecipes = () => {
   }, [userId]);
 
   return (
-    <div style={{padding:'1rem'}}>
+    <div className={classes.recipe_container} >
       {/* <h2>My Recipes</h2> */}
       {/* <ul> */}
         {recipes.map((recipe) => (

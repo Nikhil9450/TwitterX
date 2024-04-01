@@ -42,8 +42,9 @@ export default function TransitionsModal(props) {
       >
         <Fade in={props.open}>
           <Box sx={style}>
-          <div style={{display:'flex', justifyContent:'end', padding:'1rem' ,cursor:'pointer'}}>
-          <CloseIcon onClick={props.handleClose} />
+          <div style={{display:'flex', justifyContent:'space-between', padding:'1.5rem 1rem' }}>
+          <h3 style={{color:'#b2b2b2',margin:'0px', fontWeight:'100',fontSize:'25px',background:'#121817'}}>{props.title}</h3>
+          <CloseIcon onClick={props.handleClose}  style={{cursor:'pointer',color:'white'}}/>
           </div>
            {props.children}
           </Box>

@@ -1,15 +1,13 @@
 .Recipe_card{
     /* background-color:rgb(248, 248, 239); */
-    /* margin-top: 2rem; */
-    /* border-radius: 1rem; */
+    margin-top: 1rem !important;
     display: flex;
     height: 4rem;
     margin: 5px;
     width: 20rem;
     border-radius: 40px;
-background: #f0f0f0;
-box-shadow:  25px -25px 49px #dfdfdf,
-             -25px 25px 49px #ffffff;
+    background: #f0f0f0;
+    padding: 0rem .7rem;
 
 }
 .description{
@@ -32,10 +30,11 @@ box-shadow:  25px -25px 49px #dfdfdf,
     justify-content: center;
     align-items: center;
     border: none;
-    border-radius: 0px;
+    border-radius: 25px;
     cursor: pointer;
     background: #ffffff;
     padding: 1rem 2rem;
+    color: grey;
 }
 /* ----------------------------------- */
 
@@ -43,8 +42,8 @@ box-shadow:  25px -25px 49px #dfdfdf,
     color: orangered;
 }
 .recipeinfo_maincontainer{
-    /* background: url("../../public/Images/food_back.jpg");
-    background-size: cover;   */
+    background: url("../../public/Images/food_back.jpg");
+    background-size: cover;  
     height: 100%;
     padding: 1rem 4rem;
     overflow-y: auto;
@@ -52,13 +51,13 @@ box-shadow:  25px -25px 49px #dfdfdf,
 .recipeinfo{
     /* display: grid; */
     /* border: 1px solid grey; */
-    /* height: inherit; */
+    height: 90%;
     /* grid-template-columns: 1fr 2fr; */
     /* grid-template-rows: 1fr 3fr; */
     overflow-y: auto;
-    /* backdrop-filter: blur(10px); */
-    background: rgb(235, 235, 235);
-    /* border-radius: 1rem; */
+    /* backdrop-filter: blur(25px); */
+    background: rgba(26, 26, 26, 0.795);
+    border-radius: 1rem;
 }
 
 .item{
@@ -84,7 +83,7 @@ box-shadow:  25px -25px 49px #dfdfdf,
     margin: 0px;
     font-size: 1.5rem;
     font-weight: 100;
-    color: #525252;
+    color: #dcdcdc;
     width: 100%;
     background: rgb(226, 226, 221);
     padding: 15px;
@@ -93,11 +92,11 @@ box-shadow:  25px -25px 49px #dfdfdf,
 
 .recipe_title p{
     font-size:smaller;
-    color: #3b3b3b;
+    color: #d3d3d3;
 }
 .recipe_ingridient{
     background: rgb(243, 238, 227);
-    color: #3b3b3b;
+    color: #c8c8c8;
     font-size: 13px;
 }
 .ing_table{
@@ -132,7 +131,7 @@ box-shadow:  25px -25px 49px #dfdfdf,
     font-optical-sizing: auto;
     font-weight:200;
     font-style: normal;
-    color: rgb(55, 55, 55);
+    color: rgb(216, 216, 216);
     /* background: rgb(226, 226, 221); */
 }
 .recipe_img{
@@ -145,6 +144,6 @@ box-shadow:  25px -25px 49px #dfdfdf,
     margin: 0px;
     font-size: 1.2rem;
     font-weight: 100;
-    color: #3b3b3b;
+    color: #e2e2e2;
     width: 100%;
 }
