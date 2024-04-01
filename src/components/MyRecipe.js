@@ -26,12 +26,13 @@ const MyRecipe = (props) => {
     <div className={classes.Recipe_card}>
         <div className={classes.description}>
             <p className={classes.title}>{props.title}</p>
-            <button className={classes.view_btn} onClick={() => handleOpen(props.id)}><KeyboardArrowRightRoundedIcon style={{ color: 'grey'}}/></button>
+            <button className={classes.view_btn} onClick={() => handleOpen(props.id)}>View</button>
         </div>
         <TransitionsModal  handleClose={handleClose} open={open}>
             <div className={classes.recipeinfo_maincontainer}>
-            <h4>{props.title}</h4>
+            
             <div className={classes.recipeinfo}>
+                <h4>{props.title}</h4>
                 <div className={classes.recipe_title + ' ' + classes.item}>
                 
                 <p>{props.summary}</p>

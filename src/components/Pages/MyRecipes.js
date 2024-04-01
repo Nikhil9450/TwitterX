@@ -35,9 +35,9 @@ const MyRecipes = () => {
   }, [userId]);
 
   return (
-    <div>
+    <div style={{padding:'1rem'}}>
       {/* <h2>My Recipes</h2> */}
-      <ul>
+      {/* <ul> */}
         {recipes.map((recipe) => (
           // <li key={recipe.id}>
           //   <h3>{recipe.title}</h3>
@@ -45,7 +45,7 @@ const MyRecipes = () => {
           // </li>
           <MyRecipe title={recipe.title} summary={recipe.summary} instructions={recipe.instructions} ingredients={recipe.ingredients}/>
         ))}
-      </ul>
+      {/* </ul> */}
     </div>
   );
 };
