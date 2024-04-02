@@ -7,7 +7,7 @@ import Loader from './Loader';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import TransitionsModal from './Modal';
-
+import DeleteIcon from '@mui/icons-material/Delete';
 const MyRecipe = (props) => {
 //   const dispatch = useDispatch()
     const [open,setOpen]=useState(false);
@@ -25,6 +25,7 @@ const MyRecipe = (props) => {
   return (
     <div className={classes.Recipe_card}>
         <div className={classes.description}>
+            <div className={classes.delete_btn_container}><DeleteIcon style={{color:'#bfbbbb',cursor:'pointer'}}  /></div>
             <div>
                 <img src='Images/noodles.png' alt="food_img" style={{height:'4rem'}} />
             </div>

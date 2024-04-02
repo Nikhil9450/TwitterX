@@ -36,16 +36,14 @@ const MyRecipes = () => {
 
   return (
     <div className={classes.recipe_container} >
-      {/* <h2>My Recipes</h2> */}
-      {/* <ul> */}
+    <div className={classes.upper_page}>
+     <img src="Images/fried-egg.png" alt="food_img" style={{height:'15rem'}} />
+    </div>
+     <div className={classes.recipes_list}>
         {recipes.map((recipe) => (
-          // <li key={recipe.id}>
-          //   <h3>{recipe.title}</h3>
-          //   <p>{recipe.summary}</p>
-          // </li>
           <MyRecipe title={recipe.title} summary={recipe.summary} instructions={recipe.instructions} ingredients={recipe.ingredients}/>
         ))}
-      {/* </ul> */}
+     </div>
     </div>
   );
 };

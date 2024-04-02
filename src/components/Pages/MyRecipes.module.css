@@ -1,5 +1,20 @@
 .recipe_container{
-    padding: 1rem;
+    /* padding: 1rem; */
     height: 100%;
-    background: #282626;
+    background: #f7f7f7;
+}
+.upper_page{
+    height: 60%;
+    background: #272525;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+}
+.recipes_list{
+    height: 40%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    overflow-x: auto;
 }
