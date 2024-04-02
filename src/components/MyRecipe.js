@@ -32,7 +32,7 @@ const MyRecipe = (props) => {
             <p className={classes.title}>{props.title}</p>
             <button className={classes.view_btn} onClick={() => handleOpen(props.id)}>View</button>
         </div>
-        <TransitionsModal  handleClose={handleClose} open={open} title={props.title}>
+        <TransitionsModal  handleClose={handleClose} open={open} title={props.title} height={'100%'} width={'100%'}>
             <div className={classes.recipeinfo_maincontainer}>
             
                 <div className={classes.recipeinfo}>
