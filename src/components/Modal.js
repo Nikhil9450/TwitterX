@@ -18,8 +18,8 @@ export default function TransitionsModal(props) {
   //   border: '2px solid #000',
     boxShadow: 24,
     p: 4,
-    // overflow:'auto',
-    padding:'0px'
+    overflow:'auto',
+    padding:'0px',
   };
 //   const [open, setOpen] = React.useState(false);
 //   const handleOpen = () => setOpen(true);
@@ -43,7 +43,7 @@ export default function TransitionsModal(props) {
       >
         <Fade in={props.open}>
           <Box sx={style}>
-          <div style={{display:'flex', justifyContent:'space-between', padding:'1.5rem 1rem' ,background:'#121817' }}>
+          <div style={{display:'flex', justifyContent:'space-between', padding:'1.5rem 1rem' ,background:'#121817', position:'sticky',top:0 }}>
           <h3 style={{color:'#b2b2b2',margin:'0px', fontWeight:'100',fontSize:'25px'}}>{props.title}</h3>
           <CloseIcon onClick={props.handleClose}  style={{cursor:'pointer',color:'white'}}/>
           </div>

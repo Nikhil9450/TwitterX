@@ -4,17 +4,18 @@
     background: #f7f7f7;
 }
 .upper_page{
-    height: 60%;
+    height: 50%;
     background: #272525;
     display:flex;
     justify-content: center;
     align-items: center;
 }
 .recipes_list{
-    height: 40%;
+    height: 50%;
     display: flex;
     flex-direction: row;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
     overflow-x: auto;
+    max-width: 100%;
 }

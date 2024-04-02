@@ -9,6 +9,8 @@ import { useState ,useRef} from 'react';
 import {auth} from "../../../src/firebase";
 import { useSelector } from 'react-redux';
 import { getFirestore, collection,addDoc } from 'firebase/firestore';
+import TransitionsModal from '../Modal';
+import VisibilityIcon from '@mui/icons-material/Visibility';
 const AddRecipe = () => {
   const [loading, setLoading] =useState(false);
   const [ingredient,setIngredient]=useState([]);
@@ -16,9 +18,10 @@ const AddRecipe = () => {
   const titleRef=useRef("");
   const summaryRef=useRef("");
   const stepsRef=useRef("");
-  const ing_NameRef=useRef("")
-  const ing_quantityRef=useRef("")
-  const ing_unitRef=useRef("")
+  const ing_NameRef=useRef("");
+  const ing_quantityRef=useRef("");
+  const ing_unitRef=useRef("");
+  const [open,setOpen]=useState(false);
 
   // const save_recipe=()=>{
   //  console.log("ingredient------->",ingredient)
@@ -74,6 +77,13 @@ const AddRecipe = () => {
     ing_quantityRef.current.value = '';
     ing_unitRef.current.value = '';
   };
+
+  const handleOpen=()=>{
+    setOpen(true);
+}
+const handleClose=()=>{
+    setOpen(false);
+}
   return (
     <div className={classes.addRecipe_container}>
       <div className={classes.container}>
@@ -102,7 +112,10 @@ const AddRecipe = () => {
                     <TextField id="filled-basic" label="ENTER UNIT" variant="filled" className={classes.recipe_title} style={{padding:'0px 5px',marginBottom:'10px'}} inputRef={ing_unitRef} fullWidth/>
                   </div>
                   <div className={classes.addBtn_container}>
-                    <Fab size="small"  style={{backgroundColor:"#fa9b27",color:"white"}} aria-label="add" onClick={add_ingrediets}>
+                  <Fab size="small"  style={{backgroundColor:"#e84f09",color:"white", margin:"0rem 1rem"}} aria-label="add" onClick={handleOpen}>
+                      <VisibilityIcon />
+                    </Fab>
+                    <Fab size="small"  style={{backgroundColor:"#e84f09",color:"white"}} aria-label="add" onClick={add_ingrediets}>
                       <AddIcon />
                     </Fab>
                   </div>
@@ -121,13 +134,26 @@ const AddRecipe = () => {
                     inputRef={stepsRef}
                   />
           <div className={classes.saveBtn_container}>
-            <Fab variant="extended"  style={{width: '100%',minWidth:'20rem',minHeight:'4rem', boxShadow:'none', borderRadius:'0px'}} onClick={save_recipe}>
+            <Fab variant="extended"  style={{width: '100%',minWidth:'20rem',minHeight:'4rem', boxShadow:'none', borderRadius:'0px', background:"#e84f09",color:'white'}} onClick={save_recipe}>
               {(loading?<Loader size={30} />:'SAVE RECIPE')}
             </Fab>
           </div>
           </Grid>
         </Grid>
       </div>
+      <TransitionsModal  handleClose={handleClose} open={open} title={'Ingrediends'} height={'50%'} width={'50%'}>
+        <div className={classes.recipe_ingridient + ' ' + classes.item}>
+            {/* <h3 className={classes.ing_title}>Ingrediends</h3> */}
+            <table className={classes.ing_table}>
+                {ingredient.map((ingredient, index) => (
+                    <tr key={index}>
+                        <td>{ingredient.ing_name}</td>
+                        <td>{ingredient.ing_quantity} {ingredient.ing_unit}</td>
+                    </tr>
+                    ))}
+            </table>
+          </div>
+        </TransitionsModal>
     </div>
   )
 }

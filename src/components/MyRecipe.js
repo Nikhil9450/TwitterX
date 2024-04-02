@@ -25,7 +25,7 @@ const MyRecipe = (props) => {
   return (
     <div className={classes.Recipe_card}>
         <div className={classes.description}>
-            <div className={classes.delete_btn_container}><DeleteIcon style={{color:'#bfbbbb',cursor:'pointer'}}  /></div>
+            <div className={classes.delete_btn_container}><DeleteIcon style={{color:'#ff5a5a',cursor:'pointer'}} onClick={props.onDelete} /></div>
             <div>
                 <img src='Images/noodles.png' alt="food_img" style={{height:'4rem'}} />
             </div>
