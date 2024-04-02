@@ -3,19 +3,19 @@
     /* margin-top: 2rem; */
     /* border-radius: 1rem; */
     display: flex;
-    height: 4rem;
+    height: 10rem;
     margin: 5px;
-    width: 20rem;
+    width: 10rem;
     border-radius: 40px;
-background: #f0f0f0;
-box-shadow:  25px -25px 49px #dfdfdf,
-             -25px 25px 49px #ffffff;
-
+    background: #f0f0f0;
+    box-shadow:  25px -25px 49px #dfdfdf,
+                -25px 25px 49px #ffffff;
 }
 .description{
     padding: 10px;
     display: flex;
     justify-content: space-between;
+    flex-direction: column;
     width: 100%;
     align-items: center;
 }
@@ -32,7 +32,7 @@ box-shadow:  25px -25px 49px #dfdfdf,
     justify-content: center;
     align-items: center;
     border: none;
-    border-radius: 0px;
+    border-radius: 20px;
     cursor: pointer;
     background: #ffffff;
     padding: 1rem 2rem;

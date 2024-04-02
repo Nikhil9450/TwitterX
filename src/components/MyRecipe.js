@@ -25,6 +25,9 @@ const MyRecipe = (props) => {
   return (
     <div className={classes.Recipe_card}>
         <div className={classes.description}>
+            <div>
+                <img src='Images/noodles.png' alt="food_img" style={{height:'4rem'}} />
+            </div>
             <p className={classes.title}>{props.title}</p>
             <button className={classes.view_btn} onClick={() => handleOpen(props.id)}>View</button>
         </div>
