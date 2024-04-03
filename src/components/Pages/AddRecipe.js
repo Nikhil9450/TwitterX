@@ -9,29 +9,32 @@ import { useState ,useRef} from 'react';
 import {auth} from "../../../src/firebase";
 import { useSelector } from 'react-redux';
 import { getFirestore, collection,addDoc } from 'firebase/firestore';
+import CustomizedSnackbars from '../Snackbar';
 const AddRecipe = () => {
   const [loading, setLoading] =useState(false);
   const [ingredient,setIngredient]=useState([]);
-  const [recipeData,setrecipeData]=useState({});
+  // const [recipeData,setrecipeData]=useState({});
   const titleRef=useRef("");
   const summaryRef=useRef("");
   const stepsRef=useRef("");
   const ing_NameRef=useRef("")
   const ing_quantityRef=useRef("")
   const ing_unitRef=useRef("")
+  const [open, setOpen] = useState(false);
+  const [message, setMessage]=useState("");
 
-  // const save_recipe=()=>{
-  //  console.log("ingredient------->",ingredient)
-  //  setrecipeData({
-  //   title:titleRef.current.value,
-  //   summary:summaryRef.current.value,
-  //   instructions:stepsRef.current.value,
-  //   ingredients:ingredient
-  //  })
+  const handleClick = () => {
+    setOpen(true);
+  };
 
-  //  console.log("recipeData-------------->",recipeData);
-  // };
-  // Get the current user from Firebase Authentication
+  const handleClose = (event, reason) => {
+    if (reason === 'clickaway') {
+      return;
+    }
+
+    setOpen(false);
+  };
+
   const user = auth.currentUser;
 
   const save_recipe = async () => {
@@ -39,7 +42,23 @@ const AddRecipe = () => {
       console.error('User is not authenticated');
       return;
     }
-
+    if (titleRef.current.value==""){
+      handleClick();
+      setMessage("Please enter the recipe title !")
+    }
+    else if(summaryRef.current.vlaue==""){
+      handleClick();
+      setMessage("Please enter about the recipe !")
+    }
+    else if(stepsRef.current.value==""){
+      handleClick();
+      setMessage("Please enter instruction of recipe !")
+    }
+    else if(ingredient.length==0){
+      handleClick();
+      setMessage("Please enter the ingredients!")
+    }
+    else{
     // Gather recipe data
     const newRecipeData = {
       title: titleRef.current.value,
@@ -49,7 +68,7 @@ const AddRecipe = () => {
     };
 
     // Update local state
-    setrecipeData(newRecipeData);
+    // setrecipeData(newRecipeData);
 
     // Store recipeData in Firestore
     try {
@@ -60,6 +79,7 @@ const AddRecipe = () => {
     } catch (error) {
       console.error('Error storing recipe data in Firestore:', error);
     }
+  }
   };
 
   const add_ingrediets=()=>{
@@ -128,6 +148,7 @@ const AddRecipe = () => {
           </Grid>
         </Grid>
       </div>
+      <CustomizedSnackbars open={open} handleClick={handleClick} handleClose={handleClose} message={message}/>
     </div>
   )
 }

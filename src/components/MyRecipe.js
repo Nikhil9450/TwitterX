@@ -34,7 +34,6 @@ const MyRecipe = (props) => {
         </div>
         <TransitionsModal  handleClose={handleClose} open={open} title={props.title} height={'100%'} width={'100%'}>
             <div className={classes.recipeinfo_maincontainer}>
-            
                 <div className={classes.recipeinfo}>
                     {/* <h4>{props.title}</h4> */}
                     <div className={classes.recipe_title + ' ' + classes.item}>
@@ -48,7 +47,8 @@ const MyRecipe = (props) => {
                                 <td>{ingredient.ing_name}</td>
                                 <td>{ingredient.ing_quantity} {ingredient.ing_unit}</td>
                             </tr>
-                            ))}
+                            ))
+                        }
                     </table>
                     </div>
                     <div className={classes.recipe_inf + ' ' + classes.item}>
@@ -56,7 +56,6 @@ const MyRecipe = (props) => {
                     <p>{props.instructions}</p>
                     </div>
                 </div>
-
             </div>
         </TransitionsModal>
     </div>
