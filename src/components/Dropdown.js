@@ -28,6 +28,7 @@ export default function SplitButton(props) {
   const open_myRecipes=(event, index)=>{
     // setSelectedIndex(index);
     navigate('/my_recipes');
+    setOpen(false);
   }
   const handleToggle = () => {
     setOpen((prevOpen) => !prevOpen);

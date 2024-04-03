@@ -34,30 +34,30 @@ const AddRecipe = () => {
     if (reason === 'clickaway') {
       return;
     }
-
     setSnackbarOpen(false);
   };
 
   const user = auth.currentUser;
 
   const save_recipe = async () => {
+    console.log("instructions------------>",summaryRef.current.value)
     if (!user) {
       console.error('User is not authenticated');
       return;
     }
-    if (titleRef.current.value==""){
+    if (titleRef.current.value===""){
       handleClick();
       setMessage("Please enter the recipe title !")
     }
-    else if(summaryRef.current.vlaue==""){
+    else if(summaryRef.current.value === ""){
       handleClick();
-      setMessage("Please enter about the recipe !")
+      setMessage("Please enter about the recipe !");
     }
-    else if(stepsRef.current.value==""){
+    else if(stepsRef.current.value===""){
       handleClick();
       setMessage("Please enter instruction of recipe !")
     }
-    else if(ingredient.length==0){
+    else if(ingredient.length===0){
       handleClick();
       setMessage("Please enter the ingredients!")
     }
@@ -74,13 +74,16 @@ const AddRecipe = () => {
     // setrecipeData(newRecipeData);
 
     // Store recipeData in Firestore
+    setLoading(true);
     try {
       const db = getFirestore();
       const recipesCollectionRef = collection(db, 'users', user.uid, 'recipes');
       await addDoc(recipesCollectionRef, newRecipeData);
       console.log('Recipe data stored in Firestore successfully!');
+      setLoading(false);
     } catch (error) {
       console.error('Error storing recipe data in Firestore:', error);
+      setLoading(false);
     }
   }
   };

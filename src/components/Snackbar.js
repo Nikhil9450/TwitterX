@@ -8,8 +8,11 @@ export default function CustomizedSnackbars(props) {
   return (
     <div>
       {/* <Button onClick={handleClick}>Open Snackbar</Button> */}
-      <Snackbar open={props.open} autoHideDuration={6000} onClose={props.handleClose}
-      key={topright}
+      <Snackbar open={props.open} autoHideDuration={4000} onClose={props.handleClose}
+        anchorOrigin={{
+        vertical: 'top',
+        horizontal: 'right',
+      }}
       >
         <Alert
           onClose={props.handleClose}

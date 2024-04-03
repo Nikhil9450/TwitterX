@@ -33,17 +33,20 @@ const MyRecipes = () => {
     }
   }, [userId]);
 
-  const handleDeleteRecipe = async (recipeId) => {
-    try {
-      const db = getFirestore();
-      const recipeDoc = doc(db, 'users', userId, 'recipes', recipeId);
-      await deleteDoc(recipeDoc);
-      // After deletion, fetch and update the recipes list
-      fetchRecipes();
-    } catch (error) {
-      console.error('Error deleting recipe:', error);
-    }
-  };
+  // const handleDeleteRecipe = async (recipeId) => {
+  //   setLoading(true);
+  //   try {
+  //     const db = getFirestore();
+  //     const recipeDoc = doc(db, 'users', userId, 'recipes', recipeId);
+  //     await deleteDoc(recipeDoc);
+  //     setLoading(false);
+  //     // After deletion, fetch and update the recipes list
+  //     fetchRecipes();
+  //   } catch (error) {
+  //     setLoading(false);
+  //     console.error('Error deleting recipe:', error);
+  //   }
+  // };
   return (
     <div className={classes.recipe_container} >
     <div className={classes.upper_page}>
@@ -51,7 +54,7 @@ const MyRecipes = () => {
     </div>
      <div className={classes.recipes_list}>
         {recipes.map((recipe) => (
-          <MyRecipe key={recipe.id} title={recipe.title} summary={recipe.summary} instructions={recipe.instructions} ingredients={recipe.ingredients} onDelete={() => handleDeleteRecipe(recipe.id)}/>
+          <MyRecipe userId={userId} key={recipe.id} recipeId={recipe.id} title={recipe.title} summary={recipe.summary} instructions={recipe.instructions} ingredients={recipe.ingredients} fetchRecipes={() => fetchRecipes()}/>
         ))}
      </div>
     </div>
