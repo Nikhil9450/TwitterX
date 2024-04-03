@@ -43,3 +43,36 @@ padding: .5rem .5rem;
     justify-content: end;
     margin-top: 1rem;
 }
+
+.recipe_ingridient{
+    background: rgb(243, 238, 227);
+    color: #696868;
+    font-size: 13px;
+}
+.ing_table{
+    width: 100%;
+}
+.ing_table td{
+    padding: .2rem 1rem; 
+     width: 50%;
+}
+
+
+.ing_table  tr {
+    padding: 0 1rem;
+    width: 100%;
+    background-color: rgb(255, 255, 255);
+    height: 2rem;
+}
+
+.ing_table  tr:last-of-type {
+    border-bottom: 2px solid rgba(43, 43, 43, 0.274);;
+}
+.ing_table td:nth-of-type(even) {
+    background-color: rgb(232, 230, 230);;
+}
+.ing_title{
+    background: rgb(212, 212, 199);
+    padding: .5rem 1rem;
+    margin: 0;
+}
