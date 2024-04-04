@@ -1,14 +1,18 @@
-/* .main_container{
-    background: url("../../../../public/Images/food_back.jpg");
-    background-size: cover;
-} */
 
 .recipelist_container{
     background-color: rgb(36, 34, 34);
+    flex: 1;
+    height:'100%';
+    overflow-y:'auto'; 
 }
-/* .main_container{
-    overflow-y: auto;
+.main_container{
+    flex: 3;
+    height:'100%'; 
+    overflow-y:'auto';
 }
-.recipelist_container{
-    overflow-y: auto;
-} */
+
+@media only screen and (max-width: 1250px) {
+    .recipelist_container{
+      display: none;
+    }
+}

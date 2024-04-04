@@ -10,6 +10,7 @@ import MenuItem from '@mui/material/MenuItem';
 import MenuList from '@mui/material/MenuList';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import { useNavigate } from 'react-router-dom';
+import classes from './Dropdown.module.css';
 
 export default function SplitButton(props) {
   const options = props.options;
@@ -43,25 +44,25 @@ export default function SplitButton(props) {
 
   return (
     <React.Fragment>
-      <ButtonGroup
-        style={{minWidth:'15rem', display:'flex', justifyContent:'end', boxShadow:'none', background:'#071616'}}
+      <ButtonGroup 
+        className={classes.buttongrp}
+        style={{ display:'flex', justifyContent:'end', boxShadow:'none', background:'#071616'}}
         variant="contained"
         ref={anchorRef}
         aria-label="Button group with a nested menu"
       >
-        <div style={{padding:'.3rem 1rem',color:'#c2c0c0',width:'100%', display:'flex',flexDirection:'row'}}>
-          <AccountCircleIcon style={{fontSize:'2.3rem', margin:'auto 5px auto 0px'}}/>
-          <div>
+        <div style={{padding:'.3rem 1rem',color:'#c2c0c0',width:'100%', display:'flex',flexDirection:'row'}} className={classes.username_email_container}>
+          <div >
             <p style={{margin:'0px'}}>{props.username}</p>
             <p style={{margin:'0px', fontSize:'small'}}>{props.email}</p>
           </div>
         </div>
         <Button 
-          style={{maxWidth:'40px', background:'rgb(28 55 64)'}}
+          style={{maxWidth:'40px', background:'none'}}
           size="small"
           onClick={handleToggle}
         >
-          <ArrowDropDownIcon />
+          <AccountCircleIcon style={{fontSize:'2.3rem', margin:'0px 5px '}}/>
         </Button>
       </ButtonGroup>
       <Popper

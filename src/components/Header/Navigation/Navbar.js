@@ -16,6 +16,7 @@ import { fetchRecipe } from '../../../slices/SearchRecipeSlice';
 import { setUserName } from '../../../slices/UserSlice';
 import TuneIcon from '@mui/icons-material/Tune';
 import { setSearchItem } from '../../../slices/SearchedItemSlice';
+import CustomizedMenus from '../../test';
 // import { useEffect } from 'react';
 const Navbar = () => {
   // const [loader,setLoader]=useState(false);
@@ -77,22 +78,24 @@ const Navbar = () => {
 
   return (
     <header>
-        <Link to="/"> <div className={classes.logo}><img className={classes.icon} src = 'Icons/Colored_LOGO.png' alt='twitter icon'></img><p>Meal Mastermind</p></div> </Link>
+        <Link to="/"> <div className={classes.logo}><img className={classes.icon} src = 'Icons/Colored_LOGO.png' alt='twitter icon'></img><p className={classes.logo_name}>Meal Mastermind</p></div> </Link>
         <div className={classes.search_cont}>
         <div className={classes.search_container}>
           <input type="text" ref={searchItemRef} />
           <button className={classes.search_btn} onClick={handleFetchData}>{((loading)?<Loader size={30}/>:<SearchIcon style={{ marginRight:'8px' }}/>)}</button>
         </div> 
       </div>
+      <div className={classes.mobileMenu} >
+          <CustomizedMenus />
+        </div>
         <nav className={classes.nav}>
+
           <div className={classes.bookmark_container}>
-            <Link to="/add_filter"><button className={classes.addFilter_btn}><TuneIcon style={{ color: 'rgb(213 81 28)',fontSize: '1.5rem',marginRight:'8px' }}/> ADD FILTER</button></Link>
-            <Link to="/add_recipe"><button className={classes.addRecipe_btn}><PostAddOutlinedIcon style={{ color: 'rgb(213 81 28)',fontSize: '1.5rem',marginRight:'8px' }}/> ADD RECIPE</button></Link>
-            <button className={classes.bookmark_btn} onClick={bookmarkeventHandlerOpen}><BookmarkBorderIcon style={{ color: 'rgb(213 81 28)',fontSize: '1.5rem',marginRight:'8px' }}/> BOOKMARKS</button>
-            {/* <button className={classes.addRecipe_btn}><PostAddOutlinedIcon style={{ color: 'orange',fontSize: '1.6rem',marginRight:'8px' }}/> ADD RECIPE</button> */}
-            {/* <button className={classes.bookmark_btn}><BookmarkBorderIcon style={{ color: 'orange',fontSize: '1.5rem',marginRight:'8px' }}/> BOOKMARKS</button> */}
+            <Link to="/add_filter"><button className={classes.addFilter_btn}><TuneIcon style={{ color: 'rgb(213 81 28)',fontSize: '1.5rem',marginRight:'8px' }}/><span className={classes.menu_name}>ADD FILTER</span> </button></Link>
+            <Link to="/add_recipe"><button className={classes.addRecipe_btn}><PostAddOutlinedIcon style={{ color: 'rgb(213 81 28)',fontSize: '1.5rem',marginRight:'8px' }}/><span className={classes.menu_name}>ADD RECIPE</span> </button></Link>
+            <button className={classes.bookmark_btn} onClick={bookmarkeventHandlerOpen}><BookmarkBorderIcon style={{ color: 'rgb(213 81 28)',fontSize: '1.5rem',marginRight:'8px' }}/><span className={classes.menu_name}>BOOKMARKS</span></button>
+            
             <SplitButton username={userName} options={options} handleclick={userSignOut} email={userEmail}/>
-            {/* <button className={classes.signout_btn} onClick={userSignOut}>LOGOUT</button> */}
           </div>
         </nav>
     </header>

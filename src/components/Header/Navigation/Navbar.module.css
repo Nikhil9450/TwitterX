@@ -108,4 +108,43 @@ header ul {
   display: flex;
   flex-direction: row;
   align-items: center;
+  margin-right: '10px';
+}
+.mobileMenu{
+  display: none ;
+}
+
+@media only screen and (max-width: 1000px) {
+  .addFilter_btn,.addRecipe_btn,.bookmark_btn{
+    display: none;
+  }
+  .nav{
+    display: none;
+    width: 20%;
+  }
+  .mobileMenu{
+    display: block;
+  }
+
+}
+
+@media only screen and (max-width: 850px) {
+
+  .logo_name{
+    display: none;
+  }
+}
+@media only screen and (max-width: 550px) {
+
+.search_container{
+
+  width: 100%;
+}
+.search_btn{
+  width: 5rem;
+  margin-right: 0px;
+}
+.search_cont{
+  padding: 0rem 2rem;
+}
 }

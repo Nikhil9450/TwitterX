@@ -30,7 +30,7 @@ const handleChange1 = (event, newValue, activeThumb) => {
         return value;
       }
   return (
-    <Card sx={{ maxWidth: 345,borderRadius:"1rem",background:"#ffffff9c" }}>
+    <Card sx={{ maxWidth: '100%',borderRadius:"1rem",background:"#ffffff9c" }}>
     <CardContent>
       <Typography gutterBottom variant="h5" component="div" style={{display:'flex', justifyContent:'space-between',alignItems:'center'}}>
       <label  className='slider_label' style={{color:'#4e4e4e',fontSize:'large'}}>{props.label}<span style={{fontSize:'small'}}> (in grams)</span></label>
