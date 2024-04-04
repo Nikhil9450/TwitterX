@@ -3,11 +3,7 @@ import { styled, alpha } from '@mui/material/styles';
 import Button from '@mui/material/Button';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
-import EditIcon from '@mui/icons-material/Edit';
 import Divider from '@mui/material/Divider';
-import ArchiveIcon from '@mui/icons-material/Archive';
-import FileCopyIcon from '@mui/icons-material/FileCopy';
-import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import BookmarkBorderIcon from '@mui/icons-material/BookmarkBorder';
@@ -15,6 +11,10 @@ import PostAddOutlinedIcon from '@mui/icons-material/PostAddOutlined';
 import TuneIcon from '@mui/icons-material/Tune';
 import FastfoodIcon from '@mui/icons-material/Fastfood';
 import LogoutIcon from '@mui/icons-material/Logout';
+import { signOut } from "firebase/auth";
+import {auth} from "../firebase"
+import { Link } from 'react-router-dom';
+
 
 const StyledMenu = styled((props) => (
   <Menu
@@ -60,6 +60,13 @@ const StyledMenu = styled((props) => (
 export default function CustomizedMenus() {
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
+  // const userSignOut=()=>{
+  //   signOut(auth).then(()=>{
+  //      console.log('sign out successful.'); 
+  //   }).catch(error=>console.log(error))
+  // }
+
+
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
   };
@@ -80,7 +87,9 @@ export default function CustomizedMenus() {
 
   }
   const logout_func=()=>{
-
+    signOut(auth).then(()=>{
+      console.log('sign out successful.'); 
+   }).catch(error=>console.log(error))
   }
 
   return (
@@ -93,9 +102,10 @@ export default function CustomizedMenus() {
         variant="contained"
         disableElevation
         onClick={handleClick}
-        endIcon={<KeyboardArrowDownIcon />}
+        style={{background:'none'}}
+        // endIcon={<KeyboardArrowDownIcon />}
       >
-        <AccountCircleIcon/>
+        <AccountCircleIcon style={{ fontSize: '35px' }}/>
       </Button>
       <StyledMenu
         id="demo-customized-menu"
@@ -106,22 +116,22 @@ export default function CustomizedMenus() {
         open={open}
         onClose={handleClose}
       >
-        <MenuItem onClick={openAddFilter} disableRipple>
+        <MenuItem onClick={handleClose} disableRipple>
           <TuneIcon />
-          ADD FILTER
+          <Link to="/add_filter" style={{textDecoration:'none', color:'#424242'}}>ADD FILTER</Link>
         </MenuItem>
-        <MenuItem onClick={openAddRecipe} disableRipple>
+        <MenuItem onClick={handleClose} disableRipple>
           <PostAddOutlinedIcon />
-          ADD RECIPE
+          <Link to="/add_recipe" style={{textDecoration:'none', color:'#424242'}}>ADD RECIPE</Link>
         </MenuItem>
-        <Divider sx={{ my: 0.5 }} />
-        <MenuItem onClick={openBookmarks} disableRipple>
+        {/* <Divider sx={{ my: 0.5 }} /> */}
+        <MenuItem onClick={handleClose} disableRipple>
           <BookmarkBorderIcon />
           BOOKMARKS
         </MenuItem>
-        <MenuItem onClick={openMyRecipes} disableRipple>
+        <MenuItem onClick={handleClose} disableRipple>
           <FastfoodIcon />
-          MY RECIPES
+          <Link to="/my_recipes" style={{textDecoration:'none', color:'#424242'}}>MY RECIPES</Link>
         </MenuItem>
         <MenuItem onClick={logout_func} disableRipple>
           <LogoutIcon />

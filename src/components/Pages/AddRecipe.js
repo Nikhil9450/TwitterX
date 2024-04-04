@@ -12,6 +12,8 @@ import { getFirestore, collection,addDoc } from 'firebase/firestore';
 import CustomizedSnackbars from '../Snackbar';
 import TransitionsModal from '../Modal';
 import VisibilityIcon from '@mui/icons-material/Visibility';
+import { useMediaQuery } from '@mui/material';
+
 const AddRecipe = () => {
   const [loading, setLoading] =useState(false);
   const [ingredient,setIngredient]=useState([]);
@@ -25,6 +27,7 @@ const AddRecipe = () => {
   const [open, setOpen] = useState(false);
   const [snacbarOpen,setSnackbarOpen]=useState(false)
   const [message, setMessage]=useState("");
+  const isMobile = useMediaQuery('(max-width:700px)');
 
   const handleClick = () => {
     setSnackbarOpen(true);
@@ -126,7 +129,7 @@ const handleClose=()=>{
                   />  
             </div>
           </Grid>
-          <Grid item xs={4}>
+          <Grid item xs={isMobile ? 12 : 4}>
               <div className={classes.ingredient_cont}>
                   <h5 style={{marginBottom:'10px',marginTop:'0px', color:'grey'}}>ADD INGREDIENTS</h5>
                   <div className={classes.ingredient}>
@@ -144,7 +147,7 @@ const handleClose=()=>{
                   </div>
                 </div>
           </Grid>
-          <Grid item xs={8}>
+          <Grid item xs={isMobile ? 12 : 8}>
             {/* <Item> */}
             <TextField
                     id="filled-multiline-static"

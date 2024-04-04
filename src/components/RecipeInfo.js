@@ -27,23 +27,23 @@ const RecipeInfo = () => {
                 <img className={classes.rec_img} src={recipe_info.data.image} alt="recipe_image" />
             </div>
             <div className={classes.recipe_title + ' ' + classes.item}>
-            <h4>{recipe_info.data.title}</h4>
-            <p dangerouslySetInnerHTML={createMarkup(recipe_info.data.summary)} />
+                <h4>{recipe_info.data.title}</h4>
+                <p dangerouslySetInnerHTML={createMarkup(recipe_info.data.summary)} />
             </div>
             <div className={classes.recipe_ingridient + ' ' + classes.item}>
-            <h3 className={classes.ing_title}>Ingrediends</h3>
-            <table className={classes.ing_table}>
-                {recipe_info.data.extendedIngredients.map((ingredient, index) => (
-                    <tr key={index}>
-                        <td>{ingredient.name}</td>
-                        <td>{ingredient.measures.metric.amount} {ingredient.measures.metric.unitLong}</td>
-                    </tr>
-                    ))}
-            </table>
+                <h3 className={classes.ing_title}>Ingrediends</h3>
+                <table className={classes.ing_table}>
+                    {recipe_info.data.extendedIngredients.map((ingredient, index) => (
+                        <tr key={index}>
+                            <td>{ingredient.name}</td>
+                            <td>{ingredient.measures.metric.amount} {ingredient.measures.metric.unitLong}</td>
+                        </tr>
+                        ))}
+                </table>
             </div>
             <div className={classes.recipe_inf + ' ' + classes.item}>
-            <h5>HOW TO MAKE</h5>
-            <p dangerouslySetInnerHTML={createMarkup(recipe_info.data.instructions)} />
+                <h5>HOW TO MAKE</h5>
+                <p dangerouslySetInnerHTML={createMarkup(recipe_info.data.instructions)} />
             </div>
         </div>
 

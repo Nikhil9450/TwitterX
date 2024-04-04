@@ -108,7 +108,7 @@ header ul {
   display: flex;
   flex-direction: row;
   align-items: center;
-  margin-right: '10px';
+  margin: 0px 15px;
 }
 .mobileMenu{
   display: none ;
@@ -137,7 +137,7 @@ header ul {
 @media only screen and (max-width: 550px) {
 
 .search_container{
-
+  height: 2.5rem;
   width: 100%;
 }
 .search_btn{
