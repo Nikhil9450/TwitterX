@@ -3,7 +3,7 @@
     background-color: rgb(36, 34, 34);
     flex: 1;
     height:'100%';
-    overflow-y:'auto'; 
+    /* overflow-y:'auto';  */
 }
 .main_container{
     flex: 3;
@@ -11,8 +11,25 @@
     overflow-y:'auto';
 }
 
+.recipelist_heading{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: white;
+    background: #141414;
+    padding: 1rem;
+    position: sticky;
+    top: 0;
+    z-index: 9999;
+}
+
 @media only screen and (max-width: 1250px) {
     .recipelist_container{
       display: none;
+    }
+}
+@media only screen and (max-width: 750px) {
+    .recipelist_container{
+      background: #000000;
     }
 }

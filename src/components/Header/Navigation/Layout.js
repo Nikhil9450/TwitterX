@@ -4,7 +4,7 @@ import Navbar from './Navbar';
 const Layout = (props) => {
   return (
     <Fragment>
-        <Navbar/>
+        <Navbar toggleDrawer={props.toggleDrawer}/>
         <main style={{height:'90%',overflowY:'auto'}}>{props.children}</main>
     </Fragment>
   )

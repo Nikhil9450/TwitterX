@@ -17,8 +17,9 @@ import { setUserName } from '../../../slices/UserSlice';
 import TuneIcon from '@mui/icons-material/Tune';
 import { setSearchItem } from '../../../slices/SearchedItemSlice';
 import CustomizedMenus from '../../test';
+import ReorderIcon from '@mui/icons-material/Reorder';
 // import { useEffect } from 'react';
-const Navbar = () => {
+const Navbar = ({ toggleDrawer }) => {
   // const [loader,setLoader]=useState(false);
   const dispatch = useDispatch()
   const bookmark = useSelector((state) => state.bookmark);
@@ -79,13 +80,15 @@ const Navbar = () => {
   return (
     <header>
         <Link to="/"> <div className={classes.logo}><img className={classes.icon} src = 'Icons/Colored_LOGO.png' alt='twitter icon'></img><p className={classes.logo_name}>Meal Mastermind</p></div> </Link>
+
         <div className={classes.search_cont}>
         <div className={classes.search_container}>
           <input type="text" ref={searchItemRef} />
-          <button className={classes.search_btn} onClick={handleFetchData}>{((loading)?<Loader size={30}/>:<SearchIcon style={{ marginRight:'8px' }}/>)}</button>
+          <button className={classes.search_btn} onClick={handleFetchData}>{((loading)?<Loader size={30}/>:<SearchIcon style={{ marginRight:'0px' }}/>)}</button>
         </div> 
       </div>
       <div className={classes.mobileMenu} >
+          <button className={classes.mobileMenuListbtn} onClick={toggleDrawer(true)}><ReorderIcon style={{ color: 'white',fontSize: '1.5rem',marginRight:'8px' }}/></button>
           <CustomizedMenus />
         </div>
         <nav className={classes.nav}>

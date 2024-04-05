@@ -16,22 +16,9 @@ import {signInWithEmailAndPassword} from "firebase/auth";
 import {auth} from "../../../firebase";
 import MUIalert from '../../Alert';
 import Loader from '../../Loader';
-const style = {
-  position: 'absolute',
-  top: '50%',
-  left: '50%',
-  transform: 'translate(-50%, -50%)',
-  width: 500,
-  bgcolor: 'white',
-//   border: '2px solid #000',
-  boxShadow: 24,
-  borderRadius:4,
-  p: 4,
-};
-const backdropStyle = {
-  backgroundColor: 'rgba(91, 92, 92, 0.5)', // Change the backdrop color and opacity here
-  backdropFilter: 'blur(7px)', // Add blur effect
-};
+import { useMediaQuery } from '@mui/material';
+
+
 
 
 
@@ -41,6 +28,24 @@ export default function SigninModal(props) {
   const [error,setError]=useState("");
   const emailRef = useRef(null);
   const passwordRef = useRef(null);
+  const isMobile = useMediaQuery('(max-width:650px)');
+
+  const style = {
+    position: 'absolute',
+    top: '50%',
+    left: '50%',
+    transform: 'translate(-50%, -50%)',
+    width:isMobile ? 300 :500,
+    bgcolor: 'white',
+  //   border: '2px solid #000',
+    boxShadow: 24,
+    borderRadius:4,
+    p: 4,
+  };
+  const backdropStyle = {
+    backgroundColor: 'rgba(91, 92, 92, 0.5)', // Change the backdrop color and opacity here
+    backdropFilter: 'blur(7px)', // Add blur effect
+  };
   // const genderRef = useRef(null);
   function openAlert(){
     setOpen(true);

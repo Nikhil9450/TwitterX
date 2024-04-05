@@ -139,3 +139,31 @@ font-weight: 400;
     align-items: center;
   }
  }
+ @media only screen and (max-width: 550px) {
+   .login_container{
+    padding: 2rem 1rem;
+    height: 100%;
+   }
+   h1{
+    font-size: 1rem;
+    margin-bottom: 1rem;
+    font-family: "Sacramento", cursive;
+    font-style: normal;
+    font-weight: 400;
+    }
+    .logo_name{
+      margin: 0px;
+      /* height: 3rem; */
+    }
+    .form{
+      width: 100%;
+    }
+    .grid_item2{
+      padding:1rem;
+    }
+    .grid_item1{
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+ }

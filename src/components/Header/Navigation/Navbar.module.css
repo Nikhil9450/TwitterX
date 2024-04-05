@@ -112,8 +112,11 @@ header ul {
 }
 .mobileMenu{
   display: none ;
-}
 
+}
+.mobileMenuListbtn{
+  background: none;
+}
 @media only screen and (max-width: 1000px) {
   .addFilter_btn,.addRecipe_btn,.bookmark_btn{
     display: none;
@@ -123,9 +126,10 @@ header ul {
     width: 20%;
   }
   .mobileMenu{
-    display: block;
+    /* display: block; */
+    display: flex;
+    flex-direction: row;
   }
-
 }
 
 @media only screen and (max-width: 850px) {
@@ -135,7 +139,11 @@ header ul {
   }
 }
 @media only screen and (max-width: 550px) {
-
+.mobileMenu{
+  display: block;
+  display: flex;
+  flex-direction: row;
+}
 .search_container{
   height: 2.5rem;
   width: 100%;
@@ -145,6 +153,6 @@ header ul {
   margin-right: 0px;
 }
 .search_cont{
-  padding: 0rem 2rem;
+  padding: 0rem 1rem;
 }
 }

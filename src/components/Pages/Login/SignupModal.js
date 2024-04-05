@@ -25,25 +25,11 @@ import {registerUser} from '../../../slices/AuthenticatorSlice'
 // import IconButton from '@mui/material/IconButton';
 // import CloseIcon from '@mui/material/IconButton/';
 import {createUserWithEmailAndPassword,updateProfile,getAuth} from "firebase/auth";
+import { useMediaQuery } from '@mui/material';
 import {auth} from "../../../firebase";
 import MUIalert from '../../Alert';
 import Loader from '../../Loader';
-const style = {
-  position: 'absolute',
-  top: '50%',
-  left: '50%',
-  transform: 'translate(-50%, -50%)',
-  width: 600,
-  bgcolor: 'white',
-//   border: '2px solid #000',
-  boxShadow: 24,
-  borderRadius:4,
-  p: 4,
-};
-const backdropStyle = {
-  backgroundColor: 'rgba(91, 92, 92, 0.5)', // Change the backdrop color and opacity here
-  backdropFilter: 'blur(7px)', // Add blur effect
-};
+
 
 // const textFieldStyle = {
 //   borderColor: 'red !important', // Set the desired outline color
@@ -54,6 +40,7 @@ export default function SignupModal(props) {
   const [loader,setLoader]=useState(false);
   const [open, setOpen] = useState(false);
   const [error,setError]=useState("");
+  const isMobile = useMediaQuery('(max-width:650px)');
 
   const nameRef = useRef(null);
   const phoneRef = useRef(null);
@@ -66,7 +53,22 @@ export default function SignupModal(props) {
   const user_data = useSelector((state) => state.signup);
   const dispatch = useDispatch()
   console.log("props----------->",props)
-
+  const style = {
+    position: 'absolute',
+    top: '50%',
+    left: '50%',
+    transform: 'translate(-50%, -50%)',
+    width: isMobile ? 300 :600,
+    bgcolor: 'white',
+  //   border: '2px solid #000',
+    boxShadow: 24,
+    borderRadius:4,
+    p: 4,
+  };
+  const backdropStyle = {
+    backgroundColor: 'rgba(91, 92, 92, 0.5)', // Change the backdrop color and opacity here
+    backdropFilter: 'blur(7px)', // Add blur effect
+  };
   function openAlert(){
     setOpen(true);
     setTimeout(()=>{
@@ -223,10 +225,10 @@ const onSubmit = (e) => {
                           <Grid item xs={12}>
                             <TextField id="email" label="Email" type="email" variant="outlined"  inputRef={emailRef} size="small" fullWidth required/>
                           </Grid>
-                          <Grid item xs={6}>
+                          <Grid item xs={isMobile ? 12 :6}>
                             <TextField id="password" label="Password" type="password" variant="outlined"  inputRef={passwordRef}  size="small" fullWidth required/>
                           </Grid>
-                          <Grid item xs={6}>
+                          <Grid item xs={isMobile ? 12 :6}>
                             <TextField id="confirmPassword" label="Confirm Password" type="Password" variant="outlined"  inputRef={confirmPasswordRef}   size="small" fullWidth required/>
                           </Grid> 
                           <Grid item xs={12}>
