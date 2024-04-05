@@ -4,6 +4,7 @@ import { getFirestore, collection, query, where, getDocs, deleteDoc, doc } from 
 import {auth} from "../../../src/firebase";
 import MyRecipe from '../MyRecipe';
 import classes from './MyRecipes.module.css'
+import Grid from '@mui/material/Grid';
 
 const MyRecipes = () => {
   const [recipes, setRecipes] = useState([]);
@@ -53,9 +54,13 @@ const MyRecipes = () => {
      <img src="Images/fried-egg.png" alt="food_img" style={{height:'15rem'}} />
     </div>
      <div className={classes.recipes_list}>
-        {recipes.map((recipe) => (
-          <MyRecipe userId={userId} key={recipe.id} recipeId={recipe.id} title={recipe.title} summary={recipe.summary} instructions={recipe.instructions} ingredients={recipe.ingredients} fetchRecipes={() => fetchRecipes()}/>
-        ))}
+     <Grid container spacing={2}> 
+          {recipes.map((recipe) => (
+            <Grid item xs={6}>
+              <MyRecipe userId={userId} key={recipe.id} recipeId={recipe.id} title={recipe.title} summary={recipe.summary} instructions={recipe.instructions} ingredients={recipe.ingredients} fetchRecipes={() => fetchRecipes()}/>
+            </Grid>
+          ))}
+      </Grid>
      </div>
     </div>
   );
