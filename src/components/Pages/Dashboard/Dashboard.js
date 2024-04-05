@@ -15,7 +15,7 @@ const Dashboard = (props) => {
   };
 
   const DrawerList = (
-    <Box sx={{ width: 300, background:'black' }} role="presentation" onClick={toggleDrawer(false)}>
+    <Box sx={{ width: 300, background:'black' }} role="presentation" >
       <div style={{height:'100%'}}>
         <div className={classes.recipelist_heading}>
           <p>LIST OF RECIPES</p> 
