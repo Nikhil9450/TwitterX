@@ -5,11 +5,14 @@ import {auth} from "../../../src/firebase";
 import MyRecipe from '../MyRecipe';
 import classes from './MyRecipes.module.css'
 import Grid from '@mui/material/Grid';
+import { useMediaQuery } from '@mui/material';
 
 const MyRecipes = () => {
   const [recipes, setRecipes] = useState([]);
   const user = auth.currentUser;
   const userId = user ? user.uid : '';
+  const isMobile = useMediaQuery('(max-width:550px)');
+
 
   const fetchRecipes = async () => {
     try {
@@ -50,13 +53,13 @@ const MyRecipes = () => {
   // };
   return (
     <div className={classes.recipe_container} >
-    <div className={classes.upper_page}>
+    {/* <div className={classes.upper_page}>
      <img src="Images/fried-egg.png" alt="food_img" style={{height:'15rem'}} />
-    </div>
+    </div> */}
      <div className={classes.recipes_list}>
-     <Grid container spacing={2}> 
+     <Grid container spacing={2} style={{height:'inherit'}}> 
           {recipes.map((recipe) => (
-            <Grid item xs={6}>
+            <Grid xs={isMobile ? 12 : 3} style={{padding:'0rem 1rem'}}>
               <MyRecipe userId={userId} key={recipe.id} recipeId={recipe.id} title={recipe.title} summary={recipe.summary} instructions={recipe.instructions} ingredients={recipe.ingredients} fetchRecipes={() => fetchRecipes()}/>
             </Grid>
           ))}

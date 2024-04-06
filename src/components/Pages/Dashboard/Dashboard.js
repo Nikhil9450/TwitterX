@@ -13,6 +13,12 @@ const Dashboard = (props) => {
   const toggleDrawer = (newOpen) => () => {
     setOpen(newOpen);
   };
+  const closeDrawer=()=>{
+    setOpen(false);
+  }
+  const openDrawer=()=>{
+    setOpen(true);
+  }
 
   const DrawerList = (
     <Box sx={{ width: 300, background:'black' }} role="presentation" >
@@ -21,15 +27,15 @@ const Dashboard = (props) => {
           <p>LIST OF RECIPES</p> 
           <CloseIcon onClick={()=>{setOpen(false);}}  style={{cursor:'pointer',color:'white'}}/>
         </div>
-        <RecipeListContainer />
+        <RecipeListContainer closeDrawer={closeDrawer} />
       </div>
     </Box>
   );
   return (
-    <Layout toggleDrawer={toggleDrawer}>
+    <Layout toggleDrawer={toggleDrawer} openDrawer={openDrawer}>
       <div style={{ display: 'flex' ,height: '100%'}}>
         <div className={classes.recipelist_container}>
-          <RecipeListContainer />
+          <RecipeListContainer closeDrawer={closeDrawer}/>
         </div>
         <div className={classes.main_container}>
           {/* <Button onClick={toggleDrawer(true)}>Open drawer</Button> */}

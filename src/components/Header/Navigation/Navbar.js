@@ -19,7 +19,7 @@ import { setSearchItem } from '../../../slices/SearchedItemSlice';
 import CustomizedMenus from '../../test';
 import ReorderIcon from '@mui/icons-material/Reorder';
 // import { useEffect } from 'react';
-const Navbar = ({ toggleDrawer }) => {
+const Navbar = ({ toggleDrawer,openDrawer }) => {
   // const [loader,setLoader]=useState(false);
   const dispatch = useDispatch()
   const bookmark = useSelector((state) => state.bookmark);
@@ -39,6 +39,8 @@ const Navbar = ({ toggleDrawer }) => {
     dispatch(fetchRecipe({ apiKey: "bcffb3f9bbd6414aaf1fa753f147235f", query: searchValue,number:10 }))
     .then(()=>{
       setLoading(false)
+      console.log("Fetching data successful.");
+      openDrawer();
     })
     // console.log("recipeList--------->",recipeList);
   };

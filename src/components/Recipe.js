@@ -21,6 +21,7 @@ const Recipe = (props) => {
    .then(()=>{
       setLoading(false);
       navigate('/');
+      props.closeDrawer();
    })
    console.log("recipe_info--------->",recipe_info);
  }

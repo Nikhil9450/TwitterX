@@ -8,7 +8,7 @@ import { fetchRecipe } from '../../../slices/SearchRecipeSlice';
 // import SearchIcon from '@mui/icons-material/Search';
 // import Loader from '../../Loader';
 import BasicPagination from '../../pagination';
-const RecipeListContainer = () => {
+const RecipeListContainer = (props) => {
   const dispatch = useDispatch();
   const recipeList = useSelector((state) => state.recipeList.data.results);
   const selected_filters = useSelector((state) => state.dropDownlist);
@@ -54,7 +54,7 @@ const RecipeListContainer = () => {
   return (
     <div className={classes.main}>
       {recipeList && recipeList.map((element, index) => (
-        <Recipe key={index} title={element.title} image={element.image} id={element.id}  />
+        <Recipe key={index} title={element.title} image={element.image} id={element.id} closeDrawer={props.closeDrawer} />
       ))}
       {/* <Recipe title={'Pasta'} /> */}
       <BasicPagination
