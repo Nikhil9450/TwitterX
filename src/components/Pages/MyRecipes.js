@@ -57,7 +57,7 @@ const MyRecipes = () => {
      <img src="Images/fried-egg.png" alt="food_img" style={{height:'15rem'}} />
     </div> */}
      <div className={classes.recipes_list}>
-     <Grid container spacing={2} style={{height:'inherit'}}> 
+     <Grid container spacing={2}> 
           {recipes.map((recipe) => (
             <Grid xs={isMobile ? 12 : 3} style={{padding:'0rem 1rem'}}>
               <MyRecipe userId={userId} key={recipe.id} recipeId={recipe.id} title={recipe.title} summary={recipe.summary} instructions={recipe.instructions} ingredients={recipe.ingredients} fetchRecipes={() => fetchRecipes()}/>
