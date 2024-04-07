@@ -11,6 +11,8 @@ import MySlider from './Slider';
 import Fab from '@mui/material/Fab';
 import { setSearchItem } from '../slices/SearchedItemSlice';
 import Loader from './Loader';
+import {setDrawer} from '../slices/RecipeDrawerSlice';
+
 const FoodFilters = () => {
     const dispatch = useDispatch();
     const selected_filters = useSelector((state) => state.dropDownlist);
@@ -27,6 +29,9 @@ const FoodFilters = () => {
   const [iron, setIron] = useState([0,100]);
   const [sugar, setSugar] = useState([0,100]);
   const [loading, setLoading] = useState(false);
+  const drawer=useSelector((state)=>state.Drawer.open);
+
+  
   const [data,setData]=useState({
                                   apiKey: "bcffb3f9bbd6414aaf1fa753f147235f",
                                   number:10 ,
@@ -162,6 +167,8 @@ const handleFoodTypeChange = (event) => {
     dispatch(fetchRecipe(data))
     .then(()=>{
       setLoading(false);
+      dispatch(setDrawer(true));
+      console.log("after applying filter the drawer state-->",drawer)
     })
 
   }
@@ -226,7 +233,7 @@ const handleFoodTypeChange = (event) => {
         
       </Grid>
       <div className={classes.applyfilter_btn}>
-      <Fab variant="extended" style={{minWidth:'20rem',minHeight:'4rem'}} onClick={searchFilters}>
+      <Fab variant="extended" style={{width:'100%',minHeight:'4rem'}} onClick={searchFilters}>
         {(loading?<Loader size={30} />:'Apply Filters')}
       </Fab>
       </div>

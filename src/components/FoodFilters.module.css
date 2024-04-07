@@ -30,3 +30,14 @@
   height: 4rem;
   margin-top: 2rem;
 }
+@media only screen and (max-width: 550px) {
+    .filters{
+      padding: 0rem;
+    }
+    .nutrition{
+      border-radius: 0px;
+    }
+    .applyfilter_btn{
+      margin: 1rem;
+    }
+  }

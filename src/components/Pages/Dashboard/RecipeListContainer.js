@@ -54,7 +54,7 @@ const RecipeListContainer = (props) => {
   return (
     <div className={classes.main}>
       {recipeList && recipeList.map((element, index) => (
-        <Recipe key={index} title={element.title} image={element.image} id={element.id} closeDrawer={props.closeDrawer} />
+        <Recipe key={index} title={element.title} image={element.image} id={element.id}  />
       ))}
       {/* <Recipe title={'Pasta'} /> */}
       <BasicPagination

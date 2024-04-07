@@ -6,6 +6,7 @@ import { ViewRecipeReducer } from '../slices/ViewRecipeSlice';
 import { DropdownFilterReducer } from '../slices/DropdownFilteredListSlice';
 import { userReducer } from '../slices/UserSlice';
 import { SearchItemReducer } from '../slices/SearchedItemSlice';
+import { drawerReducer } from '../slices/RecipeDrawerSlice';
 export default configureStore({
   reducer: {
     signup: registerReducer,
@@ -16,6 +17,7 @@ export default configureStore({
     dropDownlist:DropdownFilterReducer,
     userName:userReducer,
     SearchItem:SearchItemReducer,
+    Drawer:drawerReducer,
     // Add more reducers here if needed
   },
 });
