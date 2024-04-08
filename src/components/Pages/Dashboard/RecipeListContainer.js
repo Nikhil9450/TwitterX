@@ -16,12 +16,17 @@ const RecipeListContainer = (props) => {
   const perPage = 10; 
   const [currentPage, setCurrentPage] = useState(1);
   const searchedValue = useSelector((state) => state.SearchItem.Searched_item);
+  const liked_recipe_list= useSelector((state)=>state.Favourates.likedList);
 
   useEffect(() => {
     console.log("totalResults---------------->",totalResults)
     console.log("perPage---------------->",perPage)
     fetchData(currentPage);
   }, [currentPage]);
+
+  useEffect(() => {
+    console.log("liked_recipe_list------->",liked_recipe_list);
+   }, [liked_recipe_list]); 
 
   const fetchData = (page) => {
     dispatch(fetchRecipe({ 
