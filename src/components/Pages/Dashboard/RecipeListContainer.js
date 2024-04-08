@@ -8,7 +8,7 @@ import { fetchRecipe } from '../../../slices/SearchRecipeSlice';
 // import SearchIcon from '@mui/icons-material/Search';
 // import Loader from '../../Loader';
 import BasicPagination from '../../pagination';
-const RecipeListContainer = () => {
+const RecipeListContainer = (props) => {
   const dispatch = useDispatch();
   const recipeList = useSelector((state) => state.recipeList.data.results);
   const selected_filters = useSelector((state) => state.dropDownlist);

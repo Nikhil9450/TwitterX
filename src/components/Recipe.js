@@ -6,6 +6,7 @@ import {viewRecipe} from '../slices/ViewRecipeSlice';
 import Loader from './Loader';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import {setDrawer} from '../slices/RecipeDrawerSlice';
 
 const Recipe = (props) => {
   const dispatch = useDispatch()
@@ -21,6 +22,7 @@ const Recipe = (props) => {
    .then(()=>{
       setLoading(false);
       navigate('/');
+      dispatch(setDrawer(false));
    })
    console.log("recipe_info--------->",recipe_info);
  }

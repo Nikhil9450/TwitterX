@@ -18,14 +18,17 @@ import TuneIcon from '@mui/icons-material/Tune';
 import { setSearchItem } from '../../../slices/SearchedItemSlice';
 import CustomizedMenus from '../../test';
 import ReorderIcon from '@mui/icons-material/Reorder';
+import {setDrawer} from '../../../slices/RecipeDrawerSlice';
 // import { useEffect } from 'react';
-const Navbar = ({ toggleDrawer }) => {
+const Navbar = () => {
   // const [loader,setLoader]=useState(false);
   const dispatch = useDispatch()
   const bookmark = useSelector((state) => state.bookmark);
+  const drawer=useSelector((state)=>state.Drawer.open);
+
   const [userEmail, setUserEmail] = useState(null);
   const searchItemRef = useRef(null);
-  const allrecipeList = useSelector((state) => state.recipeList);
+  // const allrecipeList = useSelector((state) => state.recipeList);
   const userName = useSelector((state) => state.userName.Name);
   const [loading, setLoading] = useState(false);
   // useEffect(()=>{
@@ -39,6 +42,8 @@ const Navbar = ({ toggleDrawer }) => {
     dispatch(fetchRecipe({ apiKey: "bcffb3f9bbd6414aaf1fa753f147235f", query: searchValue,number:10 }))
     .then(()=>{
       setLoading(false)
+      console.log("Fetching data successful.");
+      dispatch(setDrawer(true));
     })
     // console.log("recipeList--------->",recipeList);
   };
@@ -88,7 +93,10 @@ const Navbar = ({ toggleDrawer }) => {
         </div> 
       </div>
       <div className={classes.mobileMenu} >
-          <button className={classes.mobileMenuListbtn} onClick={toggleDrawer(true)}><ReorderIcon style={{ color: 'white',fontSize: '1.5rem',marginRight:'8px' }}/></button>
+          <button className={classes.mobileMenuListbtn} onClick={()=>{
+            dispatch(setDrawer(true));
+            console.log("drawer after button click",drawer);
+            }}><ReorderIcon style={{ color: 'white',fontSize: '1.5rem',marginRight:'8px' }}/></button>
           <CustomizedMenus />
         </div>
         <nav className={classes.nav}>
