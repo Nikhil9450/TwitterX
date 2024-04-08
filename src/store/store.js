@@ -7,6 +7,7 @@ import { DropdownFilterReducer } from '../slices/DropdownFilteredListSlice';
 import { userReducer } from '../slices/UserSlice';
 import { SearchItemReducer } from '../slices/SearchedItemSlice';
 import { drawerReducer } from '../slices/RecipeDrawerSlice';
+import { likeReducer } from '../slices/LikedRecipeListSlice';
 export default configureStore({
   reducer: {
     signup: registerReducer,
@@ -18,6 +19,7 @@ export default configureStore({
     userName:userReducer,
     SearchItem:SearchItemReducer,
     Drawer:drawerReducer,
+    Favourates:likeReducer,
     // Add more reducers here if needed
   },
 });

@@ -7,6 +7,7 @@ import Loader from './Loader';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import {setDrawer} from '../slices/RecipeDrawerSlice';
+import LikeCheckbox from './LikedRecipe';
 
 const Recipe = (props) => {
   const dispatch = useDispatch()
@@ -33,7 +34,10 @@ const Recipe = (props) => {
       </div>
         <div className={classes.description}>
             <p className={classes.title}>{props.title}</p>
-            <button className={classes.view_btn} onClick={() => recipe_detail(props.id)}>{(loading?<Loader size={20} />:<KeyboardArrowRightRoundedIcon style={{ color: 'grey'}}/>)}</button>
+            <div className={classes.checkbox_container}>
+              <LikeCheckbox />
+              <button className={classes.view_btn} onClick={() => recipe_detail(props.id)}>{(loading?<Loader size={20} />:<KeyboardArrowRightRoundedIcon style={{ color: 'grey'}}/>)}</button>
+            </div>
         </div>
     </div>
   )

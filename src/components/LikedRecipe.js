@@ -6,7 +6,7 @@ import Favorite from '@mui/icons-material/Favorite';
 export default function LikeCheckbox() {
   return (
     <div>
-      <Checkbox  icon={<FavoriteBorder />} checkedIcon={<Favorite />} />
+      <Checkbox  icon={<FavoriteBorder style={{ color:'#b1b1b1'}}/>} checkedIcon={<Favorite style={{ color:'#d45311'}}/>} />
     </div>
   );
 }
