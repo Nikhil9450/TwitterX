@@ -21,7 +21,11 @@ const RecipeListContainer = (props) => {
   useEffect(() => {
     console.log("totalResults---------------->",totalResults)
     console.log("perPage---------------->",perPage)
-    fetchData(currentPage);
+    // fetchData(currentPage);
+
+    if (currentPage !== 1) {
+      fetchData(currentPage);
+    }
   }, [currentPage]);
 
   useEffect(() => {
