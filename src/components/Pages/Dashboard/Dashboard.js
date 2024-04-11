@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import Layout from "../../Header/Navigation/Layout";
 import RecipeListContainer from './RecipeListContainer';
 import classes from './Dashboard.module.css';
@@ -8,13 +8,41 @@ import Box from '@mui/material/Box';
 import CloseIcon from '@mui/icons-material/Close';
 import {useDispatch,useSelector} from 'react-redux';
 import {setDrawer} from '../../../slices/RecipeDrawerSlice';
+import { useMediaQuery } from '@mui/material';
+// import { getFirestore, collection, query, where, getDocs, deleteDoc, doc } from 'firebase/firestore';
+// import {auth} from "../../../firebase";
+// import { updateList } from '../../../slices/LikedRecipeListSlice';
 
 const Dashboard = (props) => {
   // const [open, setOpen] = React.useState(false);
   const dispatch= useDispatch();
   const drawer=useSelector((state)=>state.Drawer.open);
+  const isMobile = useMediaQuery('(max-width:1000px)');
+
   console.log("drawer--------------->",drawer);
+  // const user = auth.currentUser;
+  // const userId = user ? user.uid : '';
   // dispatch(setDrawer(true));
+
+  // const fetchLikedList = async () => {
+  //   try {
+  //     const db = getFirestore();
+  //     const recipesRef = collection(db, 'users', userId, 'Liked_recipes');
+  //     const q = query(recipesRef);
+
+  //     const querySnapshot = await getDocs(q);
+  //     const recipesListData = querySnapshot.docs.map((doc) => ({
+  //       id: doc.id,
+  //       ...doc.data(),
+  //     }));
+  //     dispatch(updateList(recipesListData[0].recipeIds ));
+
+  //     console.log("likedList from firestore----------->", recipesListData[0].recipeIds);
+  //     // setRecipes(recipesData);
+  //   } catch (error) {
+  //     console.error('Error fetching recipes:', error);
+  //   }
+  // };
   
   const toggleDrawer = (open) => (event) => {
     if (
@@ -25,9 +53,12 @@ const Dashboard = (props) => {
     }
     dispatch(setDrawer(open));
   };
-
+   
+  // useEffect(()=>{
+  //   fetchLikedList();
+  // },[])
   const DrawerList = (
-    <Box sx={{ width: 300, background:'black' }} role="presentation" >
+    <Box sx={{ width: 300, background: 'black'}} role="presentation" >
       <div style={{height:'100%'}}>
         <div className={classes.recipelist_heading}>
           <p>LIST OF RECIPES</p> 
@@ -45,7 +76,7 @@ const Dashboard = (props) => {
         </div>
         <div className={classes.main_container}>
           {/* <Button onClick={toggleDrawer(true)}>Open drawer</Button> */}
-          <Drawer open={drawer} onClose={toggleDrawer(false)} >
+          <Drawer sx={{ display: isMobile ? 'block' : 'none' }} open={drawer} onClose={toggleDrawer(false)} >
             {DrawerList}
           </Drawer>
               {props.children}

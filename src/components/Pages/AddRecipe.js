@@ -7,7 +7,7 @@ import Grid from '@mui/material/Grid';
 import Loader from '../Loader';
 import { useState ,useRef} from 'react';
 import {auth} from "../../../src/firebase";
-import { useSelector } from 'react-redux';
+// import { useSelector } from 'react-redux';
 import { getFirestore, collection,addDoc } from 'firebase/firestore';
 import CustomizedSnackbars from '../Snackbar';
 import TransitionsModal from '../Modal';

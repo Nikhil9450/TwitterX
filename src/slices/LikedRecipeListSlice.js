@@ -13,8 +13,11 @@ const likeSlice = createSlice({
         unlikeRecipe(state, action) {
         state.likedList = state.likedList.filter(item => item !== action.payload); // Filter out the item to unlike
         },
+        updateList(state,action){
+            state.likedList=action.payload;
+        }
     },
 });
 
-export const {likeRecipe, unlikeRecipe}=likeSlice.actions;
+export const {likeRecipe, unlikeRecipe,updateList}=likeSlice.actions;
 export const likeReducer = likeSlice.reducer;
