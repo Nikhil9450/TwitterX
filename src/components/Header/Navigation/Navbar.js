@@ -19,6 +19,8 @@ import { setSearchItem } from '../../../slices/SearchedItemSlice';
 import CustomizedMenus from '../../test';
 import ReorderIcon from '@mui/icons-material/Reorder';
 import {setDrawer} from '../../../slices/RecipeDrawerSlice';
+import FavoriteBorder from '@mui/icons-material/FavoriteBorder';
+
 // import { useEffect } from 'react';
 const Navbar = () => {
   // const [loader,setLoader]=useState(false);
@@ -74,12 +76,12 @@ const Navbar = () => {
        console.log('sign out successful.'); 
     }).catch(error=>console.log(error))
   }
-  function bookmarkeventHandlerOpen(){
-    dispatch(
-      bookmarkEventHandler({ value: true })
-    );
-    console.log("bookmark---------------->",bookmark)
-  }
+  // function bookmarkeventHandlerOpen(){
+  //   dispatch(
+  //     bookmarkEventHandler({ value: true })
+  //   );
+  //   console.log("bookmark---------------->",bookmark)
+  // }
   let options=['My Recipes','Logout'];
 
   return (
@@ -104,7 +106,9 @@ const Navbar = () => {
           <div className={classes.bookmark_container}>
             <Link to="/add_filter"><button className={classes.addFilter_btn}><TuneIcon style={{ color: 'rgb(213 81 28)',fontSize: '1.5rem',marginRight:'8px' }}/><span className={classes.menu_name}>ADD FILTER</span> </button></Link>
             <Link to="/add_recipe"><button className={classes.addRecipe_btn}><PostAddOutlinedIcon style={{ color: 'rgb(213 81 28)',fontSize: '1.5rem',marginRight:'8px' }}/><span className={classes.menu_name}>ADD RECIPE</span> </button></Link>
-            <button className={classes.bookmark_btn} onClick={bookmarkeventHandlerOpen}><BookmarkBorderIcon style={{ color: 'rgb(213 81 28)',fontSize: '1.5rem',marginRight:'8px' }}/><span className={classes.menu_name}>BOOKMARKS</span></button>
+            <Link to="/liked_recipes"><button className={classes.addRecipe_btn}><FavoriteBorder style={{ color: 'rgb(213 81 28)',fontSize: '1.5rem',marginRight:'8px' }}/><span className={classes.menu_name}>LIKED RECIPE</span> </button></Link>
+
+            {/* <button className={classes.bookmark_btn} onClick={bookmarkeventHandlerOpen}><FavoriteBorder style={{ color: 'rgb(213 81 28)',fontSize: '1.5rem',marginRight:'8px' }}/><span className={classes.menu_name}>BOOKMARKS</span></button> */}
             
             <SplitButton username={userName} options={options} handleclick={userSignOut} email={userEmail}/>
           </div>
