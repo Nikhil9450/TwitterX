@@ -106,7 +106,7 @@ const Navbar = () => {
           <div className={classes.bookmark_container}>
             <Link to="/add_filter"><button className={classes.addFilter_btn}><TuneIcon style={{ color: 'rgb(213 81 28)',fontSize: '1.5rem',marginRight:'8px' }}/><span className={classes.menu_name}>ADD FILTER</span> </button></Link>
             <Link to="/add_recipe"><button className={classes.addRecipe_btn}><PostAddOutlinedIcon style={{ color: 'rgb(213 81 28)',fontSize: '1.5rem',marginRight:'8px' }}/><span className={classes.menu_name}>ADD RECIPE</span> </button></Link>
-            <Link to="/liked_recipes"><button className={classes.addRecipe_btn}><FavoriteBorder style={{ color: 'rgb(213 81 28)',fontSize: '1.5rem',marginRight:'8px' }}/><span className={classes.menu_name}>LIKED RECIPE</span> </button></Link>
+            <Link to="/liked_recipes"><button className={classes.addRecipe_btn}><FavoriteBorder style={{ color: 'rgb(213 81 28)',fontSize: '1.5rem',marginRight:'8px' }}/><span className={classes.menu_name}>FAVOURITES</span> </button></Link>
 
             {/* <button className={classes.bookmark_btn} onClick={bookmarkeventHandlerOpen}><FavoriteBorder style={{ color: 'rgb(213 81 28)',fontSize: '1.5rem',marginRight:'8px' }}/><span className={classes.menu_name}>BOOKMARKS</span></button> */}
             

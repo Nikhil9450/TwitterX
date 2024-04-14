@@ -14,6 +14,8 @@ import LogoutIcon from '@mui/icons-material/Logout';
 import { signOut } from "firebase/auth";
 import {auth} from "../firebase"
 import { Link } from 'react-router-dom';
+import FavoriteBorder from '@mui/icons-material/FavoriteBorder';
+
 
 
 const StyledMenu = styled((props) => (
@@ -126,8 +128,8 @@ export default function CustomizedMenus() {
         </MenuItem>
         {/* <Divider sx={{ my: 0.5 }} /> */}
         <MenuItem onClick={handleClose} disableRipple>
-          <BookmarkBorderIcon />
-          BOOKMARKS
+          <FavoriteBorder />
+          <Link to="/liked_recipes" style={{textDecoration:'none', color:'#424242'}}>FAVOURITES</Link>
         </MenuItem>
         <MenuItem onClick={handleClose} disableRipple>
           <FastfoodIcon />
