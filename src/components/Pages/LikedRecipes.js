@@ -6,6 +6,7 @@ import Grid from '@mui/material/Grid';
 import axios from 'axios';
 import LikedRecipe from '../LikedRecipe';
 import { useMediaQuery } from '@mui/material';
+import Loader from '../Loader';
 
 const LikedRecipes = () => {
   const [recipeIdList, setRecipeIdList] = useState([]);
@@ -38,6 +39,7 @@ const LikedRecipes = () => {
   }, []); // Empty dependency array to run once on component mount
 
   const recipe_detail = async ids => {
+    setLoading(true);
     try {
       const response = await axios.get(`https://api.spoonacular.com/recipes/informationBulk?ids=${ids}&apiKey=bcffb3f9bbd6414aaf1fa753f147235f`);
       console.log("API Response:", response.data);
@@ -45,6 +47,7 @@ const LikedRecipes = () => {
       setLoading(false);
       
     } catch (error) {
+      setLoading(false);
       console.error("Error fetching recipe details:", error);
     }
   };
@@ -76,6 +79,14 @@ const LikedRecipes = () => {
     }
   }, [recipeIdList]);
 
+  if(loading){
+  return(
+  <div className={classes.recipe_container}>
+      <Loader style={{color:'#ff5a5a'}} size={30}/>
+  </div>
+  );
+  }else{
+
   return (
     <div className={classes.recipe_container}>
       <div className={classes.recipes_list}>
@@ -90,6 +101,7 @@ const LikedRecipes = () => {
      </div>
     </div>
   );
+}
 };
 
 export default LikedRecipes;
