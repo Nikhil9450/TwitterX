@@ -173,7 +173,7 @@ export default function LikedRecipe(props) {
       </Box>
       <CardMedia
         component="img"
-        sx={{ width: 151 }}
+        sx={{ width: 90 }}
         image={props.data.image}
         alt="recipe_image"
       />
