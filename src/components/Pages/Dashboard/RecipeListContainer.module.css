@@ -3,6 +3,20 @@
     overflow-y: auto;
     background: black;
 }
+.main_empty{
+  height: 100%;
+  background-color: black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+}
+@media only screen and (max-width:750px){
+  .main_empty{
+    height: 90vh;
+
+  }
+}
 
 /* .search_container{
     display: flex;

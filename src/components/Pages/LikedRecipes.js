@@ -81,7 +81,7 @@ const LikedRecipes = () => {
 
   if(loading){
   return(
-  <div className={classes.recipe_container}>
+  <div className={classes.blank_recipe_container}>
       <Loader style={{color:'#ff5a5a'}} size={30}/>
   </div>
   );

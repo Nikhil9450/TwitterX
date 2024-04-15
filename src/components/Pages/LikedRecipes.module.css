@@ -1,18 +1,11 @@
-.recipe_container{
-    /* padding: 1rem; */
+.blank_recipe_container{
     height: 100%;
     background: #f7f7f7;
     display: flex;
     justify-content: center;
     align-items: center;
 }
-.upper_page{
-    height: 50%;
-    background: #272525;
-    display:flex;
-    justify-content: center;
-    align-items: center;
-}
+
 .recipes_list{
     height: 100%;
     display: flex;
@@ -23,9 +16,14 @@
     max-width: 100%;
 }
 @media only screen and (max-width:550px){
-    .upper_page{
-        display: none;
+    .recipe_container{
+        height: 100%;
+        background: #f7f7f7;
+        display: flex;
+        justify-content: center;
+        align-items: center;
     }
+
     .recipes_list{
         height: 100%;
         /* display: flex;

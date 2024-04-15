@@ -21,6 +21,7 @@ const RecipeListContainer = (props) => {
   // const [loading, setLoading] = useState(false);
   const user = auth.currentUser;
 
+
 const sendLikedToDb = async () => {
   try {
     const db = getFirestore();
@@ -64,49 +65,61 @@ const sendLikedToDb = async () => {
     console.log("liked_recipe_list------->",liked_recipe_list);
    }, [liked_recipe_list]); 
 
-  const fetchData = (page) => {
-    dispatch(fetchRecipe({ 
-      apiKey: "bcffb3f9bbd6414aaf1fa753f147235f",
-      number:10 , 
-      diet:selected_filters.filters.diet, 
-      cuisine:selected_filters.filters.cuisines, 
-      type:selected_filters.filters.type, 
-      query:searchedValue,
-      maxProtein:selected_filters.filters.maxProtein,
-      minProtein: selected_filters.filters.minProtein,
-      minCarbs: selected_filters.filters.minCarbs,
-      maxCarbs: selected_filters.filters.maxCarbs,
-      minFat: selected_filters.filters.minFat,
-      maxFat: selected_filters.filters.maxFat,
-      minFiber: selected_filters.filters.minFiber,
-      maxFiber:selected_filters.filters.maxFiber,
-      minIron: selected_filters.filters.minIron,
-      maxIron:selected_filters.filters.maxIron,
-      minSugar: selected_filters.filters.minSugar,
-      maxSugar: selected_filters.filters.maxSugar,
-      offset: (page - 1) * 10 }));
+   const fetchData = (page) => {
+    dispatch(
+      fetchRecipe({
+        apiKey: "bcffb3f9bbd6414aaf1fa753f147235f",
+        number: 10,
+        diet: selected_filters.filters.diet,
+        cuisine: selected_filters.filters.cuisines,
+        type: selected_filters.filters.type,
+        query: searchedValue,
+        maxProtein: selected_filters.filters.maxProtein,
+        minProtein: selected_filters.filters.minProtein,
+        minCarbs: selected_filters.filters.minCarbs,
+        maxCarbs: selected_filters.filters.maxCarbs,
+        minFat: selected_filters.filters.minFat,
+        maxFat: selected_filters.filters.maxFat,
+        minFiber: selected_filters.filters.minFiber,
+        maxFiber: selected_filters.filters.maxFiber,
+        minIron: selected_filters.filters.minIron,
+        maxIron: selected_filters.filters.maxIron,
+        minSugar: selected_filters.filters.minSugar,
+        maxSugar: selected_filters.filters.maxSugar,
+        offset: (page - 1) * 10,
+      })
+    )
   };
+  
   const handlePageChange = (event, page) => {
     setCurrentPage(page);
     console.log('selected_filters updated:', selected_filters);
   };
   
+  if(recipeList.length==0){
+    return (
+      <div className={classes.main_empty}>
+         <p style={{color:'white'}}>Search for the recipes.</p>
+      </div>
+    )
+  }else{
+    return (
+      <div className={classes.main}>
 
-  return (
-    <div className={classes.main}>
-      {recipeList && recipeList.map((element, index) => (
-        <Recipe key={index} title={element.title} image={element.image} id={element.id}  />
-      ))}
-      {/* <Recipe title={'Pasta'} /> */}
-      <BasicPagination
-        currentPage={currentPage}
-        onPageChange={handlePageChange}
-        totalResults={totalResults}
-        perPage={perPage}
-      />
+        {recipeList && recipeList.map((element, index) => (
+          <Recipe key={index} title={element.title} image={element.image} id={element.id}  />
+        ))}
 
-    </div>
-  )
+        <BasicPagination
+          currentPage={currentPage}
+          onPageChange={handlePageChange}
+          totalResults={totalResults}
+          perPage={perPage}
+        />
+  
+      </div>
+    )
+  }
 }
 
 export default RecipeListContainer
