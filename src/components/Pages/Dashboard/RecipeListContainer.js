@@ -96,10 +96,10 @@ const sendLikedToDb = async () => {
     console.log('selected_filters updated:', selected_filters);
   };
   
-  if(recipeList.length==0){
+  if(recipeList.length===0){
     return (
       <div className={classes.main_empty}>
-         <p style={{color:'white'}}>Search for the recipes.</p>
+         <p style={{color:'white'}}>No data available.</p>
       </div>
     )
   }else{
