@@ -13,6 +13,7 @@ import CustomizedSnackbars from '../Snackbar';
 import TransitionsModal from '../Modal';
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import { useMediaQuery } from '@mui/material';
+import Swal from 'sweetalert2';
 
 const AddRecipe = () => {
   const [loading, setLoading] =useState(false);
@@ -48,7 +49,7 @@ const AddRecipe = () => {
       console.error('User is not authenticated');
       return;
     }
-    if (titleRef.current.value===""){
+    if (titleRef.current.value === ""){
       handleClick();
       setMessage("Please enter the recipe title !")
     }
@@ -62,7 +63,7 @@ const AddRecipe = () => {
     }
     else if(ingredient.length===0){
       handleClick();
-      setMessage("Please enter the ingredients!")
+      setMessage("Please enter the ingredients !")
     }
     else{
     // Gather recipe data
@@ -83,8 +84,24 @@ const AddRecipe = () => {
       const recipesCollectionRef = collection(db, 'users', user.uid, 'recipes');
       await addDoc(recipesCollectionRef, newRecipeData);
       console.log('Recipe data stored in Firestore successfully!');
+      titleRef.current.value='';
+      summaryRef.current.value='';
+      stepsRef.current.value='';
+      ing_NameRef.current.value='';
+      ing_quantityRef.current.value='';
+      ing_unitRef.current.value='';
+      Swal.fire({
+        title: "Added",
+        text: "Recipe added successfully.",
+        icon: "success"
+      });
       setLoading(false);
     } catch (error) {
+      Swal.fire({
+        title: "Error",
+        text: {error},
+        icon: "error",
+      });
       console.error('Error storing recipe data in Firestore:', error);
       setLoading(false);
     }
